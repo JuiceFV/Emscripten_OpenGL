@@ -3,6 +3,7 @@ version: '3.8'
 services:
     application:
         build: .
-        command: python3 application/entry.py
+        volumes: 
+            - ./application/out:/app/application/out
         ports: 
             - "8080:8080"
