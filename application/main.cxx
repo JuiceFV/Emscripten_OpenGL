@@ -1,4 +1,5 @@
 //emcc main.cpp -o index.html -s USE_WEBGL2=1 -s USE_GLFW=3 -s WASM=1 -std=c++1z
+#include <GL/glew.h>
 #include <GLFW/glfw3.h>
 
 int main(void)
