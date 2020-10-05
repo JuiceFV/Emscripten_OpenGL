@@ -1,5 +1,5 @@
 # set the minimal version of the cmake
-cmake_minimum_required(VERSION 3.10)
+cmake_minimum_required(VERSION 3.1)
 
 # set the name of the project
 project(Emscripten_Graphics)
@@ -20,25 +20,33 @@ set(CMAKE_MODULE_PATH
   ${CMAKE_SOURCE_DIR}/cmake/Modules
 )
 
-# variables for the library
-# stack source-files
-set(${PROJECT_NAME}_SOURCES "application/sources/a.cxx")
-set(${PROJECT_NAME}_INCLUDES "application/includes/a.hpp")
+# Set the variables responsible for specific files.
+set(${PROJECT_NAME}_SOURCES)
+set(${PROJECT_NAME}_INCLUDES)
 set(${PROJECT_NAME}_MAIN "application/main.cxx")
 
-# Check for in-source builds.
-include(safeguard)
-
-# Set compilation's flags
+# Include additional cmake-files: 
+# 1) Set compilation's flags
+# 2) Safe guards against in-source builds and bad build types.
+# 3) Including file looking for libraries for the graphics
 include(setflags)
-
-include(Findglfw3)
+include(safeguard)
+include(graphics)
 
 message(STATUS "Executable mode is on!")
 
 # adding executable
 add_executable(${PROJECT_NAME} ${${PROJECT_NAME}_MAIN})
-target_link_libraries(${PROJECT_NAME} glfw)
+target_link_libraries(${PROJECT_NAME} glfw libglew_shared)
+
 
 find_package(OpenGL REQUIRED)
 target_link_libraries(${PROJECT_NAME} OpenGL::GL)
+
+if( MSVC )
+    if(${CMAKE_VERSION} VERSION_LESS "3.6.0") 
+        message("\n\t[ WARNING ]\n\n\tCMake version lower than 3.6.\n\n\t - Please update CMake and rerun; OR\n\t - Manually set ${PROJECT_NAME} as StartUp Project in Visual Studio.\n" )
+    else()
+        set_property( DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT ${PROJECT_NAME} )
+    endif()
+endif()
