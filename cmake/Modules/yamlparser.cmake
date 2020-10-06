@@ -1,0 +1,6 @@
+message(STATUS "Building the YAML parser")
+option(YAML_CPP_BUILD_CONTRIB OFF)
+option(YAML_CPP_BUILD_TOOLS OFF)
+option(YAML_BUILD_SHARED_LIBS ON)
+add_subdirectory(${CMAKE_SOURCE_DIR}/application/dependencies/yamlprsr)
+message(STATUS "YAML parser - Done!\n")
