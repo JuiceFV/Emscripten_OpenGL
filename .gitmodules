@@ -10,3 +10,6 @@
 [submodule "application/dependencies/emsdk"]
 	path = application/dependencies/emsdk
 	url = https://github.com/emscripten-core/emsdk.git
+[submodule "application/dependencies/yamlprsr"]
+	path = application/dependencies/yamlprsr
+	url = https://github.com/jbeder/yaml-cpp.git
