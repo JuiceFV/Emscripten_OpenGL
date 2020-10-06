@@ -4,3 +4,9 @@
 [submodule "application/dependencies/GLFW"]
 	path = application/dependencies/GLFW
 	url = https://github.com/glfw/glfw.git
+[submodule "application/dependencies/googletest"]
+	path = application/dependencies/googletest
+	url = https://github.com/google/googletest.git
+[submodule "application/dependencies/emsdk"]
+	path = application/dependencies/emsdk
+	url = https://github.com/emscripten-core/emsdk.git
