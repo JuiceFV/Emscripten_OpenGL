@@ -9,20 +9,14 @@
 
 #include <GLFW/glfw3.h>
 #include <iostream>
-#include "yaml-cpp/yaml.h"
+#include "config.h"
 
 std::function<void()> loop;
 void main_loop() { loop(); }
 
 int main(void)
 {
-    YAML::Node config = YAML::LoadFile("../config.yaml");
-
-if (config["lastLogin"]) { std::cout << "Ok"; }
-    else
-    {
-        std::cout << "Not Ok";
-    }
-
+    cfg::Config cfg;
+    cfg.getWindowProps();
     return 0;
 }
