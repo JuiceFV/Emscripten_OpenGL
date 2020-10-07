@@ -20,6 +20,7 @@ set(CMAKE_MODULE_PATH
   ${CMAKE_SOURCE_DIR}/cmake/Modules
 )
 
+# https://stackoverflow.com/questions/45260216/emscripten-cmake-pass-emscripten-options-in-cmakelist-file
 option(FOR_EMSDK "The libraries compilation occurs for the emsdk compilers" OFF)
 
 # Set the variables responsible for specific files.
@@ -33,27 +34,50 @@ set(${PROJECT_NAME}_MAIN "application/main.cxx")
 # 3) Including file looking for libraries for the graphics
 include(setflags)
 include(safeguard)
-include(graphics)
-include(yamlparser)
+if (NOT FOR_EMSDK)
+    include(graphics)
+endif()
+include(configloader)
+
+
+set(DEP_EMSDK_LIBS)
+
+if (NOT FOR_EMSDK)
+    set(DEP_LIBS
+        glfw 
+        libglew_shared
+    )
+endif()
+
+set(LIBS 
+    ConfigLoader
+)
 
 message(STATUS "Executable mode is on!")
 
-# setting libs
-set(LIBS 
-    glfw 
-    libglew_shared
-    yaml-cpp
-)
-
 # adding executable
 add_executable(${PROJECT_NAME} ${${PROJECT_NAME}_MAIN})
-target_link_libraries(${PROJECT_NAME} ${LIBS})
+target_link_libraries(${PROJECT_NAME} ${LIBS} ${DEP_LIBS} ${DEP_EMSDK_LIBS})  
 
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
-set_target_properties(${LIBS} PROPERTIES FOLDER "dependencies")
+if (FOR_EMSDK)
+    set_target_properties(${DEP_EMSDK_LIBS} PROPERTIES FOLDER "dependencies")
+elseif(${DEP_EMSDK_LIBS})
+    set_target_properties(${DEP_LIBS} PROPERTIES FOLDER "dependencies")
+    set_target_properties(${DEP_EMSDK_LIBS} PROPERTIES FOLDER "dependencies")
+else()
+    set_target_properties(${DEP_LIBS} PROPERTIES FOLDER "dependencies")
+endif()
 
-find_package(OpenGL REQUIRED)
-target_link_libraries(${PROJECT_NAME} OpenGL::GL)
+if (NOT FOR_EMSDK)
+    find_package(OpenGL REQUIRED)
+    target_link_libraries(${PROJECT_NAME} OpenGL::GL)
+endif()
+
+if (FOR_EMSDK)
+    message(STATUS "Setting EMCC flags\n")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -s NODERAWFS=1 -s FORCE_FILESYSTEM=1 -s USE_WEBGL2=1 -s USE_GLFW=3 -s WASM=1 -std=c++1z")
+endif()
 
 if(MSVC)
     if(${CMAKE_VERSION} VERSION_LESS "3.6.0") 
