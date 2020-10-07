@@ -1,0 +1,7 @@
+application:
+    window:
+        width: 640
+        height: 480
+server:
+    host: ''
+    port: 8080
