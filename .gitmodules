@@ -8,5 +8,5 @@
 	path = application/dependencies/googletest
 	url = https://github.com/google/googletest.git
 [submodule "application/dependencies/yamlprsr"]
-	path = application/dependencies/yamlprsr
+	path =  application/configloader/dependencies/yamlprsr
 	url = https://github.com/jbeder/yaml-cpp.git
