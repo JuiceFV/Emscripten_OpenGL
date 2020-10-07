@@ -12,4 +12,6 @@ RUN pip3 install aiohttp_jinja2
 
 RUN pip3 install jinja2
 
+RUN mkdir build
+
 ENTRYPOINT ./execapp.sh
