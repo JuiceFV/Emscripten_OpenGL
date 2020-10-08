@@ -1,5 +1,5 @@
 # set the minimal version of the cmake
-cmake_minimum_required(VERSION 3.1)
+cmake_minimum_required(VERSION 3.9)
 
 # set the name of the project
 project(Emscripten_Graphics)
@@ -22,6 +22,7 @@ set(CMAKE_MODULE_PATH
 
 # https://stackoverflow.com/questions/45260216/emscripten-cmake-pass-emscripten-options-in-cmakelist-file
 option(FOR_EMSDK "The libraries compilation occurs for the emsdk compilers" OFF)
+option(ENABLE_TESTS "Turn tests on/off" OFF)
 
 # Set the variables responsible for specific files.
 set(${PROJECT_NAME}_SOURCES)
@@ -76,13 +77,14 @@ endif()
 
 if (FOR_EMSDK)
     message(STATUS "Setting EMCC flags\n")
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -s NODERAWFS=1 -s FORCE_FILESYSTEM=1 -s USE_WEBGL2=1 -s USE_GLFW=3 -s WASM=1 -std=c++1z")
+    set(CMAKE_EXECUTABLE_SUFFIX ".html")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -s FORCE_FILESYSTEM=1 -s USE_WEBGL2=1 -s USE_GLFW=3 -s WASM=1 -std=c++1z --preload-file ../config/@/config")
 endif()
 
 if(MSVC)
     if(${CMAKE_VERSION} VERSION_LESS "3.6.0") 
         message("\n\t[ WARNING ]\n\n\tCMake version lower than 3.6.\n\n\t - Please update CMake and rerun; OR\n\t - Manually set ${PROJECT_NAME} as StartUp Project in Visual Studio.\n" )
     else()
-        set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT ${PROJECT_NAME} )
+        set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT ${PROJECT_NAME})
     endif()
 endif()
