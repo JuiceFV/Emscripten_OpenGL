@@ -17,6 +17,5 @@ void main_loop() { loop(); }
 int main(void)
 {
     cfg::Config cfg;
-    cfg.getWindowProps();
     return 0;
 }

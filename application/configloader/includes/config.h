@@ -1,17 +1,18 @@
 #pragma once
 
+#include "globals.h"
 #include "yaml-cpp/yaml.h"
+#include <exception>
 #include <filesystem>
 #include <iostream>
 #include <string>
 #include <unordered_map>
-#include <exception>
 
 namespace fs =
-#if defined(_MSC_VER) || defined(_WIN32)
-    std::filesystem;
-#else
+#if defined(__EMSCRIPTEN__)
     std::__fs::filesystem;
+#else
+    std::filesystem;
 #endif
 
 namespace cfg
@@ -23,11 +24,14 @@ namespace cfg
         Config(const std::string &path);
         std::string getPath();
         // TODO create dynamical return of a property depends on passed enum arg
-        std::unordered_map<std::string, unsigned int> getWindowProps();
+        auto getWindowProp();
         ~Config();
 
       private:
         fs::path Path;
         YAML::Node config;
+        std::unordered_map<std::string, unsigned int> win_size;
+
+        std::unordered_map<std::string, unsigned int> parseWinSize();
     };
 } // namespace cfg
