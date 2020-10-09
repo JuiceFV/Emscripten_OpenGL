@@ -1,6 +1,7 @@
 # set the minimal version of the cmake
 cmake_minimum_required(VERSION 3.9)
 
+#============================= Main application information =========================# 
 # set the name of the project
 project(Emscripten_Graphics)
 
@@ -14,13 +15,17 @@ set(${PROJECT_NAME}_VERSION "${${PROJECT_NAME}_MAJOR_VERSION}.${${PROJECT_NAME}_
 
 # Output the version of the project
 message("${PROJECT_NAME} version: ${${PROJECT_NAME}_VERSION}")
+#====================================================================================# 
 
+#============================= Set Main Variables ===================================# 
 # Set cmake's modules path
 set(CMAKE_MODULE_PATH
   ${CMAKE_SOURCE_DIR}/cmake/Modules
 )
 
-# https://stackoverflow.com/questions/45260216/emscripten-cmake-pass-emscripten-options-in-cmakelist-file
+# Adding options (flags)
+# 1) The flag, which has to be ON if we compile via emcc
+# 2) The flag, responsible for tests
 option(FOR_EMSDK "The libraries compilation occurs for the emsdk compilers" OFF)
 option(ENABLE_TESTS "Turn tests on/off" OFF)
 
@@ -28,21 +33,27 @@ option(ENABLE_TESTS "Turn tests on/off" OFF)
 set(${PROJECT_NAME}_SOURCES)
 set(${PROJECT_NAME}_INCLUDES)
 set(${PROJECT_NAME}_MAIN "application/main.cxx")
+#====================================================================================# 
 
-# Include additional cmake-files: 
+#============================= Include additional cmake-files =======================# 
 # 1) Set compilation's flags
 # 2) Safe guards against in-source builds and bad build types.
-# 3) Including file looking for libraries for the graphics
+# 3) Including file looking for libraries for the graphics.
+# 4) Include the file which compiles and looks for the configuration's library.
 include(setflags)
 include(safeguard)
 if (NOT FOR_EMSDK)
     include(graphics)
 endif()
 include(configloader)
+#====================================================================================# 
 
-
+#============================= Set libraries ========================================# 
+# Not in-build emscripten libraries, 
 set(DEP_EMSDK_LIBS)
 
+# The libraries, required by application, however they are already built in emscripten
+# But they are not built in the ordinar one.
 if (NOT FOR_EMSDK)
     set(DEP_LIBS
         glfw 
@@ -50,41 +61,78 @@ if (NOT FOR_EMSDK)
     )
 endif()
 
+# Other Libs, actually created by my-self.
 set(LIBS 
     ConfigLoader
 )
+#====================================================================================# 
 
-message(STATUS "Executable mode is on!")
+#============================= Generate executable ==================================# 
+if (NOT ENABLE_TESTS)
+    message(STATUS "Executable mode is on!")
 
-# adding executable
-add_executable(${PROJECT_NAME} ${${PROJECT_NAME}_MAIN})
-target_link_libraries(${PROJECT_NAME} ${LIBS} ${DEP_LIBS} ${DEP_EMSDK_LIBS})  
+    # adding executable
+    add_executable(${PROJECT_NAME} ${${PROJECT_NAME}_MAIN})
+    target_link_libraries(${PROJECT_NAME} ${LIBS} ${DEP_LIBS} ${DEP_EMSDK_LIBS})  
 
-set_property(GLOBAL PROPERTY USE_FOLDERS ON)
-if (FOR_EMSDK)
-    set_target_properties(${DEP_EMSDK_LIBS} PROPERTIES FOLDER "dependencies")
-elseif(${DEP_EMSDK_LIBS})
-    set_target_properties(${DEP_LIBS} PROPERTIES FOLDER "dependencies")
-    set_target_properties(${DEP_EMSDK_LIBS} PROPERTIES FOLDER "dependencies")
+    if (NOT FOR_EMSDK)
+        find_package(OpenGL REQUIRED)
+        target_link_libraries(${PROJECT_NAME} OpenGL::GL)
+    endif()
+
+    # Set some properties related only with emsdk
+    if (FOR_EMSDK)
+        set(CMAKE_EXECUTABLE_SUFFIX ".html")
+        set_target_properties(${PROJECT_NAME} PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/application/out")
+        configure_file(${CMAKE_SOURCE_DIR}/application/entry.py ${CMAKE_BINARY_DIR}/application/entry.py COPYONLY)
+        configure_file(${CMAKE_SOURCE_DIR}/config/servconfig.yaml ${CMAKE_BINARY_DIR}/config/servconfig.yaml COPYONLY)
+    #else()
+    #    configure_file(${CMAKE_SOURCE_DIR}/config/appconfig.yaml ${CMAKE_BINARY_DIR}/config/appconfig.yaml COPYONLY)
+    endif()
+
+    # If msvs then set the Emscripten_Graphics as startup project 
+    if(MSVC)
+        if(${CMAKE_VERSION} VERSION_LESS "3.6.0") 
+            message("\n\t[ WARNING ]\n\n\tCMake version lower than 3.6.\n\n\t - Please update CMake and rerun; OR\n\t - Manually set ${PROJECT_NAME} as StartUp Project in Visual Studio.\n" )
+        else()
+            set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT ${PROJECT_NAME})
+        endif()
+    endif()
 else()
-    set_target_properties(${DEP_LIBS} PROPERTIES FOLDER "dependencies")
+    # Perform tests
+    include(GNUInstallDirs)
+    set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/${CMAKE_INSTALL_LIBDIR})
+    set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/${CMAKE_INSTALL_LIBDIR})
+    set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/${CMAKE_INSTALL_BINDIR})
+
+    # Building googletests
+    add_subdirectory(${CMAKE_SOURCE_DIR}/application/dependencies/googletest)
+    enable_testing()
+
+    # set the node crosscompiler emulator
+    find_program(NODE_JS_EXECUTABLE NAMES nodejs node)
+    if(NODE_JS_EXECUTABLE)
+        set(CMAKE_CROSSCOMPILING_EMULATOR "${NODE_JS_EXECUTABLE}")
+    endif()
+
+    # adding test's dir
+    add_subdirectory(${CMAKE_SOURCE_DIR}/application/tests)
+endif()# endif (NOT ENABLE_TEST)
+
+# Set the only directory for the outsource libs.
+set_property(GLOBAL PROPERTY USE_FOLDERS ON)
+    if (FOR_EMSDK)
+        set_target_properties(${DEP_EMSDK_LIBS} PROPERTIES FOLDER "dependencies")
+    elseif(${DEP_EMSDK_LIBS})
+        set_target_properties(${DEP_LIBS} PROPERTIES FOLDER "dependencies")
+        set_target_properties(${DEP_EMSDK_LIBS} PROPERTIES FOLDER "dependencies")
+    else()
+        set_target_properties(${DEP_LIBS} PROPERTIES FOLDER "dependencies")
 endif()
 
-if (NOT FOR_EMSDK)
-    find_package(OpenGL REQUIRED)
-    target_link_libraries(${PROJECT_NAME} OpenGL::GL)
-endif()
-
+# If the application is builded via emcc sets appropriate flags
 if (FOR_EMSDK)
     message(STATUS "Setting EMCC flags\n")
-    set(CMAKE_EXECUTABLE_SUFFIX ".html")
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -s FORCE_FILESYSTEM=1 -s USE_WEBGL2=1 -s USE_GLFW=3 -s WASM=1 -std=c++1z --preload-file ../config/@/config")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -s FORCE_FILESYSTEM=1 -s USE_WEBGL2=1 -s USE_GLFW=3 -s WASM=1 -std=c++1z --preload-file ${CMAKE_SOURCE_DIR}/config/@/config")
 endif()
-
-if(MSVC)
-    if(${CMAKE_VERSION} VERSION_LESS "3.6.0") 
-        message("\n\t[ WARNING ]\n\n\tCMake version lower than 3.6.\n\n\t - Please update CMake and rerun; OR\n\t - Manually set ${PROJECT_NAME} as StartUp Project in Visual Studio.\n" )
-    else()
-        set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT ${PROJECT_NAME})
-    endif()
-endif()
+#====================================================================================# 
