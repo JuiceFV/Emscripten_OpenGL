@@ -26,7 +26,7 @@ async def create_app():
 
     return app
 
-@aiohttp_jinja2.template('app.html')
+@aiohttp_jinja2.template('Emscripten_Graphics.html')
 async def hello(request):
     return {}
 
