@@ -15,7 +15,7 @@ cfg::Config::Config()
 // using non-emcc, to acquire the config.yaml we have to step back to
 // the previous directory and then move to config-directory (`../config/config.yaml).
 // Opposite to non-emcc the emcc sets the base directory as root one and then 
-// move in the config-directory (`/config/config.yaml`).
+// move in the config-directory (`/config/config.yaml`). 
 #if defined(__EMSCRIPTEN__)
     this->Path = fs::current_path() /=
 #else
