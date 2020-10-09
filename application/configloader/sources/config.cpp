@@ -22,7 +22,7 @@ cfg::Config::Config()
     this->Path = fs::current_path().parent_path() /=
 #endif
         "config/appconfig.yaml";
-
+    for (auto &p : fs::directory_iterator(this->getPath())) std::cout << p.path() << '\n';
     try
     {
         if ((this->config = YAML::LoadFile(this->Path.string())["application"]))
@@ -46,7 +46,7 @@ cfg::Config::Config()
 
 cfg::Config::Config(const std::string &path) {}
 
-std::string cfg::Config::getPath() { return (this->Path.string()); }
+std::string cfg::Config::getPath() { return (this->Path.parent_path().string()); }
 
 // TODO create dynamical return of a property depends on passed enum arg
 auto cfg::Config::getWindowProp(){
