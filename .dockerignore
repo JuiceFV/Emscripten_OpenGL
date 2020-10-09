@@ -1,1 +1,4 @@
 application/dependencies/emsdk/
+build/
+buildnix/
+doc/
