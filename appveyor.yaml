@@ -9,7 +9,7 @@ branches:
     only:
     - master
 
-clone_folder: c:\projects\app
+clone_folder: c:\projects\emscripten-opengl
 
 configuration:
 - Debug
@@ -36,6 +36,6 @@ before_build:
     cmake -DENABLE_TESTS=ON .. -G %generator%
 
 build:
-    project: c:\projects\app\build\Emscripten_Graphics.sln
+    project: c:\projects\emscripten-opengl\build\Emscripten_Graphics.sln
     verbosity: minimal
     parallel: true
