@@ -8,6 +8,6 @@ services:
         command: sh execapp.sh
         ports: 
             - "8080:8080"
-    tests:
+    resbuild:
         build: .
-        command: sh exectests.sh
+        command: sh execbuild.sh
