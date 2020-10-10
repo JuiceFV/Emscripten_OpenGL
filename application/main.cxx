@@ -17,5 +17,6 @@ void main_loop() { loop(); }
 int main(void)
 {
     cfg::Config cfg;
+    std::cout << cfg.getWindowProp<unsigned int>(cfg::defaults::WIN_PROPS::HEIGHT);
     return 0;
 }
