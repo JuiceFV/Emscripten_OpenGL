@@ -1,0 +1,48 @@
+version: 1.0.{build}
+
+branches:
+    only:
+    - master
+
+clone_folder: c:\projects\emscripten-opengl
+
+
+image:
+- Visual Studio 2019
+- Visual Studio 2017
+
+configuration:
+- Debug
+- Release
+
+platform:
+- x64
+
+environment:
+    matrix:
+    - arch: Win64
+
+init:
+- set arch=
+- if "%arch%"=="Win64" ( set arch= Win64)
+- echo %arch%
+- echo %APPVEYOR_BUILD_WORKER_IMAGE%
+- if "%APPVEYOR_BUILD_WORKER_IMAGE%"=="Visual Studio 2017" ( set generator="Visual Studio 15 2017%arch%" )
+- if "%APPVEYOR_BUILD_WORKER_IMAGE%"=="Visual Studio 2015" ( set generator="Visual Studio 14 2015%arch%" )
+- if "%APPVEYOR_BUILD_WORKER_IMAGE%"=="Visual Studio 2013" ( set generator="Visual Studio 12 2013%arch%" )
+- echo %generator%
+
+before_build:
+- cmd: |-
+    git clone https://github.com/Perlmint/glew-cmake.git application\dependencies
+    git clone https://github.com/glfw/glfw.git application\dependencies
+    git clone https://github.com/google/googletest.git application\dependencies
+    mkdir build
+    cd build
+    cmake --version
+    cmake -DENABLE_TESTS=ON .. -G %generator%
+
+build:
+    project: c:\projects\emscripten-opengl\build\Emscripten_Graphics.sln
+    verbosity: minimal
+    parallel: true
