@@ -34,9 +34,9 @@ init:
 
 before_build:
 - cmd: |-
-    git clone https://github.com/Perlmint/glew-cmake.git application\dependencies
-    git clone https://github.com/glfw/glfw.git application\dependencies
-    git clone https://github.com/google/googletest.git application\dependencies
+    git clone https://github.com/Perlmint/glew-cmake.git c:\projects\emscripten-opengl\application\dependencies\GLEW
+    git clone https://github.com/glfw/glfw.git c:\projects\emscripten-opengl\application\dependencies\GLFW
+    git clone https://github.com/google/googletest.git c:\projects\emscripten-opengl\application\dependencies\googletest
     mkdir build
     cd build
     cmake --version
