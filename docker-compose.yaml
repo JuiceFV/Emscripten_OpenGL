@@ -5,9 +5,9 @@ services:
         build: .
         volumes: 
             - ./application/out:/app/build/application/out
-        command: ./execapp.sh
+        command: sh execapp.sh
         ports: 
             - "8080:8080"
     tests:
         build: .
-        command: ./exectests.sh
+        command: sh exectests.sh
