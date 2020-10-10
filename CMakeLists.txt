@@ -28,6 +28,9 @@ set(CMAKE_MODULE_PATH
 # 2) The flag, responsible for tests
 option(FOR_EMSDK "The libraries compilation occurs for the emsdk compilers" OFF)
 option(ENABLE_TESTS "Turn tests on/off" OFF)
+if(ENABLE_TESTS)
+    option(TESTS_VERBOSE "Turn tests on/off" OFF)
+endif()
 
 # Set the variables responsible for specific files.
 set(${PROJECT_NAME}_SOURCES)
@@ -117,6 +120,9 @@ else()
 
     # adding test's dir
     add_subdirectory(${CMAKE_SOURCE_DIR}/application/tests)
+    if(TESTS_VERBOSE)
+        add_custom_target(tests COMMAND ${CMAKE_CTEST_COMMAND} --verbose)
+    endif()
 endif()# endif (NOT ENABLE_TEST)
 
 # Set the only directory for the outsource libs.
