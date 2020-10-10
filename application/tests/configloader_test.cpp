@@ -1,11 +1,10 @@
+#include "config.h"
+#include <gmock/gmock.h>
 #include <gtest/gtest.h>
 
-TEST(example, add)
-{
-    ASSERT_TRUE(true);
-}
 
-TEST(example2, add2)
+TEST(configloaderTest, defConstructor)
 {
-    ASSERT_TRUE(true);
+    cfg::Config conf;
+    ASSERT_EQ(conf.getWindowProp<unsigned int>(cfg::defaults::WIN_PROPS::WIDTH), 123);
 }

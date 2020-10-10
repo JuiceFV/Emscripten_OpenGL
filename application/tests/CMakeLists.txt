@@ -3,7 +3,7 @@ if (NOT FOR_EMSDK)
 endif()
 
 add_executable(configloader_test configloader_test.cpp)
-target_link_libraries(configloader_test gtest_main ConfigLoader)
+target_link_libraries(configloader_test gtest_main gmock_main ConfigLoader)
 
 add_test(
   NAME
