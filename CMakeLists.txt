@@ -28,8 +28,10 @@ set(CMAKE_MODULE_PATH
 # 2) The flag, responsible for tests
 option(FOR_EMSDK "The libraries compilation occurs for the emsdk compilers" OFF)
 option(ENABLE_TESTS "Turn tests on/off" OFF)
-if(ENABLE_TESTS)
-    option(TESTS_VERBOSE "Turn tests on/off" OFF)
+
+# So far, tests available only for WINDOWS
+if(FOR_EMSDK)
+    set(ENABLE_TESTS OFF)
 endif()
 
 # Set the variables responsible for specific files.
@@ -71,6 +73,7 @@ set(LIBS
 #====================================================================================# 
 
 #============================= Generate executable ==================================# 
+message(STATUS ${ENABLE_TESTS})
 if (NOT ENABLE_TESTS)
     message(STATUS "Executable mode is on!")
 
@@ -89,8 +92,9 @@ if (NOT ENABLE_TESTS)
         set_target_properties(${PROJECT_NAME} PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/application/out")
         configure_file(${CMAKE_SOURCE_DIR}/application/entry.py ${CMAKE_BINARY_DIR}/application/entry.py COPYONLY)
         configure_file(${CMAKE_SOURCE_DIR}/config/servconfig.yaml ${CMAKE_BINARY_DIR}/config/servconfig.yaml COPYONLY)
-    #else()
-    #    configure_file(${CMAKE_SOURCE_DIR}/config/appconfig.yaml ${CMAKE_BINARY_DIR}/config/appconfig.yaml COPYONLY)
+    else()
+        # For the emsdk, the config.yaml passes to the virtual filesystem directly. You may notice this below.
+        configure_file(${CMAKE_SOURCE_DIR}/config/appconfig.yaml ${CMAKE_BINARY_DIR}/config/appconfig.yaml COPYONLY)
     endif()
 
     # If msvs then set the Emscripten_Graphics as startup project 
@@ -102,26 +106,14 @@ if (NOT ENABLE_TESTS)
         endif()
     endif()
 else()
-    # Perform tests
-    include(GNUInstallDirs)
-    set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/${CMAKE_INSTALL_LIBDIR})
-    set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/${CMAKE_INSTALL_LIBDIR})
-    set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/${CMAKE_INSTALL_BINDIR})
+    if(MSVC)
+        # Building googletests
+        add_subdirectory(${CMAKE_SOURCE_DIR}/application/dependencies/googletest)
+        enable_testing()
 
-    # Building googletests
-    add_subdirectory(${CMAKE_SOURCE_DIR}/application/dependencies/googletest)
-    enable_testing()
-
-    # set the node crosscompiler emulator
-    find_program(NODE_JS_EXECUTABLE NAMES nodejs node)
-    if(NODE_JS_EXECUTABLE)
-        set(CMAKE_CROSSCOMPILING_EMULATOR "${NODE_JS_EXECUTABLE}")
-    endif()
-
-    # adding test's dir
-    add_subdirectory(${CMAKE_SOURCE_DIR}/application/tests)
-    if(TESTS_VERBOSE)
-        add_custom_target(tests COMMAND ${CMAKE_CTEST_COMMAND} --verbose)
+        # adding test's dir
+        add_subdirectory(${CMAKE_SOURCE_DIR}/application/tests)
+        configure_file(${CMAKE_SOURCE_DIR}/application/tests/config/appconfig.yaml ${CMAKE_BINARY_DIR}/application/tests/config/appconfig.yaml COPYONLY)
     endif()
 endif()# endif (NOT ENABLE_TEST)
 
