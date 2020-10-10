@@ -1,15 +1,15 @@
 version: 1.0.{build}
 
-image:
-- Visual Studio 2019
-- Visual Studio 2017
-
-
 branches:
     only:
     - master
 
 clone_folder: c:\projects\emscripten-opengl
+
+
+image:
+- Visual Studio 2019
+- Visual Studio 2017
 
 configuration:
 - Debug
@@ -17,6 +17,10 @@ configuration:
 
 platform:
 - x64
+
+environment:
+    matrix:
+    - arch: Win64
 
 init:
 - set arch=
