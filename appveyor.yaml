@@ -32,11 +32,11 @@ init:
 - if "%APPVEYOR_BUILD_WORKER_IMAGE%"=="Visual Studio 2013" ( set generator="Visual Studio 12 2013%arch%" )
 - echo %generator%
 
+install:
+    - git submodule update --init --recursive
+
 before_build:
 - cmd: |-
-    git clone https://github.com/Perlmint/glew-cmake.git c:\projects\emscripten-opengl\application\dependencies\GLEW
-    git clone https://github.com/glfw/glfw.git c:\projects\emscripten-opengl\application\dependencies\GLFW
-    git clone https://github.com/google/googletest.git c:\projects\emscripten-opengl\application\dependencies\googletest
     mkdir build
     cd build
     cmake --version
