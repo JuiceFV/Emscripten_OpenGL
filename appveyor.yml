@@ -16,7 +16,6 @@ clone_script:
 
 configuration:
     - Debug
-    - Release
 
 platform:
     - x64
