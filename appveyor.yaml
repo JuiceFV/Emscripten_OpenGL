@@ -7,6 +7,8 @@ branches:
 clone_folder: c:\projects\emscripten-opengl
 
 install:
+    - echo This is something
+    - ps: Write-Host 'This is PowerShell'
     - git submodule update --init --recursive
 
 configuration:
