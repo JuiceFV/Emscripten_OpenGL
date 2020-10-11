@@ -22,9 +22,10 @@ namespace cfg
       public:
         Config();
         Config(const std::string &path);
-        std::string getPath();
+        std::string getPath() const;
         void uploadDefaultCfg();
-        inline bool isConfigDefault();
+        bool isConfigDefault() const;
+        YAML::Node getConfigFile() const;
         
         template<typename T>
         T getWindowProp(const defaults::WIN_PROPS _property)

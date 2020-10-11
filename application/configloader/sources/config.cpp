@@ -32,7 +32,7 @@ void cfg::Config::defineConfig(const std::string &path)
     }
 }
 
-std::string cfg::Config::getPath() { return (this->Path.parent_path().string()); }
+std::string cfg::Config::getPath() const { return this->Path.parent_path().string(); }
 
 // The private method which parses and returns width and heigth as dict.
 std::unordered_map<std::string, unsigned int> cfg::Config::parseWinSize()
@@ -78,10 +78,12 @@ void cfg::Config::uploadDefaultCfg()
     this->is_default = true;
     this->Path = "";
     this->cfg_file = NULL;
-    this->win_size.insert({"width", defaults::WIN_WIDTH});
-    this->win_size.insert({"height", defaults::WIN_HEIGHT});
+    this->win_size.insert_or_assign("width", defaults::WIN_WIDTH);
+    this->win_size.insert_or_assign("height", defaults::WIN_HEIGHT);
 }
 
-inline bool cfg::Config::isConfigDefault() { return this->is_default; }
+bool cfg::Config::isConfigDefault() const { return (this->is_default); }
+
+YAML::Node cfg::Config::getConfigFile() const{ return (this->cfg_file); }
 
 cfg::Config::~Config() {}
