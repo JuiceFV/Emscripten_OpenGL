@@ -24,6 +24,19 @@ environment:
     matrix:
     - arch: Win64
 
+
+before_build:
+- cmd: |-
+    mkdir build
+    cd build
+    cmake --version
+    cmake -DENABLE_TESTS=ON ..
+
+build:
+    project: c:\projects\emscripten-opengl\build\Emscripten_Graphics.sln
+    verbosity: minimal
+    parallel: true
+
 before_test:
 - cmd: |-
     mkdir build
