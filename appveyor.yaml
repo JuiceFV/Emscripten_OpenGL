@@ -8,6 +8,7 @@ clone_folder: c:\projects\emscripten-opengl
 
 clone_script:
     - ps: >-
+        echo $env:APPVEYOR_REPO_NAME
         if(-not $env:APPVEYOR_PULL_REQUEST_NUMBER) {
           git clone -q --branch=$env:APPVEYOR_REPO_BRANCH https://github.com/$env:APPVEYOR_REPO_NAME.git $env:APPVEYOR_BUILD_FOLDER
           cd $env:APPVEYOR_BUILD_FOLDER
