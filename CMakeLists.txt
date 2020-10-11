@@ -123,8 +123,6 @@ if (NOT ENABLE_TESTS)
 else()
     message(STATUS "Test mode is on!")
     if(MSVC)
-        # Building googletests
-        add_subdirectory(${CMAKE_SOURCE_DIR}/application/dependencies/googletest)
         enable_testing()
 
         # adding test's dir

@@ -1,4 +1,9 @@
-set(TESTS_INCLUDES "configloader_test.hpp")
+# Building googletests
+add_subdirectory(${CMAKE_SOURCE_DIR}/application/tests/dependencies/googletest)
+
+set(TESTS_INCLUDES 
+        "configloader_test.hpp"
+)
 
 add_executable(tests main.cxx ${TESTS_INCLUDES})
 target_link_libraries(tests gtest_main gmock_main ConfigLoader ${LIBS} ${DEP_LIBS} ${DEP_EMSDK_LIBS})
