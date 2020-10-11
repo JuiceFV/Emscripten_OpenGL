@@ -146,6 +146,6 @@ endif()
 # If the application is builded via emcc sets appropriate flags
 if (FOR_EMSDK)
     message(STATUS "Setting EMCC flags\n")
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -s FORCE_FILESYSTEM=1 -s USE_WEBGL2=1 -s USE_GLFW=3 -s WASM=1 -std=c++1z --preload-file ${CMAKE_SOURCE_DIR}/config/@/config")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -s FORCE_FILESYSTEM=1 -s USE_WEBGL2=1 -s USE_GLFW=3 -s WASM=1 -std=c++17 --preload-file ${CMAKE_SOURCE_DIR}/config/@/config")
 endif()
 #====================================================================================# 
