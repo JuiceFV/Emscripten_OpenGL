@@ -7,7 +7,6 @@ branches:
 clone_folder: c:\projects\emscripten-opengl
 
 image:
-- Visual Studio 2017
 - Visual Studio 2019
 
 clone_script:
@@ -25,15 +24,13 @@ environment:
     matrix:
     - arch: Win64
 
-
-before_build:
+before_test:
 - cmd: |-
     mkdir build
     cd build
     cmake --version
     cmake -DENABLE_TESTS=ON ..
+    cmake --build .
 
-build:
-    project: c:\projects\emscripten-opengl\build\Emscripten_Graphics.sln
-    verbosity: minimal
-    parallel: true
+test_script:
+    ctest -C Debug -V

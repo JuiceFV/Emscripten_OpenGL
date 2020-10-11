@@ -73,7 +73,6 @@ set(LIBS
 #====================================================================================# 
 
 #============================= Generate executable ==================================# 
-message(STATUS ${ENABLE_TESTS})
 if (NOT ENABLE_TESTS)
     message(STATUS "Executable mode is on!")
 
@@ -87,13 +86,29 @@ if (NOT ENABLE_TESTS)
     endif()
 
     # Set some properties related only with emsdk
-    if (FOR_EMSDK)
+    # Specifically, we creates some output and supporting dirictories:                           
+    #+-------------------------------------------------------------------------------------------+
+    #| To begin with, I tie volumes in the docker-compose and for these purposes                 |
+    #| I pass executable (.html, .js, .wasm, .data) to the tied directory. So that we            |   
+    #| may acquire those files on our host machine.                                              |
+    #+-------------------------------------------------------------------------------------------+
+    #| 2&3) Due to, whereas building occurs in the docker container, I created so-called warapper|
+    #| in python, which lunches a server and handles requests if those appears. Thus I have to   |
+    #| shove the entry.py and its config to the binary dir, in purpose to launch it properly.    |
+    #+-------------------------------------------------------------------------------------------+
+    #| I'd like to emphasize the problem appears when the compilation occurs via emcc.           |
+    #| Emscripten creates its own filesystem and assign the start-dir as the root one.           |
+    #| In c++ code I have to step back to the previous directory to derive the config.yaml       |
+    #| (../config/config.yaml) if project was built via msvc-compiler, however for the emcc it   |
+    #| looks like (/config/config.yaml). I do not really want to do a mess from the code,        |
+    #| therefore I copy the config file to bin dir to make paths equal.                          |
+    #+-------------------------------------------------------------------------------------------+
+    if (FOR_EMSDK) 
         set(CMAKE_EXECUTABLE_SUFFIX ".html")
         set_target_properties(${PROJECT_NAME} PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/application/out")
         configure_file(${CMAKE_SOURCE_DIR}/application/entry.py ${CMAKE_BINARY_DIR}/application/entry.py COPYONLY)
         configure_file(${CMAKE_SOURCE_DIR}/config/servconfig.yaml ${CMAKE_BINARY_DIR}/config/servconfig.yaml COPYONLY)
     else()
-        # For the emsdk, the config.yaml passes to the virtual filesystem directly. You may notice this below.
         configure_file(${CMAKE_SOURCE_DIR}/config/appconfig.yaml ${CMAKE_BINARY_DIR}/config/appconfig.yaml COPYONLY)
     endif()
 
@@ -106,6 +121,7 @@ if (NOT ENABLE_TESTS)
         endif()
     endif()
 else()
+    message(STATUS "Test mode is on!")
     if(MSVC)
         # Building googletests
         add_subdirectory(${CMAKE_SOURCE_DIR}/application/dependencies/googletest)

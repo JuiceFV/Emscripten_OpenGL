@@ -1,15 +1,18 @@
+set(TESTS_INCLUDES "configloader_test.hpp")
+
+add_executable(tests main.cxx ${TESTS_INCLUDES})
+target_link_libraries(tests gtest_main gmock_main ConfigLoader ${LIBS} ${DEP_LIBS} ${DEP_EMSDK_LIBS})
+
 if (NOT FOR_EMSDK)
     find_package(OpenGL REQUIRED)
+    target_link_libraries(tests OpenGL::GL)
 endif()
-
-add_executable(configloader_test configloader_test.cpp)
-target_link_libraries(configloader_test gtest_main gmock_main ConfigLoader)
 
 add_test(
   NAME
-    unit
+    tests
   COMMAND
-    ${CMAKE_CROSSCOMPILING_EMULATOR} $<TARGET_FILE:configloader_test>
+    $<TARGET_FILE:tests>
 )
 
-set_target_properties(gmock gmock_main gtest gtest_main PROPERTIES FOLDER "dependencies")
+set_target_properties(gmock gmock_main gtest gtest_main ${LIBS} ${DEP_LIBS} ${DEP_EMSDK_LIBS} PROPERTIES FOLDER "dependencies")
