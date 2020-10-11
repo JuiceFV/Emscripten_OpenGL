@@ -128,6 +128,7 @@ else()
         # adding test's dir
         add_subdirectory(${CMAKE_SOURCE_DIR}/application/tests)
         configure_file(${CMAKE_SOURCE_DIR}/application/tests/config/appconfig.yaml ${CMAKE_BINARY_DIR}/application/tests/config/appconfig.yaml COPYONLY)
+        file(COPY ${CMAKE_SOURCE_DIR}/application/tests/badconfig DESTINATION ${CMAKE_BINARY_DIR}/application/tests/badconfig)
     endif()
 endif()# endif (NOT ENABLE_TEST)
 
