@@ -26,20 +26,12 @@ environment:
     matrix:
         - arch: Win64
 
-init:
-    - set arch=
-    - if "%arch%"=="Win64" ( set arch= Win64)
-    - echo %arch%
-    - echo %APPVEYOR_BUILD_WORKER_IMAGE%
-    - if "%APPVEYOR_BUILD_WORKER_IMAGE%"=="Visual Studio 2017" ( set generator="Visual Studio 16 2019%arch%" )
-    - if "%APPVEYOR_BUILD_WORKER_IMAGE%"=="Visual Studio 2017" ( set generator="Visual Studio 15 2017%arch%" )
-    - echo %generator%
-
 build_script:
     - mkdir build
     - cd build
     - cmake --version
-    - cmake -DENABLE_TESTS=ON .. -G %generator%
+    - cmake -DENABLE_TESTS=ON ..
+    - cmake --build .
 
 test_script:
     ctest -C %CONFIGURATION% -VV
