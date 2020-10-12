@@ -101,3 +101,12 @@ TEST_F(ConfigLoaderTest, setDefaultCfgTest)
     ASSERT_EQ(tc->getPath(), std::string(""));
     // Techniclally the config_file is NULL, however I can't find related assert.
 }
+
+TEST_F(ConfigLoaderTest, setIsCfgDefault)
+{
+    std::cout << std::endl;
+    SetUp();
+    ASSERT_FALSE(tc->isConfigDefault());
+    tc->uploadDefaultCfg();
+    ASSERT_TRUE(tc->isConfigDefault());
+}

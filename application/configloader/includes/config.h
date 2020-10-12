@@ -20,12 +20,12 @@ namespace cfg
     class Config
     {
       public:
-        Config();
-        Config(const std::string &path);
-        std::string getPath() const;
-        void uploadDefaultCfg();
-        bool isConfigDefault() const;
-        YAML::Node getConfigFile() const;
+        Config(); //tested
+        Config(const std::string &path); //tested
+        std::string getPath() const; //tested
+        void uploadDefaultCfg(); //tested
+        bool isConfigDefault() const; //tested
+        YAML::Node getConfigFile() const; //not tested, mock required
         
         template<typename T>
         T getWindowProp(const defaults::WIN_PROPS _property)
@@ -35,7 +35,7 @@ namespace cfg
                 case defaults::WIN_PROPS::WIDTH: return this->win_size["width"]; break;
                 case defaults::WIN_PROPS::HEIGHT: return this->win_size["height"]; break;
             }
-        };
+        }; //tested
 
         ~Config();
 
