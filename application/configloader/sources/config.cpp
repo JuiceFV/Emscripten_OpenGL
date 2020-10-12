@@ -78,8 +78,8 @@ void cfg::Config::uploadDefaultCfg()
     this->is_default = true;
     this->Path = "";
     this->cfg_file = NULL;
-    this->win_size.insert_or_assign("width", defaults::WIN_WIDTH);
-    this->win_size.insert_or_assign("height", defaults::WIN_HEIGHT);
+    this->win_size["width"] = defaults::WIN_WIDTH;
+    this->win_size["height"] = defaults::WIN_HEIGHT;
 }
 
 bool cfg::Config::isConfigDefault() const { return (this->is_default); }
