@@ -1,0 +1,412 @@
+\documentclass[12pt]{article}
+\usepackage[T2A]{fontenc}
+\usepackage[russian, english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage{amsmath, amssymb}
+\usepackage{graphicx}
+\usepackage{physics}
+\usepackage{float}
+\usepackage{booktabs} 
+\usepackage{amsmath}
+\usepackage{systeme}
+\usepackage{blindtext}
+\usepackage{enumitem}
+\usepackage{listings}
+\usepackage[table]{xcolor}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usepackage{titlesec}
+\usepackage{mathtools}
+\usepackage{tcolorbox}
+\usepackage{bm}
+\usepackage[normalem]{ulem}
+\usepackage{geometry}
+\usepackage{siunitx}
+\usepackage{xcolor}
+\usepackage{tikzsymbols}
+\usepackage{relsize}
+\usepackage{pgfplots}
+\usepackage[edges]{forest}
+
+\definecolor{folderbg}{RGB}{124,166,198}
+\definecolor{folderborder}{RGB}{110,144,169}
+\newlength\Size
+\setlength\Size{4pt}
+
+\newcommand\YAMLcolonstyle{\color{red}\mdseries}
+\newcommand\YAMLkeystyle{\color{black}\bfseries}
+\newcommand\YAMLvaluestyle{\color{blue}\mdseries}
+
+\makeatletter
+
+% here is a macro expanding to the name of the language
+% (handy if you decide to change it further down the road)
+\newcommand\language@yaml{yaml}
+
+\expandafter\expandafter\expandafter\lstdefinelanguage
+\expandafter{\language@yaml}
+{
+  keywords={true,false,null,y,n},
+  keywordstyle=\color{darkgray}\bfseries,
+  basicstyle=\YAMLkeystyle,                                 % assuming a key comes first
+  sensitive=false,
+  comment=[l]{\#},
+  morecomment=[s]{/*}{*/},
+  commentstyle=\color{purple}\ttfamily,
+  stringstyle=\YAMLvaluestyle\ttfamily,
+  moredelim=[l][\color{orange}]{\&},
+  moredelim=[l][\color{magenta}]{*},
+  moredelim=**[il][\YAMLcolonstyle{:}\YAMLvaluestyle]{:},   % switch to value style at :
+  morestring=[b]',
+  morestring=[b]",
+  literate =    {---}{{\ProcessThreeDashes}}3
+                {>}{{\textcolor{red}\textgreater}}1     
+                {|}{{\textcolor{red}\textbar}}1 
+                {\ -\ }{{\mdseries\ -\ }}3,
+}
+
+% switch to key style at EOL
+\lst@AddToHook{EveryLine}{\ifx\lst@language\language@yaml\YAMLkeystyle\fi}
+\makeatother
+
+\newcommand\ProcessThreeDashes{\llap{\color{cyan}\mdseries-{-}-}}
+
+\tikzset{%
+  folder/.pic={%
+    \filldraw [draw=folderborder, top color=folderbg!50, bottom color=folderbg] (-1.05*\Size,0.2\Size+5pt) rectangle ++(.75*\Size,-0.2\Size-5pt);
+    \filldraw [draw=folderborder, top color=folderbg!50, bottom color=folderbg] (-1.15*\Size,-\Size) rectangle (1.15*\Size,\Size);
+  },
+  file/.pic={%
+    \filldraw [draw=folderborder, top color=folderbg!5, bottom color=folderbg!10] (-\Size,.4*\Size+5pt) coordinate (a) |- (\Size,-1.2*\Size) coordinate (b) -- ++(0,1.6*\Size) coordinate (c) -- ++(-5pt,5pt) coordinate (d) -- cycle (d) |- (c) ;
+  },
+}
+\forestset{%
+  declare autowrapped toks={pic me}{},
+  declare boolean register={pic root},
+  pic root=0,
+  pic dir tree/.style={%
+    for tree={%
+      folder,
+      font=\ttfamily,
+      grow'=0,
+    },
+    before typesetting nodes={%
+      for tree={%
+        edge label+/.option={pic me},
+      },
+      if pic root={
+        tikz+={
+          \pic at ([xshift=\Size].west) {folder};
+        },
+        align={l}
+      }{},
+    },
+  },
+  pic me set/.code n args=2{%
+    \forestset{%
+      #1/.style={%
+        inner xsep=2\Size,
+        pic me={pic {#2}},
+      }
+    }
+  },
+  pic me set={directory}{folder},
+  pic me set={file}{file},
+}
+
+\geometry{
+    a4paper,
+    left=2cm,
+    right=2cm,
+    top=1.5cm,
+    bottom=1.5cm
+}
+\usepackage{multicol}
+
+\pgfmathdeclarefunction{gauss}{2}{\pgfmathparse{1/(#2*sqrt(2*pi))*exp(-((x-#1)^2)/(2*#2^2))}}
+
+\DeclareRobustCommand{\bbone}{\text{\usefont{U}{bbold}{m}{n}1}}
+
+\DeclareMathOperator{\EX}{\mathbb{E}}
+
+\newcommand{\icol}[1]{% inline column vector
+  \left[\begin{smallmatrix}#1\end{smallmatrix}\right]%
+}
+
+
+\titleclass{\subsubsubsection}{straight}[\subsection]
+
+\newcounter{subsubsubsection}[subsubsection]
+\renewcommand\thesubsubsubsection{\thesubsubsection.\arabic{subsubsubsection}}
+\renewcommand\theparagraph{\thesubsubsubsection.\arabic{paragraph}} % optional; useful if paragraphs are to be numbered
+
+% Set paragraph indent
+\setlength{\parindent}{4ex}
+
+% Set the header of the ToC as "Оглавление"
+\addto\captionsenglish{
+  \renewcommand{\contentsname}
+    {Оглавление}
+}
+
+\titleformat{\subsubsubsection}
+  {\normalfont\normalsize\bfseries}{\thesubsubsubsection}{1em}{}
+\titlespacing*{\subsubsubsection}
+{0pt}{3.25ex plus 1ex minus .2ex}{1.5ex plus .2ex}
+
+\makeatletter
+\renewcommand\paragraph{\@startsection{paragraph}{5}{\z@}%
+  {3.25ex \@plus1ex \@minus.2ex}%
+  {-1em}%
+  {\normalfont\normalsize\bfseries}}
+\renewcommand\subparagraph{\@startsection{subparagraph}{6}{\parindent}%
+  {3.25ex \@plus1ex \@minus .2ex}%
+  {-1em}%
+  {\normalfont\normalsize\bfseries}}
+\def\toclevel@subsubsubsection{4}
+\def\toclevel@paragraph{5}
+\def\toclevel@paragraph{6}
+\def\l@subsubsubsection{\@dottedtocline{4}{7em}{4em}}
+\def\l@paragraph{\@dottedtocline{5}{10em}{5em}}
+\def\l@subparagraph{\@dottedtocline{6}{14em}{6em}}
+\makeatother
+
+\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{4}
+
+\hypersetup{
+	colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2
+}
+
+\pagenumbering{arabic}
+
+\begin{document}
+
+    \begin{titlepage}
+    \center % Center everything on the page
+    \newcommand{\HRline}[1]{\rule{\linewidth}{#1}} % Defines a new command for the horizontal lines, change thickness here
+    \vspace*{\fill}
+    \textbf{\LARGE Инструкция по взаимодействию с \\ \href{https://github.com/JuiceFV/Emscripten_OpenGL}{Emscripten OpenGL}}
+    \vspace*{\fill}
+    \begin{multicols}{2}
+        \begin{flushleft}
+            \large Автор: \\
+            \large Касьян Александр Иваночвич
+        \end{flushleft}
+
+        
+        \columnbreak
+        \begin{flushright}
+            \large Дата:\\
+            \large {\large \today}
+        \end{flushright}
+    \end{multicols}
+    \end{titlepage}
+
+    \newpage
+
+    \tableofcontents
+
+    \newpage
+    \section{Вводное слово}
+    В данной секции я бы хотел обозначить некоторые моменты, которые могут
+    сбивать.
+    \begin{itemize}
+        \item Данный, как и все остальные документы я оформляю с помощью 
+        LaTex, в связи с этим ни doc ни docx файлы предоставить не могу 
+        (если таковые потребуются). Все source-файлы находятся на 
+        \href{https://github.com/JuiceFV/Emscripten_OpenGL}{GitHub'е}
+        в соответствующей папке \emph{docs}
+        \item Я заранее прошу прощения, но у меня есть некоторые проблеммы
+        с русским языком, в связи с этим данный и все последующие файлы 
+        могут быть (скорее всего будут) написаны не очень грамотно и с 
+        большим использованием английских слов. 
+        \item Данный документ будет пополняться паралельно с ходом выполнения
+        проекта.
+    \end{itemize}
+    \newpage
+    \section{Билд}
+    Я сразу хочу подметить, что проект не создавался как кроссплатформенное
+    решение, т.к. я считаю, что это глупо использовать для кроссплатформы
+    OpenGL, т.к. у каждой платформы есть более подходящие спецификации, с 
+    более комплексным и гибким API. А следовательно проект работает на
+    платформе Windows (а точнее, компилятор MSVC) и Windows/*nix 
+    с компилятором emcc (\href{https://emscripten.org/}{Emscripten compiler}).
+    За поведение при использовании других компиляторов я ответственности не 
+    несу.
+    \subsection{Пре-требования}
+    \label{sec:pre_req}
+    \paragraph{Сборка и запуск с помощью Docker}
+    \begin{enumerate}
+        \item Если вы хотите самый лёгкий и быстрый запуск, тогда лучше
+        просто иметь \href{https://www.docker.com/}{Docker}
+        \item Если вы по какой-то причине не установили Docker. Установите
+        Docker.
+    \end{enumerate}
+    \paragraph{Сборка и запуск без Docker}
+    \begin{enumerate}
+        \item Если вы решили пропустить первые два пункта, тогда потребуются
+        \href{https://cmake.org/}{CMake}.
+        \item Так же нужно установить \href{https://emscripten.org/}{Emscripten compiler}
+        \item Необходимо иметь \href{https://www.python.org/}{Python3} 
+        \item Если вы пользователь Windows - лучше иметь 
+        \href{https://docs.microsoft.com/ru-ru/windows/wsl/install-win10}{WSL}
+        или воспользуйтесь \href{https://docs.microsoft.com/ru-ru/cpp/build/reference/nmake-reference?view=vs-2019}{nmake}
+    \end{enumerate}
+    \subsection{Установка}
+    Варианта установки будет два, первый - я скину zip, второй - с помощью git.
+    Лучше пользоваться git, т.к. я использую \emph{git submodule}, а 
+    это как-то более нативно, что-ли. Здесь я рассмотрю чисто git.
+
+    \begin{enumerate}
+        \item \texttt{> git clone ---recursive https://github.com/JuiceFV/Emscripten\_OpenGL.git}
+        \item \texttt{> cd Emscripten\_OpenGL}
+        \item Сейчас, если вы в cmd наберёте \colorbox{gray!25!}{\texttt{tree .}}
+        то получите более развёрнутую версию этого дерева (здесь приведено всё
+        самое нужное для сборки):
+
+        \begin{forest}
+          pic dir tree,
+          pic root,
+          for tree={% folder icons by default; override using file for file icons
+            directory,
+          },
+          [Emscripten\_OpenGL
+            [application
+            ]
+            [cmake
+            ]
+            [config
+            ]
+            [doc
+            ]
+            [CMakeLists.txt, file
+            ]
+            [Dockerfile, file
+            ]
+            [docker-compose.yaml, file
+            ]
+            [requirements.txt, file
+            ]
+          ]
+        \end{forest}
+        \item Далее выбирите нужный вам способ. (Да я всё еще деклссирую не Докер вариант)
+        \begin{tcolorbox}[colback=green!10!white,colframe=green!70!black,title=\textbf{Docker}]
+          \begin{enumerate}
+            \item Запустите Докер:
+            \begin{itemize}
+              \item \textbf{Linux:} \texttt{sudo service docker start}
+              \item \textbf{Windows:} \texttt{Win + S $\rightarrow$ "Docker Desktop"}
+              $\rightarrow$ Ждём пока значёк кита на панели задач не стабилизируется
+              $\rightarrow$ запускаем cmd.
+            \end{itemize}
+            \item Настройте \hyperref[sec:config_file]{файлы конфигурации}
+            \item Находясь в корневой дериктории проекта.
+            Разверните сервис командой \colorbox{gray!25!}{\texttt{docker-compose up application}}
+            \item Как только консоль зависнет на строчке
+            \colorbox{gray!25!}{Runing the server. Follow the link http://<localhost>:<port>}.
+            localhost и port устанавливается мануально в файле конфигурации. По дефолту 
+            localhost=localhost и port=8080. Перейдите по этой ссылке.
+          \end{enumerate}
+        \end{tcolorbox}
+        \begin{tcolorbox}[colback=yellow!10!white,colframe=red!75!black,title=\textbf{Not Docker}]
+          \begin{enumerate}
+            \item А может всё таки докер?
+            \item (a)????!!!! Пожааааааалуйста!!!!!
+            \item Ладно, тогда небольшое разъяснение. 
+            Я не заморачивался на тему запуска emcc через Visual Studio.
+            так что здесь тоже появляется две опции. 1 - Запуск кода через
+            VS без веб ассемблирования. 2 - запуск через emcc с веб ассемблированием.
+            \paragraph{Компиляция с помощью EMCC. Желательно делать через WSL}
+            Перед сборкой у вас ОБЯЗАТЕЛЬНО должен быть установлен \href{https://emscripten.org/docs/getting_started/downloads.html}{emsdk}.
+            А вообще, ещё раз ознакомтесь с \hyperref[sec:pre_req]{pre-requirements}
+            \begin{enumerate}
+              \item Создайте новую папку в корневой дериктории проекта
+              \colorbox{gray!25!}{\texttt{mkdir build}} и перейдите в неё 
+              \colorbox{gray!25!}{\texttt{cd build}}
+              \item Собираем проект. У emsdk есть возможность собирать с помощью
+              конфигурационных файлов, таких как CMake. Собираем:
+              \colorbox{gray!25!}{\texttt{emcmake cmake -DFOR\_EMSDK=ON ..}}
+              \item На WSL должен появится Makefile. Его тоже нужно собрать:
+              \colorbox{gray!25!}{\texttt{emmake make}}
+              \item Если вы всё же не получили Makefile, т.к. вы не используете
+              WSL, тогда перейдите по \href{https://stackoverflow.com/questions/21387504/cmake-and-make-in-windows}{ссылке}, 
+              чтобы собрать и запустить проект без WSL. 
+              \item Все исполняемые файлы сохранаяются в \textbf{application/out}
+              \item запускаем сервер: 
+              \colorbox{gray!25!}{\texttt{python -m http.server}}, переходим
+              по ссылке \colorbox{gray!25!}{\texttt{http://<localhost>:<port>}} и открываем
+              Emscripten\_Graphics.html
+            \end{enumerate}  
+          \end{enumerate}
+        \end{tcolorbox}
+        \begin{tcolorbox}[colback=yellow!10!white,colframe=red!75!black]
+        \paragraph{Компиляция без EMCC}
+          \begin{enumerate}
+            \item 
+            \begin{enumerate}
+              \item Создайте новую папку в корневой дериктории проекта
+              \colorbox{gray!25!}{\texttt{mkdir build}} и перейдите в неё 
+              \colorbox{gray!25!}{\texttt{cd build}}
+              \item Собираем проект.
+              \colorbox{gray!25!}{\texttt{cmake ..}}
+              \item Открываем Emscripten\_Graphics.sln и запускаем
+            \end{enumerate}
+          \end{enumerate}
+        \end{tcolorbox}
+    \end{enumerate}
+  \subsection{Файл конфигурации}
+  \label{sec:config_file}
+  У меня есть два файла конфигурации, один - для конфигурации сервера другой 
+  для конфигурации самого приложения.
+  \subsubsection{Конфигурация приложения}
+  Данный файл называется appconfig.yaml. Менять название нельзя. Либо в 
+  коде нужно напрямую указывать путь к файлу.\\[0.3cm]
+  \begin{minipage}{\textwidth}
+    \begin{multicols}{2}
+      \begin{tcolorbox}[colback=gray!10!white,colframe=black!75!]
+        \begin{lstlisting}[language=yaml]
+application:
+    window:
+        width: 640
+        height: 480
+        \end{lstlisting}
+    \end{tcolorbox}
+    \columnbreak
+    \begin{itemize}
+      \item \texttt{window} - параметры окна
+      \item \texttt{window:width} - ширина окна 
+      \item \texttt{window:height} - высота окна 
+    \end{itemize}
+    \end{multicols}
+
+\end{minipage}
+
+\end{document}
