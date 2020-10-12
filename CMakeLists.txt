@@ -35,8 +35,12 @@ if(FOR_EMSDK)
 endif()
 
 # Set the variables responsible for specific files.
-set(${PROJECT_NAME}_SOURCES)
-set(${PROJECT_NAME}_INCLUDES)
+set(${PROJECT_NAME}_SOURCES 
+                "application/sources/shader.cpp"
+                "application/sources/application.cpp")
+set(${PROJECT_NAME}_INCLUDES 
+                "application/includes/shader.h"
+                "application/includes/application.h")
 set(${PROJECT_NAME}_MAIN "application/main.cxx")
 #====================================================================================# 
 
@@ -77,8 +81,9 @@ if (NOT ENABLE_TESTS)
     message(STATUS "Executable mode is on!")
 
     # adding executable
-    add_executable(${PROJECT_NAME} ${${PROJECT_NAME}_MAIN})
-    target_link_libraries(${PROJECT_NAME} ${LIBS} ${DEP_LIBS} ${DEP_EMSDK_LIBS})  
+    add_executable(${PROJECT_NAME} ${${PROJECT_NAME}_MAIN} ${${PROJECT_NAME}_SOURCES} ${${PROJECT_NAME}_INCLUDES})
+    target_link_libraries(${PROJECT_NAME} ${LIBS} ${DEP_LIBS} ${DEP_EMSDK_LIBS}) 
+    target_include_directories(${PROJECT_NAME} PUBLIC "${PROJECT_SOURCE_DIR}/application/includes") 
 
     if (NOT FOR_EMSDK)
         find_package(OpenGL REQUIRED)
