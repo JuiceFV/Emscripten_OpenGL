@@ -12,6 +12,7 @@ message(STATUS "GLFW - Done!\n")
 
 message(STATUS "Building the GLEW")
 option(glew-cmake_BUILD_STATIC OFF)
+option(ONLY_LIBS "Do not build executables" ON)
 add_subdirectory(${CMAKE_SOURCE_DIR}/application/dependencies/GLEW)
 message(STATUS "GLEW - Done!\n")
 
