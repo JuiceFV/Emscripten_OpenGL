@@ -1,0 +1,6 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n+nt}{application}\PYG{p}{:}
+    \PYG{n+nt}{window}\PYG{p}{:}
+        \PYG{n+nt}{width}\PYG{p}{:} \PYG{l+lScalar+lScalarPlain}{640}
+        \PYG{n+nt}{height}\PYG{p}{:} \PYG{l+lScalar+lScalarPlain}{480}
+\end{Verbatim}

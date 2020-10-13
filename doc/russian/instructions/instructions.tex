@@ -27,49 +27,18 @@
 \usepackage{relsize}
 \usepackage{pgfplots}
 \usepackage[edges]{forest}
+\usepackage{minted}
+\usepackage{csquotes}
+\usepackage{pgfplots}
 
+\pgfplotsset{compat=newest}
+
+%========================================
+% Define folders and files for dir-tree depict
 \definecolor{folderbg}{RGB}{124,166,198}
 \definecolor{folderborder}{RGB}{110,144,169}
 \newlength\Size
 \setlength\Size{4pt}
-
-\newcommand\YAMLcolonstyle{\color{red}\mdseries}
-\newcommand\YAMLkeystyle{\color{black}\bfseries}
-\newcommand\YAMLvaluestyle{\color{blue}\mdseries}
-
-\makeatletter
-
-% here is a macro expanding to the name of the language
-% (handy if you decide to change it further down the road)
-\newcommand\language@yaml{yaml}
-
-\expandafter\expandafter\expandafter\lstdefinelanguage
-\expandafter{\language@yaml}
-{
-  keywords={true,false,null,y,n},
-  keywordstyle=\color{darkgray}\bfseries,
-  basicstyle=\YAMLkeystyle,                                 % assuming a key comes first
-  sensitive=false,
-  comment=[l]{\#},
-  morecomment=[s]{/*}{*/},
-  commentstyle=\color{purple}\ttfamily,
-  stringstyle=\YAMLvaluestyle\ttfamily,
-  moredelim=[l][\color{orange}]{\&},
-  moredelim=[l][\color{magenta}]{*},
-  moredelim=**[il][\YAMLcolonstyle{:}\YAMLvaluestyle]{:},   % switch to value style at :
-  morestring=[b]',
-  morestring=[b]",
-  literate =    {---}{{\ProcessThreeDashes}}3
-                {>}{{\textcolor{red}\textgreater}}1     
-                {|}{{\textcolor{red}\textbar}}1 
-                {\ -\ }{{\mdseries\ -\ }}3,
-}
-
-% switch to key style at EOL
-\lst@AddToHook{EveryLine}{\ifx\lst@language\language@yaml\YAMLkeystyle\fi}
-\makeatother
-
-\newcommand\ProcessThreeDashes{\llap{\color{cyan}\mdseries-{-}-}}
 
 \tikzset{%
   folder/.pic={%
@@ -113,6 +82,7 @@
   pic me set={directory}{folder},
   pic me set={file}{file},
 }
+%========================================
 
 \geometry{
     a4paper,
@@ -122,8 +92,6 @@
     bottom=1.5cm
 }
 \usepackage{multicol}
-
-\pgfmathdeclarefunction{gauss}{2}{\pgfmathparse{1/(#2*sqrt(2*pi))*exp(-((x-#1)^2)/(2*#2^2))}}
 
 \DeclareRobustCommand{\bbone}{\text{\usefont{U}{bbold}{m}{n}1}}
 
@@ -243,26 +211,32 @@
         LaTex, в связи с этим ни doc ни docx файлы предоставить не могу 
         (если таковые потребуются). Все source-файлы находятся на 
         \href{https://github.com/JuiceFV/Emscripten_OpenGL}{GitHub'е}
-        в соответствующей папке \emph{docs}
+        в соответствующей папке \emph{doc}
         \item Я заранее прошу прощения, но у меня есть некоторые проблеммы
         с русским языком, в связи с этим данный и все последующие файлы 
         могут быть (скорее всего будут) написаны не очень грамотно и с 
         большим использованием английских слов. 
         \item Данный документ будет пополняться паралельно с ходом выполнения
-        проекта.
+        проекта. И все изменения я буду вносить в секцию <<\hyperref[sec:fickle]{Что изминилось и новый функционал}>>
     \end{itemize}
     \newpage
-    \section{Билд}
+    \section{Что изминилось и новый функционал.}
+    \label{sec:fickle}
+    \newpage
+    \section{Установка, Сборка и Запуск}
     Я сразу хочу подметить, что проект не создавался как кроссплатформенное
     решение, т.к. я считаю, что это глупо использовать для кроссплатформы
-    OpenGL, т.к. у каждой платформы есть более подходящие спецификации, с 
-    более комплексным и гибким API. А следовательно проект работает на
+    OpenGL (так считаю не только я: \href{https://www.youtube.com/watch?v=W3gAzLwfIP0}{ссылка на видео}), т.к. у каждой платформы есть более подходящие спецификации, с 
+    более комплексным и гибким API. Поэтому проект работает на
     платформе Windows (а точнее, компилятор MSVC) и Windows/*nix 
     с компилятором emcc (\href{https://emscripten.org/}{Emscripten compiler}).
     За поведение при использовании других компиляторов я ответственности не 
     несу.
-    \subsection{Пре-требования}
+    \subsection{Требования перед сборкой}
     \label{sec:pre_req}
+    \begin{enumerate}
+      \item Иметь установленный \href{https://git-scm.com/}{Git}
+    \end{enumerate}
     \paragraph{Сборка и запуск с помощью Docker}
     \begin{enumerate}
         \item Если вы хотите самый лёгкий и быстрый запуск, тогда лучше
@@ -272,7 +246,7 @@
     \end{enumerate}
     \paragraph{Сборка и запуск без Docker}
     \begin{enumerate}
-        \item Если вы решили пропустить первые два пункта, тогда потребуются
+        \item Если вы решили пропустить пункт с Docker, тогда потребуются
         \href{https://cmake.org/}{CMake}.
         \item Так же нужно установить \href{https://emscripten.org/}{Emscripten compiler}
         \item Необходимо иметь \href{https://www.python.org/}{Python3} 
@@ -283,7 +257,8 @@
     \subsection{Установка}
     Варианта установки будет два, первый - я скину zip, второй - с помощью git.
     Лучше пользоваться git, т.к. я использую \emph{git submodule}, а 
-    это как-то более нативно, что-ли. Здесь я рассмотрю чисто git.
+    это как-то более нативно, что-ли. Здесь я рассмотрю чисто git. 
+    \textcolor{red}{Вся работа происходит через cmd/terminal!}
 
     \begin{enumerate}
         \item \texttt{> git clone ---recursive https://github.com/JuiceFV/Emscripten\_OpenGL.git}
@@ -330,8 +305,8 @@
             \item Настройте \hyperref[sec:config_file]{файлы конфигурации}
             \item Находясь в корневой дериктории проекта.
             Разверните сервис командой \colorbox{gray!25!}{\texttt{docker-compose up application}}
-            \item Как только консоль зависнет на строчке
-            \colorbox{gray!25!}{Runing the server. Follow the link http://<localhost>:<port>}.
+            \item Как только консоль зависнет на строчке \\ 
+            \colorbox{gray!25!}{\texttt{Runing the server. Follow the link http://<localhost>:<port>}}.
             localhost и port устанавливается мануально в файле конфигурации. По дефолту 
             localhost=localhost и port=8080. Перейдите по этой ссылке.
           \end{enumerate}
@@ -351,7 +326,7 @@
               \item Создайте новую папку в корневой дериктории проекта
               \colorbox{gray!25!}{\texttt{mkdir build}} и перейдите в неё 
               \colorbox{gray!25!}{\texttt{cd build}}
-              \item Собираем проект. У emsdk есть возможность собирать с помощью
+              \item Собираем проект. У emsdk есть возможность собирать с помощью\\*
               конфигурационных файлов, таких как CMake. Собираем:
               \colorbox{gray!25!}{\texttt{emcmake cmake -DFOR\_EMSDK=ON ..}}
               \item На WSL должен появится Makefile. Его тоже нужно собрать:
@@ -362,45 +337,75 @@
               \item Все исполняемые файлы сохранаяются в \textbf{application/out}
               \item запускаем сервер: 
               \colorbox{gray!25!}{\texttt{python -m http.server}}, переходим
-              по ссылке \colorbox{gray!25!}{\texttt{http://<localhost>:<port>}} и открываем
+              по ссылке \colorbox{gray!25!}{\texttt{http://localhost:8000}} и открываем
               Emscripten\_Graphics.html
             \end{enumerate}  
           \end{enumerate}
         \end{tcolorbox}
         \begin{tcolorbox}[colback=yellow!10!white,colframe=red!75!black]
         \paragraph{Компиляция без EMCC}
-          \begin{enumerate}
-            \item 
             \begin{enumerate}
-              \item Создайте новую папку в корневой дериктории проекта
+              \item[i.] Создайте новую папку в корневой дериктории проекта
               \colorbox{gray!25!}{\texttt{mkdir build}} и перейдите в неё 
               \colorbox{gray!25!}{\texttt{cd build}}
-              \item Собираем проект.
+              \item[ii.] Собираем проект.
               \colorbox{gray!25!}{\texttt{cmake ..}}
-              \item Открываем Emscripten\_Graphics.sln и запускаем
+              \item[iii.] Открываем Emscripten\_Graphics.sln и запускаем
             \end{enumerate}
-          \end{enumerate}
         \end{tcolorbox}
     \end{enumerate}
   \subsection{Файл конфигурации}
   \label{sec:config_file}
-  У меня есть два файла конфигурации, один - для конфигурации сервера другой 
-  для конфигурации самого приложения.
-  \subsubsection{Конфигурация приложения}
-  Данный файл называется appconfig.yaml. Менять название нельзя. Либо в 
-  коде нужно напрямую указывать путь к файлу.\\[0.3cm]
+  Вся конфигурация приложения происходит через \href{https://en.wikipedia.org/wiki/YAML}{YAML}.
+  Как по мне это удобно и не требует прямого взаимодействия с кодом.
+  Файлы конфигурации находятся в папке \emph{config}:\\[0.3cm]
   \begin{minipage}{\textwidth}
     \begin{multicols}{2}
-      \begin{tcolorbox}[colback=gray!10!white,colframe=black!75!]
-        \begin{lstlisting}[language=yaml]
+      \begin{forest}
+        pic dir tree,
+        pic root,
+        for tree={% folder icons by default; override using file for file icons
+          directory,
+        },
+        [Emscripten\_OpenGL
+          [config
+            [appconfig.yaml, file],
+            [servconfig.yaml, file]
+          ]
+        ]
+      \end{forest}
+      \columnbreak
+      \begin{itemize}
+        \item \textbf{appconfig.yaml} - данный файл репрезентует конфигурацию
+        самого приложения (ширина/высота окна, путь до модели и т.д.)
+        \item \textbf{servconfig.yaml} - конфигурация сервера на котором будет
+        запускаться приложение (host, port и т.д.).
+      \end{itemize}
+    \end{multicols}
+  \end{minipage}\\[0.5cm]
+  \subsubsection{Конфигурация приложения}
+  Данный файл называется \emph{appconfig.yaml}. Менять название нельзя. Либо в 
+  коде нужно напрямую указывать путь к файлу.\\[0.3cm]
+  \begin{minipage}[t][2cm][t]{\textwidth}
+    \begin{multicols}{2}
+        \begin{minted}
+          [
+            frame=lines,
+            framesep=2mm,
+            baselinestretch=1.2,
+            bgcolor=lightgray!20!,
+            fontsize=\footnotesize,
+            linenos
+          ]
+          {yaml}
 application:
     window:
         width: 640
         height: 480
-        \end{lstlisting}
-    \end{tcolorbox}
+        \end{minted}
     \columnbreak
     \begin{itemize}
+      \setlength\itemsep{0.5em}
       \item \texttt{window} - параметры окна
       \item \texttt{window:width} - ширина окна 
       \item \texttt{window:height} - высота окна 
