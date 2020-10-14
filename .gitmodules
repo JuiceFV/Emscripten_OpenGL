@@ -10,3 +10,12 @@
 [submodule "application/dependencies/yamlprsr"]
 	path =  application/configloader/dependencies/yamlprsr
 	url = https://github.com/jbeder/yaml-cpp.git
+[submodule "application/dependencies/ASSIMP"]
+	path =  application/dependencies/ASSIMP
+	url = https://github.com/assimp/assimp.git
+[submodule "application/dependencies/SOIL2"]
+	path = application/dependencies/SOIL2
+	url = https://github.com/SpartanJ/SOIL2.git
+[submodule "application/dependencies/GLM"]
+	path = application/dependencies/GLM
+	url = https://github.com/g-truc/glm.git
