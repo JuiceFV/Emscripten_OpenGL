@@ -1,3 +1,5 @@
+# This CMakeLists represents rules intended to build the library
+# responsible for configuration handler.
 # set the minimal version of the cmake
 cmake_minimum_required(VERSION 3.9)
 
@@ -20,9 +22,11 @@ set(${PROJECT_NAME}_includes
 
 add_library(${PROJECT_NAME} STATIC ${${PROJECT_NAME}_sources} ${${PROJECT_NAME}_includes})
 target_link_libraries(${PROJECT_NAME} yaml-cpp)
-target_include_directories(${PROJECT_NAME} PUBLIC "${PROJECT_SOURCE_DIR}/includes")
-
-add_compile_definitions(PATH_TO_HEADER="${PROJECT_SOURCE_DIR}/includes/config.h")
+target_include_directories(
+    ${PROJECT_NAME} PUBLIC 
+    $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/includes>
+    $<INSTALL_INTERFACE:${PROJECT_SOURCE_DIR}/includes>
+)
 
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 set_target_properties(yaml-cpp PROPERTIES FOLDER "dependencies")
