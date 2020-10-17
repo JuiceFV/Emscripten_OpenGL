@@ -23,6 +23,7 @@ set(CMAKE_MODULE_PATH
   ${CMAKE_SOURCE_DIR}/cmake/Modules
 )
 
+# set output dirictories dedicated for libs and binaries
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
@@ -41,11 +42,17 @@ endif()
 # Set the variables responsible for specific files.
 set(${PROJECT_NAME}_SOURCES 
                 "application/sources/shader.cpp"
+                "application/sources/camera.cpp"
                 "application/sources/application.cpp")
 set(${PROJECT_NAME}_INCLUDES 
                 "application/includes/shader.h"
+                "application/includes/camera.h"
                 "application/includes/application.h")
 set(${PROJECT_NAME}_MAIN "application/main.cxx")
+
+file(GLOB_RECURSE CFG_FILES ${CMAKE_SOURCE_DIR}/config/*.yaml)
+
+source_group("Config Files" FILES ${CFG_FILES})
 #====================================================================================# 
 
 #============================= Include additional cmake-files =======================# 
@@ -55,15 +62,15 @@ set(${PROJECT_NAME}_MAIN "application/main.cxx")
 # 4) Include the file which compiles and looks for the configuration's library.
 include(setflags)
 include(safeguard)
-if (NOT FOR_EMSDK)
-    include(graphics)
-endif()
+include(graphics)
 include(configloader)
 #====================================================================================# 
 
 #============================= Set libraries ========================================# 
 # Not in-build emscripten libraries, 
-set(DEP_EMSDK_LIBS)
+set(DEP_EMSDK_LIBS
+    soil2
+)
 
 # The libraries, required by application, however they are already built in emscripten
 # But they are not built in the ordinar one.
@@ -78,6 +85,10 @@ endif()
 set(LIBS 
     ConfigLoader
 )
+
+set(INTERFACE_LIB 
+    glm 
+)
 #====================================================================================# 
 
 #============================= Generate executable ==================================# 
@@ -85,9 +96,18 @@ if (NOT ENABLE_TESTS)
     message(STATUS "Executable mode is on!")
 
     # adding executable
-    add_executable(${PROJECT_NAME} ${${PROJECT_NAME}_MAIN} ${${PROJECT_NAME}_SOURCES} ${${PROJECT_NAME}_INCLUDES})
-    target_link_libraries(${PROJECT_NAME} ${LIBS} ${DEP_LIBS} ${DEP_EMSDK_LIBS}) 
-    target_include_directories(${PROJECT_NAME} PUBLIC "${PROJECT_SOURCE_DIR}/application/includes") 
+    add_executable(${PROJECT_NAME} 
+                    ${${PROJECT_NAME}_MAIN} 
+                    ${${PROJECT_NAME}_SOURCES}
+                    ${${PROJECT_NAME}_INCLUDES}
+                    ${CFG_FILES}
+                )
+    target_link_libraries(${PROJECT_NAME} ${LIBS} ${DEP_LIBS} ${DEP_EMSDK_LIBS} ${INTERFACE_LIB}) 
+    target_include_directories(
+        ${PROJECT_NAME} PUBLIC
+        $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/application/includes>
+        $<INSTALL_INTERFACE:${PROJECT_SOURCE_DIR}/application/includes>
+    ) 
 
     if (NOT FOR_EMSDK)
         find_package(OpenGL REQUIRED)
@@ -145,7 +165,7 @@ endif()# endif (NOT ENABLE_TEST)
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
     if (FOR_EMSDK)
         set_target_properties(${DEP_EMSDK_LIBS} PROPERTIES FOLDER "dependencies")
-    elseif(${DEP_EMSDK_LIBS})
+    elseif(DEP_EMSDK_LIBS)
         set_target_properties(${DEP_LIBS} PROPERTIES FOLDER "dependencies")
         set_target_properties(${DEP_EMSDK_LIBS} PROPERTIES FOLDER "dependencies")
     else()
