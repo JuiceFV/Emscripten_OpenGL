@@ -84,6 +84,6 @@ void cfg::Config::uploadDefaultCfg()
 
 bool cfg::Config::isConfigDefault() const { return (this->is_default); }
 
-YAML::Node cfg::Config::getConfigFile() const{ return (this->cfg_file); }
+YAML::Node cfg::Config::getConfigFile() const { return (this->cfg_file); }
 
 cfg::Config::~Config() {}

@@ -1,6 +1,7 @@
 // emcc application/main.cxx -I"application/dependencies/yamlprsr/include"
 // -l"application/dependencies/build/libyaml-cpp.so" -o index.html -s USE_WEBGL2=1 -s USE_GLFW=3 -s WASM=1 -std=c++1z
 #include <functional>
+
 #ifdef __EMSCRIPTEN__
 #define GLFW_INCLUDE_ES3
 #include <emscripten/emscripten.h>
@@ -12,8 +13,15 @@
 #include <GLFW/glfw3.h>
 #include <functional>
 #include <iostream>
+#include <SOIL2.h>
 
-#ifdef __EMSCRIPTEN__
+
+int main() { Application app;
+    std::cout << app.getConfig();
+}
+
+
+/*#ifdef __EMSCRIPTEN__
 static void dispatch_main(void *fp)
 {
     std::function<void()> *func = (std::function<void()> *)fp;
@@ -189,3 +197,4 @@ int main()
 
     return EXIT_SUCCESS;
 }
+*/

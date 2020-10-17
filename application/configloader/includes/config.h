@@ -20,22 +20,30 @@ namespace cfg
     class Config
     {
       public:
-        Config(); //tested
-        Config(const std::string &path); //tested
-        std::string getPath() const; //tested
-        void uploadDefaultCfg(); //tested
-        bool isConfigDefault() const; //tested
-        YAML::Node getConfigFile() const; //not tested, mock required
-        
-        template<typename T>
-        T getWindowProp(const defaults::WIN_PROPS _property)
+        Config();                         // tested
+        Config(const std::string &path);  // tested
+        std::string getPath() const;      // tested
+        void uploadDefaultCfg();          // tested
+        bool isConfigDefault() const;     // tested
+        YAML::Node getConfigFile() const; // not tested, mock required
+        friend std::ostream &operator<<(std::ostream &out, cfg::Config &config)
+        {
+            out << "application:" << std::endl;
+            out << "    window:" << std::endl;
+            out << "        width:" << config.getWindowProp<unsigned int>(cfg::defaults::WIN_PROPS::WIDTH) << std::endl;
+            out << "        height:" << config.getWindowProp<unsigned int>(cfg::defaults::WIN_PROPS::HEIGHT)
+                << std::endl;
+            return (out);
+        };
+
+        template <typename T> T getWindowProp(const defaults::WIN_PROPS _property)
         {
             switch (_property)
             {
-                case defaults::WIN_PROPS::WIDTH: return this->win_size["width"]; break;
-                case defaults::WIN_PROPS::HEIGHT: return this->win_size["height"]; break;
+            case defaults::WIN_PROPS::WIDTH: return (this->win_size["width"]); break;
+            case defaults::WIN_PROPS::HEIGHT: return (this->win_size["height"]); break;
             }
-        }; //tested
+        }; // tested
 
         ~Config();
 
