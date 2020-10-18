@@ -91,4 +91,13 @@ void Shader::Use() { glUseProgram(this->program); }
 
 void Shader::Unuse() { glUseProgram(0); }
 
+void Shader::set1i(int value, const char *name)
+{
+    this->Use();
+
+    glUniform1i(glGetUniformLocation(this->program, name), value);
+
+    this->Unuse();
+}
+
 Shader::~Shader() { glDeleteProgram(this->program); }

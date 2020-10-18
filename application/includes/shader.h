@@ -29,5 +29,6 @@ class Shader
     // Uses the current shader
     void Use();
     void Unuse();
+    void set1i(int value, const char *name);
     ~Shader();
 };
