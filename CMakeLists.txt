@@ -51,8 +51,23 @@ set(${PROJECT_NAME}_INCLUDES
 set(${PROJECT_NAME}_MAIN "application/main.cxx")
 
 file(GLOB_RECURSE CFG_FILES ${CMAKE_SOURCE_DIR}/config/*.yaml)
+file(GLOB_RECURSE ASSETS ${CMAKE_SOURCE_DIR}/assets/*)
 
 source_group("Config Files" FILES ${CFG_FILES})
+
+function(assign_source_group)
+    foreach(_source IN ITEMS ${ARGN})
+        if (IS_ABSOLUTE "${_source}")
+            file(RELATIVE_PATH _source_rel "${CMAKE_CURRENT_SOURCE_DIR}" "${_source}")
+        else()
+            set(_source_rel "${_source}")
+        endif()
+        get_filename_component(_source_path "${_source_rel}" PATH)
+        string(REPLACE "/" "\\" _source_path_msvc "${_source_path}")
+        source_group("${_source_path_msvc}" FILES "${_source}")
+    endforeach()
+endfunction(assign_source_group)
+assign_source_group(${ASSETS})
 #====================================================================================# 
 
 #============================= Include additional cmake-files =======================# 
@@ -101,6 +116,7 @@ if (NOT ENABLE_TESTS)
                     ${${PROJECT_NAME}_SOURCES}
                     ${${PROJECT_NAME}_INCLUDES}
                     ${CFG_FILES}
+                    ${ASSETS}
                 )
     target_link_libraries(${PROJECT_NAME} ${LIBS} ${DEP_LIBS} ${DEP_EMSDK_LIBS} ${INTERFACE_LIB}) 
     target_include_directories(
@@ -139,6 +155,23 @@ if (NOT ENABLE_TESTS)
         configure_file(${CMAKE_SOURCE_DIR}/config/servconfig.yaml ${CMAKE_BINARY_DIR}/config/servconfig.yaml COPYONLY)
     else()
         configure_file(${CMAKE_SOURCE_DIR}/config/appconfig.yaml ${CMAKE_BINARY_DIR}/config/appconfig.yaml COPYONLY)
+        macro(configure_files srcDir destDir)
+            message(STATUS "Configuring directory ${destDir}")
+            make_directory(${destDir})
+
+            file(GLOB templateFiles RELATIVE ${srcDir} ${srcDir}/*)
+            foreach(templateFile ${templateFiles})
+                set(srcTemplatePath ${srcDir}/${templateFile})
+                if(NOT IS_DIRECTORY ${srcTemplatePath})
+                    message(STATUS "Configuring file ${templateFile}")
+                    configure_file(
+                            ${srcTemplatePath}
+                            ${destDir}/${templateFile}
+                            @ONLY)
+                endif(NOT IS_DIRECTORY ${srcTemplatePath})
+            endforeach(templateFile)
+        endmacro(configure_files)
+        configure_files(${CMAKE_SOURCE_DIR}/assets/* ${CMAKE_BINARY_DIR}/assets/*)
     endif()
 
     # If msvs then set the Emscripten_Graphics as startup project 
@@ -175,6 +208,6 @@ endif()
 # If the application is builded via emcc sets appropriate flags
 if (FOR_EMSDK)
     message(STATUS "Setting EMCC flags\n")
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -s FORCE_FILESYSTEM=1 -s USE_WEBGL2=1 -s USE_GLFW=3 -s WASM=1 -std=c++17 --preload-file ${CMAKE_SOURCE_DIR}/config/@/config")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}  -s FORCE_FILESYSTEM=1 -s USE_WEBGL2=1  -s USE_GLFW=3  -s FULL_ES3=1  -s WASM=1  -std=c++11  --preload-file ${CMAKE_SOURCE_DIR}/config/@/config --preload-file ${CMAKE_SOURCE_DIR}/assets/@/assets")
 endif()
 #====================================================================================# 
