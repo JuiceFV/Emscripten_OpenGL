@@ -26,6 +26,7 @@ namespace cfg
         void uploadDefaultCfg();          // tested
         bool isConfigDefault() const;     // tested
         YAML::Node getConfigFile() const; // not tested, mock required
+#ifndef __EMSCRIPTEN__
         friend std::ostream &operator<<(std::ostream &out, cfg::Config &config)
         {
             out << "application:" << std::endl;
@@ -35,6 +36,7 @@ namespace cfg
                 << std::endl;
             return (out);
         };
+#endif
 
         template <typename T> T getWindowProp(const defaults::WIN_PROPS _property)
         {
