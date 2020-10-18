@@ -155,7 +155,7 @@ if (NOT ENABLE_TESTS)
         configure_file(${CMAKE_SOURCE_DIR}/config/servconfig.yaml ${CMAKE_BINARY_DIR}/config/servconfig.yaml COPYONLY)
     else()
         configure_file(${CMAKE_SOURCE_DIR}/config/appconfig.yaml ${CMAKE_BINARY_DIR}/config/appconfig.yaml COPYONLY)
-        macro(configure_files srcDir destDir)
+        macro(copy_files srcDir destDir)
             message(STATUS "Configuring directory ${destDir}")
             make_directory(${destDir})
 
@@ -167,11 +167,11 @@ if (NOT ENABLE_TESTS)
                     configure_file(
                             ${srcTemplatePath}
                             ${destDir}/${templateFile}
-                            @ONLY)
+                            COPYONLY)
                 endif(NOT IS_DIRECTORY ${srcTemplatePath})
             endforeach(templateFile)
         endmacro(configure_files)
-        configure_files(${CMAKE_SOURCE_DIR}/assets/* ${CMAKE_BINARY_DIR}/assets/*)
+        copy_files(${CMAKE_SOURCE_DIR}/assets/* ${CMAKE_BINARY_DIR}/assets/*)
     endif()
 
     # If msvs then set the Emscripten_Graphics as startup project 
@@ -208,6 +208,6 @@ endif()
 # If the application is builded via emcc sets appropriate flags
 if (FOR_EMSDK)
     message(STATUS "Setting EMCC flags\n")
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}  -s FORCE_FILESYSTEM=1 -s USE_WEBGL2=1  -s USE_GLFW=3  -s FULL_ES3=1  -s WASM=1  -std=c++11  --preload-file ${CMAKE_SOURCE_DIR}/config/@/config --preload-file ${CMAKE_SOURCE_DIR}/assets/@/assets")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}  -s FORCE_FILESYSTEM=1 -s USE_WEBGL2=1 -s USE_GLFW=3  -s FULL_ES3=1 -s ALLOW_MEMORY_GROWTH=1 -s ASSERTIONS=1 -s WASM=1  -std=c++11  --preload-file ${CMAKE_SOURCE_DIR}/config/@/config --preload-file ${CMAKE_SOURCE_DIR}/assets/@/assets")
 endif()
 #====================================================================================# 
