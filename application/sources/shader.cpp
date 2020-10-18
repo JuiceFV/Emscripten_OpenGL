@@ -1,78 +1,94 @@
-#include"shader.h"
+#include "shader.h"
 
-Shader::Shader(const GLchar *vertexPath, const GLchar *fragmentPath)
+Shader::Shader(const char *vertex_path, const char *fragment_path)
 {
-    // 1. Retrieve the vertex/fragment source code from filePath
-    std::string vertexCode;
-    std::string fragmentCode;
-    std::ifstream vShaderFile;
-    std::ifstream fShaderFile;
-    // ensures ifstream objects can throw exceptions:
-    vShaderFile.exceptions(std::ifstream::badbit);
-    fShaderFile.exceptions(std::ifstream::badbit);
-    try
-    {
-        // Open files
-        vShaderFile.open(vertexPath);
-        fShaderFile.open(fragmentPath);
-        std::stringstream vShaderStream, fShaderStream;
-        // Read file's buffer contents into streams
-        vShaderStream << vShaderFile.rdbuf();
-        fShaderStream << fShaderFile.rdbuf();
-        // close file handlers
-        vShaderFile.close();
-        fShaderFile.close();
-        // Convert stream into string
-        vertexCode = vShaderStream.str();
-        fragmentCode = fShaderStream.str();
-    }
-    catch (std::ifstream::failure e)
-    {
-        std::cout << "ERROR::SHADER::FILE_NOT_SUCCESFULLY_READ" << std::endl;
-    }
-    const GLchar *vShaderCode = vertexCode.c_str();
-    const GLchar *fShaderCode = fragmentCode.c_str();
-    // 2. Compile shaders
-    GLuint vertex, fragment;
-    GLint success;
-    GLchar infoLog[512];
-    // Vertex Shader
-    vertex = glCreateShader(GL_VERTEX_SHADER);
-    glShaderSource(vertex, 1, &vShaderCode, NULL);
-    glCompileShader(vertex);
-    // Print compile errors if any
-    glGetShaderiv(vertex, GL_COMPILE_STATUS, &success);
-    if (!success)
-    {
-        glGetShaderInfoLog(vertex, 512, NULL, infoLog);
-        std::cout << "ERROR::SHADER::VERTEX::COMPILATION_FAILED\n" << infoLog << std::endl;
-    }
-    // Fragment Shader
-    fragment = glCreateShader(GL_FRAGMENT_SHADER);
-    glShaderSource(fragment, 1, &fShaderCode, NULL);
-    glCompileShader(fragment);
-    // Print compile errors if any
-    glGetShaderiv(fragment, GL_COMPILE_STATUS, &success);
-    if (!success)
-    {
-        glGetShaderInfoLog(fragment, 512, NULL, infoLog);
-        std::cout << "ERROR::SHADER::FRAGMENT::COMPILATION_FAILED\n" << infoLog << std::endl;
-    }
-    // Shader Program
-    this->Program = glCreateProgram();
-    glAttachShader(this->Program, vertex);
-    glAttachShader(this->Program, fragment);
-    glLinkProgram(this->Program);
-    // Print linking errors if any
-    glGetProgramiv(this->Program, GL_LINK_STATUS, &success);
-    if (!success)
-    {
-        glGetProgramInfoLog(this->Program, 512, NULL, infoLog);
-        std::cout << "ERROR::SHADER::PROGRAM::LINKING_FAILED\n" << infoLog << std::endl;
-    }
-    // Delete the shaders as they're linked into our program now and no longer necessery
-    glDeleteShader(vertex);
-    glDeleteShader(fragment);
+    unsigned int vertex_shader = 0;
+    unsigned int fragment_shader = 0;
+
+    vertex_shader = compileShader(GL_VERTEX_SHADER, vertex_path);
+    fragment_shader = compileShader(GL_FRAGMENT_SHADER, fragment_path);
+
+    this->linkProgram(vertex_shader, fragment_shader);
+
+    glDeleteShader(vertex_shader);
+    glDeleteShader(fragment_shader);
 }
 
-void Shader::Use() { glUseProgram(this->Program); }
+std::string Shader::loadShaderFile(const char *path)
+{
+    std::string shader_code;   // The code of shaders as a string
+    std::ifstream shader_file; // The very file
+    // ensures ifstream objects able to throw exceptions
+    shader_file.exceptions(std::ifstream::badbit);
+    try
+    {
+        // Open file
+        shader_file.open(path);
+        std::stringstream shader_stream;
+        // Read file's buffer contents into stream
+        shader_stream << shader_file.rdbuf();
+        // close file handler
+        shader_file.close();
+        // Convert stream into string
+        shader_code = shader_stream.str();
+    }
+    catch (std::ifstream::failure &error)
+    {
+        std::cerr << "An error has occured in the " << __FILE__ << " in line " << __LINE__ << "." << std::endl
+                  << "Details: " << error.what() << std::endl;
+    }
+    return (shader_code);
+}
+
+unsigned int Shader::compileShader(unsigned int type, const char *path)
+{
+    char log_info[512]; // log information if something wrong
+    int success;        // the variable indicates if a shader's compilation went wrong
+
+    // shader of a specific type (vertex/fragment/geometry)
+    unsigned int shader = glCreateShader(type);
+    // load source code from a file
+    std::string str_shader_code = loadShaderFile(path);
+    const char *shader_code = str_shader_code.c_str();
+    // compile shaders itself
+    glShaderSource(shader, 1, &shader_code, NULL);
+    glCompileShader(shader);
+
+    // check if a compilation done well
+    glGetShaderiv(shader, GL_COMPILE_STATUS, &success);
+    if (!success)
+    {
+        glGetShaderInfoLog(shader, 512, NULL, log_info);
+        std::cerr << "An error has occured in the " << __FILE__ << " in line " << __LINE__ << "." << std::endl
+                  << "Error occured in the: " << path << std::endl
+                  << "Details: " << log_info << std::endl;
+    }
+    return shader;
+}
+
+void Shader::linkProgram(unsigned int vertex_shader, unsigned int fragment_shader)
+{
+    char log_info[512];
+    int success;
+
+    this->program = glCreateProgram();
+
+    glAttachShader(this->program, vertex_shader);
+    glAttachShader(this->program, fragment_shader);
+    glLinkProgram(this->program);
+
+    glGetProgramiv(this->program, GL_LINK_STATUS, &success);
+    if (!success)
+    {
+        glGetShaderInfoLog(this->program, 512, NULL, log_info);
+        std::cerr << "An error has occured in the " << __FILE__ << " in line " << __LINE__ << "." << std::endl
+                  << "Details: " << log_info << std::endl;
+    }
+    glUseProgram(0);
+}
+
+void Shader::Use() { glUseProgram(this->program); }
+
+void Shader::Unuse() { glUseProgram(0); }
+
+Shader::~Shader() { glDeleteProgram(this->program); }
