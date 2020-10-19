@@ -31,8 +31,14 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 # Adding options (flags)
 # 1) The flag, which has to be ON if we compile via emcc
 # 2) The flag, responsible for tests
-option(FOR_EMSDK "The libraries compilation occurs for the emsdk compilers" OFF)
-option(ENABLE_TESTS "Turn tests on/off" OFF)
+option(FOR_EMSDK 
+        "The libraries compilation occurs for the emsdk compilers" 
+        OFF
+    )
+option(ENABLE_TESTS 
+        "Turn tests on/off" 
+        OFF
+    )
 
 # So far, tests available only for WINDOWS
 if(FOR_EMSDK)
@@ -43,11 +49,13 @@ endif()
 set(${PROJECT_NAME}_SOURCES 
                 "application/sources/shader.cpp"
                 "application/sources/camera.cpp"
-                "application/sources/application.cpp")
+                "application/sources/application.cpp"
+            )
 set(${PROJECT_NAME}_INCLUDES 
                 "application/includes/shader.h"
                 "application/includes/camera.h"
-                "application/includes/application.h")
+                "application/includes/application.h"
+            )
 set(${PROJECT_NAME}_MAIN "application/main.cxx")
 
 file(GLOB_RECURSE CFG_FILES ${CMAKE_SOURCE_DIR}/config/*.yaml)
@@ -58,7 +66,8 @@ source_group("Config Files" FILES ${CFG_FILES})
 function(assign_source_group)
     foreach(_source IN ITEMS ${ARGN})
         if (IS_ABSOLUTE "${_source}")
-            file(RELATIVE_PATH _source_rel "${CMAKE_CURRENT_SOURCE_DIR}" "${_source}")
+            file(RELATIVE_PATH _source_rel 
+                "${CMAKE_CURRENT_SOURCE_DIR}" "${_source}")
         else()
             set(_source_rel "${_source}")
         endif()
@@ -118,7 +127,12 @@ if (NOT ENABLE_TESTS)
                     ${CFG_FILES}
                     ${ASSETS}
                 )
-    target_link_libraries(${PROJECT_NAME} ${LIBS} ${DEP_LIBS} ${DEP_EMSDK_LIBS} ${INTERFACE_LIB}) 
+    target_link_libraries(${PROJECT_NAME} 
+                            ${LIBS}
+                            ${DEP_LIBS} 
+                            ${DEP_EMSDK_LIBS} 
+                            ${INTERFACE_LIB}
+                        ) 
     target_include_directories(
         ${PROJECT_NAME} PUBLIC
         $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/application/includes>
@@ -150,11 +164,21 @@ if (NOT ENABLE_TESTS)
     #+-------------------------------------------------------------------------------------------+
     if (FOR_EMSDK) 
         set(CMAKE_EXECUTABLE_SUFFIX ".html")
-        set_target_properties(${PROJECT_NAME} PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/application/out")
-        configure_file(${CMAKE_SOURCE_DIR}/application/entry.py ${CMAKE_BINARY_DIR}/application/entry.py COPYONLY)
-        configure_file(${CMAKE_SOURCE_DIR}/config/servconfig.yaml ${CMAKE_BINARY_DIR}/config/servconfig.yaml COPYONLY)
+        set_target_properties(${PROJECT_NAME}
+                    PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/application/out")
+        configure_file(${CMAKE_SOURCE_DIR}/application/entry.py 
+                        ${CMAKE_BINARY_DIR}/application/entry.py 
+                        COPYONLY
+                    )
+        configure_file(${CMAKE_SOURCE_DIR}/config/servconfig.yaml 
+                        ${CMAKE_BINARY_DIR}/config/servconfig.yaml 
+                        COPYONLY
+                    )
     else()
-        configure_file(${CMAKE_SOURCE_DIR}/config/appconfig.yaml ${CMAKE_BINARY_DIR}/config/appconfig.yaml COPYONLY)
+        configure_file(${CMAKE_SOURCE_DIR}/config/appconfig.yaml 
+                        ${CMAKE_BINARY_DIR}/config/appconfig.yaml 
+                        COPYONLY
+                    )
         macro(copy_files srcDir destDir)
             message(STATUS "Configuring directory ${destDir}")
             make_directory(${destDir})
@@ -189,8 +213,13 @@ else()
 
         # adding test's dir
         add_subdirectory(${CMAKE_SOURCE_DIR}/application/tests)
-        configure_file(${CMAKE_SOURCE_DIR}/application/tests/config/appconfig.yaml ${CMAKE_BINARY_DIR}/application/tests/config/appconfig.yaml COPYONLY)
-        file(COPY ${CMAKE_SOURCE_DIR}/application/tests/badconfig DESTINATION ${CMAKE_BINARY_DIR}/application/tests/badconfig)
+        configure_file(${CMAKE_SOURCE_DIR}/application/tests/config/appconfig.yaml 
+                        ${CMAKE_BINARY_DIR}/application/tests/config/appconfig.yaml 
+                        COPYONLY
+                    )
+        file(COPY ${CMAKE_SOURCE_DIR}/application/tests/badconfig 
+                    DESTINATION ${CMAKE_BINARY_DIR}/application/tests/badconfig
+                )
     endif()
 endif()# endif (NOT ENABLE_TEST)
 
@@ -208,6 +237,6 @@ endif()
 # If the application is builded via emcc sets appropriate flags
 if (FOR_EMSDK)
     message(STATUS "Setting EMCC flags\n")
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS}  -s FORCE_FILESYSTEM=1 -s USE_WEBGL2=1 -s USE_GLFW=3  -s FULL_ES3=1 -s ALLOW_MEMORY_GROWTH=1 -s ASSERTIONS=1 -s WASM=1  -std=c++11  --preload-file ${CMAKE_SOURCE_DIR}/config/@/config --preload-file ${CMAKE_SOURCE_DIR}/assets/@/assets")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -s FORCE_FILESYSTEM=1 -s USE_WEBGL2=1 -s USE_GLFW=3  -s FULL_ES3=1 -s ALLOW_MEMORY_GROWTH=1 -s ASSERTIONS=1 -s WASM=1  -std=c++11  --preload-file ${CMAKE_SOURCE_DIR}/config/@/config --preload-file ${CMAKE_SOURCE_DIR}/assets/@/assets")
 endif()
 #====================================================================================# 
