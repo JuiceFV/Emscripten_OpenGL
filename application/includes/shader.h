@@ -15,6 +15,10 @@
 #include <sstream>
 #include <string>
 
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
+
 class Shader
 {
   private:
@@ -30,5 +34,6 @@ class Shader
     void Use();
     void Unuse();
     void set1i(int value, const char *name);
+    void setMat4fv(glm::mat4 value, const char *name, unsigned char transpose = GL_FALSE);
     ~Shader();
 };

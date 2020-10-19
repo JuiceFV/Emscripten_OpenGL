@@ -100,4 +100,13 @@ void Shader::set1i(int value, const char *name)
     this->Unuse();
 }
 
+void Shader::setMat4fv(glm::mat4 value, const char *name, unsigned char transpose)
+{
+    this->Use();
+
+    glUniformMatrix4fv(glGetUniformLocation(this->program, name), 1, transpose, glm::value_ptr(value));
+
+    this->Unuse();
+}
+
 Shader::~Shader() { glDeleteProgram(this->program); }
