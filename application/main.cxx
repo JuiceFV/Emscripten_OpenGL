@@ -11,6 +11,7 @@
 
 #include "shader.h"
 #include "camera.h"
+#include "texture.h"
 #include <GLFW/glfw3.h>
 #include <functional>
 #include <iostream>
@@ -34,7 +35,7 @@ int SCREEN_WIDTH, SCREEN_HEIGHT;
 
 // Function prototypes
 void KeyCallback(GLFWwindow *window, int key, int scancode, int action, int mode);
-void ScrollCallback(GLFWwindow *window, double xOffset, double yOffset);
+void ScrollCallback(GLFWwindow *window, double xOffset, double );
 void MouseCallback(GLFWwindow *window, double xPos, double yPos);
 void DoMovement();
 
@@ -146,26 +147,7 @@ int main()
 
     glBindVertexArray(0); // Unbind VAO
 
-    // Load and create a texture
-    GLuint texture;
-    // --== TEXTURE == --
-    glGenTextures(1, &texture);
-    glBindTexture(GL_TEXTURE_2D,
-                  texture); // All upcoming GL_TEXTURE_2D operations now have effect on our texture object
-    // Set our texture parameters
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-    // Set texture filtering
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-    // Load, create texture and generate mipmaps
-    int width, height;
-    unsigned char *image = SOIL_load_image("assets/images/image1.jpg", &width, &height, 0, SOIL_LOAD_RGB);
-    if (image == 0) std::cout << "Fail";
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
-    glGenerateMipmap(GL_TEXTURE_2D);
-    SOIL_free_image_data(image);
-    glBindTexture(GL_TEXTURE_2D, 0); // Unbind texture when done, so we won't accidentily mess up our texture.
+    Texture texture("assets/images/image1.jpg", GL_TEXTURE_2D);
 #ifdef __EMSCRIPTEN__
     std::function<void()> mainLoop = [&]() {
 #else
@@ -189,8 +171,7 @@ int main()
         ourShader.Use();
 
         // Bind Textures using texture units
-        glActiveTexture(GL_TEXTURE0);
-        glBindTexture(GL_TEXTURE_2D, texture);
+        texture.bind(0);
         ourShader.set1i(0, "ourTexture1");
 
         glm::mat4 projection(1);
