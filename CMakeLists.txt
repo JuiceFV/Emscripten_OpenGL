@@ -49,11 +49,14 @@ endif()
 set(${PROJECT_NAME}_SOURCES 
                 "application/sources/shader.cpp"
                 "application/sources/camera.cpp"
+                "application/sources/texture.cpp"
                 "application/sources/application.cpp"
             )
 set(${PROJECT_NAME}_INCLUDES 
                 "application/includes/shader.h"
                 "application/includes/camera.h"
+                "application/includes/texture.h"
+                "application/includes/vertex.h"
                 "application/includes/application.h"
             )
 set(${PROJECT_NAME}_MAIN "application/main.cxx")
