@@ -1,7 +1,7 @@
-PWD d:\GitHub\Emscripten_OpenGL\doc\russian\instructions
+PWD d:\GitHub\Emscripten_OpenGL\doc\russian\description
 INPUT C:\Users\alexc\AppData\Local\MiKTeX\2.9\miktex\data\le\pdftex\pdflatex.fmt
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\instructions.tex
-OUTPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\instructions.log
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\description\cmake.tex
+OUTPUT d:\GitHub\Emscripten_OpenGL\doc\russian\description\cmake.log
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\base\article.cls
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\base\article.cls
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\base\article.cls
@@ -1150,12 +1150,12 @@ INPUT C:\Program Files\MiKTeX 2.9\tex\generic\iftex\ifluatex.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\generic\iftex\ifluatex.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\generic\iftex\ifluatex.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\generic\iftex\ifluatex.sty
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\nul:.tex
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\nul:.tex
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\nul:.tex
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\nul:.tex
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\nul:.tex
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\nul:.tex
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\description\nul:.tex
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\description\nul:.tex
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\description\nul:.tex
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\description\nul:.tex
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\description\nul:.tex
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\description\nul:.tex
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\framed\framed.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\framed\framed.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\framed\framed.sty
@@ -1191,13 +1191,13 @@ INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tools\multicol.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tools\multicol.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tools\multicol.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tools\multicol.sty
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\instructions.aex
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\instructions.aex
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\instructions.aex
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\instructions.aux
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\instructions.aux
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\instructions.aux
-OUTPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\instructions.aux
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\description\cmake.aex
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\description\cmake.aex
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\description\cmake.aex
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\description\cmake.aux
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\description\cmake.aux
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\description\cmake.aux
+OUTPUT d:\GitHub\Emscripten_OpenGL\doc\russian\description\cmake.aux
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\ucs\ucsencs.def
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\ucs\ucsencs.def
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\ucs\ucsencs.def
@@ -1242,18 +1242,18 @@ INPUT C:\Program Files\MiKTeX 2.9\tex\generic\gettitlestring\gettitlestring.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\generic\gettitlestring\gettitlestring.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\generic\gettitlestring\gettitlestring.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\generic\gettitlestring\gettitlestring.sty
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\instructions.out
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\instructions.out
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\instructions.out
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\instructions.out
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\instructions.out
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\instructions.out
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\instructions.out
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\instructions.out
-OUTPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\instructions.pdf
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\instructions.out
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\instructions.out
-OUTPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\instructions.out
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\description\cmake.out
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\description\cmake.out
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\description\cmake.out
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\description\cmake.out
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\description\cmake.out
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\description\cmake.out
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\description\cmake.out
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\description\cmake.out
+OUTPUT d:\GitHub\Emscripten_OpenGL\doc\russian\description\cmake.pdf
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\description\cmake.out
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\description\cmake.out
+OUTPUT d:\GitHub\Emscripten_OpenGL\doc\russian\description\cmake.out
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\siunitx\siunitx-abbreviations.cfg
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\siunitx\siunitx-abbreviations.cfg
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\siunitx\siunitx-abbreviations.cfg
@@ -1317,64 +1317,71 @@ INPUT C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts\tfm\lh\lh-t2a\larm1440.tfm
 INPUT C:\Users\alexc\AppData\Local\MiKTeX\2.9\pdftex\config\pdftex.map
 INPUT C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts\tfm\lh\lh-t2a\larm1728.tfm
 INPUT C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts\tfm\lh\lh-t2a\labx1728.tfm
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\instructions.toc
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\instructions.toc
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\instructions.toc
-OUTPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\instructions.toc
-INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\jknappen\ec\tcrm1200.tfm
-INPUT C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts\tfm\lh\lh-t2a\lati1200.tfm
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\description\cmake.toc
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\description\cmake.toc
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\description\cmake.toc
+OUTPUT d:\GitHub\Emscripten_OpenGL\doc\russian\description\cmake.toc
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\description\_minted-cmake\default-pyg-prefix.pygstyle
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\description\_minted-cmake\default-pyg-prefix.pygstyle
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\description\_minted-cmake\default-pyg-prefix.pygstyle
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\description\_minted-cmake\default-pyg-prefix.pygstyle
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\description\_minted-cmake\default-pyg-prefix.pygstyle
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\description\_minted-cmake\default-pyg-prefix.pygstyle
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\description\_minted-cmake\default-pyg-prefix.pygstyle
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\description\_minted-cmake\default-pyg-prefix.pygstyle
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\description\_minted-cmake\default.pygstyle
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\description\_minted-cmake\default.pygstyle
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\description\_minted-cmake\default.pygstyle
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\description\_minted-cmake\default.pygstyle
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\description\_minted-cmake\default.pygstyle
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\description\_minted-cmake\default.pygstyle
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\description\_minted-cmake\default.pygstyle
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\description\_minted-cmake\default.pygstyle
+INPUT ..\..\..\CMakeLists.txt
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\description\_minted-cmake\1DD38471F15BC9C0FE8CA23D08AEDB8358EAE98BBDB9748E0FC35F8F46203E8F.pygtex
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\description\_minted-cmake\1DD38471F15BC9C0FE8CA23D08AEDB8358EAE98BBDB9748E0FC35F8F46203E8F.pygtex
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\description\_minted-cmake\1DD38471F15BC9C0FE8CA23D08AEDB8358EAE98BBDB9748E0FC35F8F46203E8F.pygtex
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\description\_minted-cmake\1DD38471F15BC9C0FE8CA23D08AEDB8358EAE98BBDB9748E0FC35F8F46203E8F.pygtex
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\description\_minted-cmake\1DD38471F15BC9C0FE8CA23D08AEDB8358EAE98BBDB9748E0FC35F8F46203E8F.pygtex
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\description\_minted-cmake\1DD38471F15BC9C0FE8CA23D08AEDB8358EAE98BBDB9748E0FC35F8F46203E8F.pygtex
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\description\_minted-cmake\1DD38471F15BC9C0FE8CA23D08AEDB8358EAE98BBDB9748E0FC35F8F46203E8F.pygtex
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\description\_minted-cmake\1DD38471F15BC9C0FE8CA23D08AEDB8358EAE98BBDB9748E0FC35F8F46203E8F.pygtex
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\cyrillic\t2acmtt.fd
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\cyrillic\t2acmtt.fd
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\cyrillic\t2acmtt.fd
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\cyrillic\t2acmtt.fd
 INPUT C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts\tfm\lh\lh-t2a\latt1200.tfm
-INPUT C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts\tfm\lh\lh-t2a\labx1440.tfm
-OUTPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\instructions.pyg
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\_minted-instructions\default-pyg-prefix.pygstyle
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\_minted-instructions\default-pyg-prefix.pygstyle
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\_minted-instructions\default-pyg-prefix.pygstyle
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\_minted-instructions\default-pyg-prefix.pygstyle
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\_minted-instructions\default-pyg-prefix.pygstyle
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\_minted-instructions\default-pyg-prefix.pygstyle
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\_minted-instructions\default-pyg-prefix.pygstyle
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\_minted-instructions\default-pyg-prefix.pygstyle
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\_minted-instructions\default.pygstyle
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\_minted-instructions\default.pygstyle
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\_minted-instructions\default.pygstyle
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\_minted-instructions\default.pygstyle
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\_minted-instructions\default.pygstyle
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\_minted-instructions\default.pygstyle
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\_minted-instructions\default.pygstyle
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\_minted-instructions\default.pygstyle
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\instructions.pyg
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\_minted-instructions\9A746168CE619B3E09BC1D874FBE5811881E700045371E6D003D50860C7153B0.pygtex
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\_minted-instructions\9A746168CE619B3E09BC1D874FBE5811881E700045371E6D003D50860C7153B0.pygtex
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\_minted-instructions\9A746168CE619B3E09BC1D874FBE5811881E700045371E6D003D50860C7153B0.pygtex
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\_minted-instructions\9A746168CE619B3E09BC1D874FBE5811881E700045371E6D003D50860C7153B0.pygtex
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\_minted-instructions\9A746168CE619B3E09BC1D874FBE5811881E700045371E6D003D50860C7153B0.pygtex
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\_minted-instructions\9A746168CE619B3E09BC1D874FBE5811881E700045371E6D003D50860C7153B0.pygtex
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\_minted-instructions\9A746168CE619B3E09BC1D874FBE5811881E700045371E6D003D50860C7153B0.pygtex
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\_minted-instructions\9A746168CE619B3E09BC1D874FBE5811881E700045371E6D003D50860C7153B0.pygtex
+INPUT C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts\tfm\lh\lh-t2a\lait1200.tfm
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\base\ts1cmtt.fd
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\base\ts1cmtt.fd
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\base\ts1cmtt.fd
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\base\ts1cmtt.fd
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\jknappen\ec\tcit1200.tfm
+OUTPUT d:\GitHub\Emscripten_OpenGL\doc\russian\description\cmake.pyg
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\description\cmake.pyg
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\description\_minted-cmake\ADC4475BB6983E9C1BB0FEA1ECECA23DFF7D3FC3DA782DBF676D00097F43A976.pygtex
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\description\_minted-cmake\ADC4475BB6983E9C1BB0FEA1ECECA23DFF7D3FC3DA782DBF676D00097F43A976.pygtex
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\description\_minted-cmake\ADC4475BB6983E9C1BB0FEA1ECECA23DFF7D3FC3DA782DBF676D00097F43A976.pygtex
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\description\_minted-cmake\ADC4475BB6983E9C1BB0FEA1ECECA23DFF7D3FC3DA782DBF676D00097F43A976.pygtex
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\description\_minted-cmake\ADC4475BB6983E9C1BB0FEA1ECECA23DFF7D3FC3DA782DBF676D00097F43A976.pygtex
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\description\_minted-cmake\ADC4475BB6983E9C1BB0FEA1ECECA23DFF7D3FC3DA782DBF676D00097F43A976.pygtex
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\description\_minted-cmake\ADC4475BB6983E9C1BB0FEA1ECECA23DFF7D3FC3DA782DBF676D00097F43A976.pygtex
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\description\_minted-cmake\ADC4475BB6983E9C1BB0FEA1ECECA23DFF7D3FC3DA782DBF676D00097F43A976.pygtex
 INPUT C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts\tfm\lh\lh-t2a\larm1000.tfm
 INPUT C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts\tfm\lh\lh-t2a\latt1000.tfm
-INPUT C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts\tfm\lh\lh-t2a\larm0600.tfm
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\instructions.aux
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\instructions.out
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\instructions.out
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\instructions.pyg
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\instructions.pyg
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\description\cmake.aux
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\description\cmake.out
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\description\cmake.out
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\description\cmake.pyg
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\description\cmake.pyg
 INPUT C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\lh\lh-t2a\dpi600\latt1000.pk
 INPUT C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\lh\lh-t2a\dpi600\latt1000.pk
-INPUT C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\lh\lh-t2a\dpi600\larm0600.pk
-INPUT C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\lh\lh-t2a\dpi600\larm0600.pk
-INPUT C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\lh\lh-t2a\dpi600\labx1440.pk
-INPUT C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\lh\lh-t2a\dpi600\labx1440.pk
+INPUT C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\tcit1200.pk
+INPUT C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\tcit1200.pk
 INPUT C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\lh\lh-t2a\dpi600\latt1200.pk
 INPUT C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\lh\lh-t2a\dpi600\latt1200.pk
-INPUT C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\lh\lh-t2a\dpi600\lati1200.pk
-INPUT C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\lh\lh-t2a\dpi600\lati1200.pk
-INPUT C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\tcrm1200.pk
-INPUT C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\tcrm1200.pk
+INPUT C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\lh\lh-t2a\dpi600\lait1200.pk
+INPUT C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\lh\lh-t2a\dpi600\lait1200.pk
 INPUT C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\lh\lh-t2a\dpi600\larm1200.pk
 INPUT C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\lh\lh-t2a\dpi600\larm1200.pk
 INPUT C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\lh\lh-t2a\dpi600\labx1200.pk
@@ -1385,5 +1392,3 @@ INPUT C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\lh\lh-t2a\dpi600\l
 INPUT C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\lh\lh-t2a\dpi600\larm1440.pk
 INPUT C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\lh\lh-t2a\dpi600\labx2074.pk
 INPUT C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\lh\lh-t2a\dpi600\labx2074.pk
-INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmsy10.pfb
-INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmsy10.pfb

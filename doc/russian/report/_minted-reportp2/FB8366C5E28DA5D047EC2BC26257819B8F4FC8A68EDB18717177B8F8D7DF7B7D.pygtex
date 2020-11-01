@@ -1,0 +1,57 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{// Defines several possible options for camera movement. Used as abstraction to stay away from window\PYGZhy{}system specific}
+\PYG{c+c1}{// input methods}
+\PYG{k}{enum} \PYG{n}{Camera\PYGZus{}Movement}
+\PYG{p}{\PYGZob{}}
+    \PYG{n}{FORWARD}\PYG{p}{,}
+    \PYG{n}{BACKWARD}\PYG{p}{,}
+    \PYG{n}{LEFT}\PYG{p}{,}
+    \PYG{n}{RIGHT}
+\PYG{p}{\PYGZcb{};}
+
+\PYG{c+c1}{// Default camera values}
+\PYG{k}{const} \PYG{k+kt}{float} \PYG{n}{YAW} \PYG{o}{=} \PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{90.0f}\PYG{p}{;}
+\PYG{k}{const} \PYG{k+kt}{float} \PYG{n}{PITCH} \PYG{o}{=} \PYG{l+m+mf}{0.0f}\PYG{p}{;}
+\PYG{k}{const} \PYG{k+kt}{float} \PYG{n}{SPEED} \PYG{o}{=} \PYG{l+m+mf}{6.0f}\PYG{p}{;}
+\PYG{k}{const} \PYG{k+kt}{float} \PYG{n}{SENSITIVTY} \PYG{o}{=} \PYG{l+m+mf}{0.15f}\PYG{p}{;}
+\PYG{k}{const} \PYG{k+kt}{float} \PYG{n}{ZOOM} \PYG{o}{=} \PYG{l+m+mf}{45.0f}\PYG{p}{;}
+
+\PYG{k}{class} \PYG{n+nc}{Camera}
+\PYG{p}{\PYGZob{}}
+  \PYG{k}{public}\PYG{o}{:}
+    \PYG{n}{Camera}\PYG{p}{(}\PYG{n}{glm}\PYG{o}{::}\PYG{n}{vec3} \PYG{n}{position} \PYG{o}{=} \PYG{n}{glm}\PYG{o}{::}\PYG{n}{vec3}\PYG{p}{(}\PYG{l+m+mf}{0.0f}\PYG{p}{,} \PYG{l+m+mf}{0.0f}\PYG{p}{,} \PYG{l+m+mf}{0.0f}\PYG{p}{),} \PYG{n}{glm}\PYG{o}{::}\PYG{n}{vec3} \PYG{n}{up} \PYG{o}{=} \PYG{n}{glm}\PYG{o}{::}\PYG{n}{vec3}\PYG{p}{(}\PYG{l+m+mf}{0.0f}\PYG{p}{,} \PYG{l+m+mf}{1.0f}\PYG{p}{,} \PYG{l+m+mf}{0.0f}\PYG{p}{),}
+           \PYG{k+kt}{float} \PYG{n}{yaw} \PYG{o}{=} \PYG{n}{YAW}\PYG{p}{,} \PYG{k+kt}{float} \PYG{n}{pitch} \PYG{o}{=} \PYG{n}{PITCH}\PYG{p}{);}
+    \PYG{n}{Camera}\PYG{p}{(}\PYG{k+kt}{float} \PYG{n}{pos\PYGZus{}x}\PYG{p}{,} \PYG{k+kt}{float} \PYG{n}{pos\PYGZus{}y}\PYG{p}{,} \PYG{k+kt}{float} \PYG{n}{pos\PYGZus{}z}\PYG{p}{,} \PYG{k+kt}{float} \PYG{n}{up\PYGZus{}x}\PYG{p}{,} \PYG{k+kt}{float} \PYG{n}{up\PYGZus{}y}\PYG{p}{,} \PYG{k+kt}{float} \PYG{n}{up\PYGZus{}z}\PYG{p}{,} \PYG{k+kt}{float} \PYG{n}{yaw}\PYG{p}{,} \PYG{k+kt}{float} \PYG{n}{pitch}\PYG{p}{);}
+    \PYG{c+c1}{// Returns the view matrix calculated using Eular Angles and the LookAt Matrix}
+    \PYG{n}{glm}\PYG{o}{::}\PYG{n}{mat4} \PYG{n}{GetViewMatrix}\PYG{p}{();}
+    \PYG{c+c1}{// Processes input received from any keyboard\PYGZhy{}like input system.}
+    \PYG{c+c1}{// Accepts input parameter in the form of camera}
+    \PYG{k+kt}{void} \PYG{n+nf}{ProcessKeyboard}\PYG{p}{(}\PYG{n}{Camera\PYGZus{}Movement} \PYG{n}{direction}\PYG{p}{,} \PYG{k+kt}{float} \PYG{n}{delta\PYGZus{}time}\PYG{p}{);}
+    \PYG{c+c1}{// Expects the offset value in both the x and y direction.}
+    \PYG{k+kt}{void} \PYG{n+nf}{ProcessMouseMovement}\PYG{p}{(}\PYG{k+kt}{float} \PYG{n}{x\PYGZus{}offset}\PYG{p}{,} \PYG{k+kt}{float} \PYG{n}{y\PYGZus{}offset}\PYG{p}{,} \PYG{k+kt}{unsigned} \PYG{k+kt}{char} \PYG{n}{constrain\PYGZus{}pitch} \PYG{o}{=} \PYG{n+nb}{true}\PYG{p}{);}
+    \PYG{c+c1}{// Only requires input on the vertical wheel\PYGZhy{}axis}
+    \PYG{k+kt}{void} \PYG{n+nf}{ProcessMouseScroll}\PYG{p}{(}\PYG{k+kt}{float} \PYG{n}{y\PYGZus{}offset}\PYG{p}{);}
+    \PYG{k+kt}{float} \PYG{n+nf}{GetZoom}\PYG{p}{();}
+
+  \PYG{k}{private}\PYG{o}{:}
+    \PYG{c+c1}{// Camera Attributes}
+    \PYG{n}{glm}\PYG{o}{::}\PYG{n}{vec3} \PYG{n}{position}\PYG{p}{;}
+    \PYG{n}{glm}\PYG{o}{::}\PYG{n}{vec3} \PYG{n}{front}\PYG{p}{;}
+    \PYG{n}{glm}\PYG{o}{::}\PYG{n}{vec3} \PYG{n}{up}\PYG{p}{;}
+    \PYG{n}{glm}\PYG{o}{::}\PYG{n}{vec3} \PYG{n}{right}\PYG{p}{;}
+    \PYG{n}{glm}\PYG{o}{::}\PYG{n}{vec3} \PYG{n}{world\PYGZus{}up}\PYG{p}{;}
+
+    \PYG{c+c1}{// Eular Angles}
+    \PYG{k+kt}{float} \PYG{n}{yaw}\PYG{p}{;}
+    \PYG{k+kt}{float} \PYG{n}{pitch}\PYG{p}{;}
+    \PYG{k+kt}{float} \PYG{n}{roll}\PYG{p}{;}
+
+    \PYG{c+c1}{// Camera options}
+    \PYG{k+kt}{float} \PYG{n}{movement\PYGZus{}speed}\PYG{p}{;}
+    \PYG{k+kt}{float} \PYG{n}{mouse\PYGZus{}sensitivity}\PYG{p}{;}
+    \PYG{k+kt}{float} \PYG{n}{zoom}\PYG{p}{;}
+
+    \PYG{c+c1}{// Calculates the front vector from the Camera\PYGZsq{}s (updated) Eular Angles}
+    \PYG{k+kt}{void} \PYG{n+nf}{updateCameraVectors}\PYG{p}{();}
+\PYG{p}{\PYGZcb{};}
+\end{Verbatim}

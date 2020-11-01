@@ -1,0 +1,18 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{class} \PYG{n+nc}{Texture}
+\PYG{p}{\PYGZob{}}
+  \PYG{k}{public}\PYG{o}{:}
+    \PYG{n}{Texture}\PYG{p}{(}\PYG{k}{const} \PYG{k+kt}{char} \PYG{o}{*}\PYG{n}{file\PYGZus{}name}\PYG{p}{,} \PYG{k+kt}{unsigned} \PYG{k+kt}{int} \PYG{n}{type}\PYG{p}{);}
+    \PYG{k+kr}{inline} \PYG{k+kt}{unsigned} \PYG{k+kt}{int} \PYG{n+nf}{getID}\PYG{p}{()} \PYG{k}{const}\PYG{p}{;}
+    \PYG{k+kt}{void} \PYG{n+nf}{bind}\PYG{p}{(}\PYG{k}{const} \PYG{k+kt}{int} \PYG{n}{texture\PYGZus{}unit}\PYG{p}{);}
+    \PYG{k+kt}{void} \PYG{n+nf}{unbind}\PYG{p}{();}
+    \PYG{k+kt}{void} \PYG{n+nf}{loadFromFile}\PYG{p}{(}\PYG{k}{const} \PYG{k+kt}{char} \PYG{o}{*}\PYG{n}{file\PYGZus{}name}\PYG{p}{);}
+    \PYG{o}{\PYGZti{}}\PYG{n}{Texture}\PYG{p}{();}
+
+  \PYG{k}{private}\PYG{o}{:}
+    \PYG{k+kt}{unsigned} \PYG{k+kt}{int} \PYG{n}{id}\PYG{p}{;}
+    \PYG{k+kt}{int} \PYG{n}{width}\PYG{p}{;}
+    \PYG{k+kt}{int} \PYG{n}{height}\PYG{p}{;}
+    \PYG{k+kt}{unsigned} \PYG{k+kt}{int} \PYG{n}{type}\PYG{p}{;}
+\PYG{p}{\PYGZcb{};}
+\end{Verbatim}

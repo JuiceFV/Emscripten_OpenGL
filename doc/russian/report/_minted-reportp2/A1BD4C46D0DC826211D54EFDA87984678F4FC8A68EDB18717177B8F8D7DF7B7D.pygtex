@@ -1,0 +1,58 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kt}{void} \PYG{n}{Camera}\PYG{o}{::}\PYG{n}{updateCameraVectors}\PYG{p}{()}
+\PYG{p}{\PYGZob{}}
+    \PYG{c+c1}{// Calculate the new Front vector}
+    \PYG{n}{glm}\PYG{o}{::}\PYG{n}{vec3} \PYG{n}{front}\PYG{p}{;}
+    \PYG{n}{front}\PYG{p}{.}\PYG{n}{x} \PYG{o}{=} \PYG{n}{cos}\PYG{p}{(}\PYG{n}{glm}\PYG{o}{::}\PYG{n}{radians}\PYG{p}{(}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{yaw}\PYG{p}{))} \PYG{o}{*} \PYG{n}{cos}\PYG{p}{(}\PYG{n}{glm}\PYG{o}{::}\PYG{n}{radians}\PYG{p}{(}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{pitch}\PYG{p}{));}
+    \PYG{n}{front}\PYG{p}{.}\PYG{n}{y} \PYG{o}{=} \PYG{n}{sin}\PYG{p}{(}\PYG{n}{glm}\PYG{o}{::}\PYG{n}{radians}\PYG{p}{(}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{pitch}\PYG{p}{));}
+    \PYG{n}{front}\PYG{p}{.}\PYG{n}{z} \PYG{o}{=} \PYG{n}{sin}\PYG{p}{(}\PYG{n}{glm}\PYG{o}{::}\PYG{n}{radians}\PYG{p}{(}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{yaw}\PYG{p}{))} \PYG{o}{*} \PYG{n}{cos}\PYG{p}{(}\PYG{n}{glm}\PYG{o}{::}\PYG{n}{radians}\PYG{p}{(}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{pitch}\PYG{p}{));}
+    \PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{front} \PYG{o}{=} \PYG{n}{glm}\PYG{o}{::}\PYG{n}{normalize}\PYG{p}{(}\PYG{n}{front}\PYG{p}{);}
+    \PYG{c+c1}{// Also re\PYGZhy{}calculate the Right and Up vector}
+    \PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{right} \PYG{o}{=} \PYG{n}{glm}\PYG{o}{::}\PYG{n}{normalize}\PYG{p}{(}
+        \PYG{n}{glm}\PYG{o}{::}\PYG{n}{cross}\PYG{p}{(}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{front}\PYG{p}{,} \PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{world\PYGZus{}up}\PYG{p}{));}
+        \PYG{c+c1}{// Normalize the vectors, because their length gets closer to 0 the}
+        \PYG{c+c1}{// more you look up or down which results in slower movement.}
+    \PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{up} \PYG{o}{=} \PYG{n}{glm}\PYG{o}{::}\PYG{n}{normalize}\PYG{p}{(}\PYG{n}{glm}\PYG{o}{::}\PYG{n}{cross}\PYG{p}{(}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{right}\PYG{p}{,} \PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{front}\PYG{p}{));}
+\PYG{p}{\PYGZcb{}}
+\PYG{k+kt}{void} \PYG{n}{Camera}\PYG{o}{::}\PYG{n}{ProcessKeyboard}\PYG{p}{(}\PYG{n}{Camera\PYGZus{}Movement} \PYG{n}{direction}\PYG{p}{,} \PYG{k+kt}{float} \PYG{n}{delta\PYGZus{}time}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+    \PYG{k+kt}{float} \PYG{n}{velocity} \PYG{o}{=} \PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{movement\PYGZus{}speed} \PYG{o}{*} \PYG{n}{delta\PYGZus{}time}\PYG{p}{;}
+    \PYG{k}{switch} \PYG{p}{(}\PYG{n}{direction}\PYG{p}{)}
+    \PYG{p}{\PYGZob{}}
+    \PYG{k}{case} \PYG{n+nl}{FORWARD}\PYG{p}{:} \PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{position} \PYG{o}{+=} \PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{front} \PYG{o}{*} \PYG{n}{velocity}\PYG{p}{;} \PYG{k}{break}\PYG{p}{;}
+    \PYG{k}{case} \PYG{n+nl}{BACKWARD}\PYG{p}{:} \PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{position} \PYG{o}{\PYGZhy{}=} \PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{front} \PYG{o}{*} \PYG{n}{velocity}\PYG{p}{;} \PYG{k}{break}\PYG{p}{;}
+    \PYG{k}{case} \PYG{n+nl}{LEFT}\PYG{p}{:} \PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{position} \PYG{o}{\PYGZhy{}=} \PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{right} \PYG{o}{*} \PYG{n}{velocity}\PYG{p}{;} \PYG{k}{break}\PYG{p}{;}
+    \PYG{k}{case} \PYG{n+nl}{RIGHT}\PYG{p}{:} \PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{position} \PYG{o}{+=} \PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{right} \PYG{o}{*} \PYG{n}{velocity}\PYG{p}{;} \PYG{k}{break}\PYG{p}{;}
+    \PYG{k}{default}\PYG{o}{:} \PYG{k}{break}\PYG{p}{;}
+    \PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{k+kt}{void} \PYG{n}{Camera}\PYG{o}{::}\PYG{n}{ProcessMouseMovement}\PYG{p}{(}\PYG{k+kt}{float} \PYG{n}{x\PYGZus{}offset}\PYG{p}{,} \PYG{k+kt}{float} \PYG{n}{y\PYGZus{}offset}\PYG{p}{,} \PYG{k+kt}{unsigned} \PYG{k+kt}{char} \PYG{n}{constrain\PYGZus{}pitch}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+    \PYG{n}{x\PYGZus{}offset} \PYG{o}{*=} \PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{mouse\PYGZus{}sensitivity}\PYG{p}{;}
+    \PYG{n}{y\PYGZus{}offset} \PYG{o}{*=} \PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{mouse\PYGZus{}sensitivity}\PYG{p}{;}
+
+    \PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{yaw} \PYG{o}{+=} \PYG{n}{x\PYGZus{}offset}\PYG{p}{;}
+    \PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{pitch} \PYG{o}{+=} \PYG{n}{y\PYGZus{}offset}\PYG{p}{;}
+
+    \PYG{c+c1}{// Make sure that when pitch is out of bounds, screen doesn\PYGZsq{}t get flipped}
+    \PYG{k}{if} \PYG{p}{(}\PYG{n}{constrain\PYGZus{}pitch}\PYG{p}{)}
+    \PYG{p}{\PYGZob{}}
+        \PYG{k}{if} \PYG{p}{(}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{pitch} \PYG{o}{\PYGZgt{}} \PYG{l+m+mf}{89.0f}\PYG{p}{)} \PYG{p}{\PYGZob{}} \PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{pitch} \PYG{o}{=} \PYG{l+m+mf}{89.0f}\PYG{p}{;} \PYG{p}{\PYGZcb{}}
+
+        \PYG{k}{if} \PYG{p}{(}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{pitch} \PYG{o}{\PYGZlt{}} \PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{89.0f}\PYG{p}{)} \PYG{p}{\PYGZob{}} \PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{pitch} \PYG{o}{=} \PYG{o}{\PYGZhy{}}\PYG{l+m+mf}{89.0f}\PYG{p}{;} \PYG{p}{\PYGZcb{}}
+    \PYG{p}{\PYGZcb{}}
+
+    \PYG{c+c1}{// Update Front, Right and Up Vectors using the updated Eular angles}
+    \PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{updateCameraVectors}\PYG{p}{();}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{k+kt}{void} \PYG{n}{Camera}\PYG{o}{::}\PYG{n}{ProcessMouseScroll}\PYG{p}{(}\PYG{k+kt}{float} \PYG{n}{y\PYGZus{}offset}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+    \PYG{k}{if} \PYG{p}{(}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{zoom} \PYG{o}{\PYGZgt{}=} \PYG{l+m+mf}{1.0f} \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{zoom} \PYG{o}{\PYGZlt{}=} \PYG{l+m+mf}{45.0f}\PYG{p}{)} \PYG{p}{\PYGZob{}} \PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{zoom} \PYG{o}{\PYGZhy{}=} \PYG{n}{y\PYGZus{}offset}\PYG{p}{;} \PYG{p}{\PYGZcb{}}
+
+    \PYG{k}{if} \PYG{p}{(}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{zoom} \PYG{o}{\PYGZlt{}=} \PYG{l+m+mf}{1.0f}\PYG{p}{)} \PYG{p}{\PYGZob{}} \PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{zoom} \PYG{o}{=} \PYG{l+m+mf}{1.0f}\PYG{p}{;} \PYG{p}{\PYGZcb{}}
+
+    \PYG{k}{if} \PYG{p}{(}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{zoom} \PYG{o}{\PYGZgt{}=} \PYG{l+m+mf}{45.0f}\PYG{p}{)} \PYG{p}{\PYGZob{}} \PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{zoom} \PYG{o}{=} \PYG{l+m+mf}{45.0f}\PYG{p}{;} \PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

@@ -1,0 +1,15 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+cp}{\PYGZsh{}version 330 core}
+
+
+\PYG{n}{in} \PYG{n}{vec2} \PYG{n}{TexCoord}\PYG{p}{;}
+
+\PYG{n}{out} \PYG{n}{vec4} \PYG{n}{color}\PYG{p}{;}
+
+\PYG{n}{uniform} \PYG{n}{sampler2D} \PYG{n}{ourTexture1}\PYG{p}{;}
+
+\PYG{k+kt}{void} \PYG{n+nf}{main}\PYG{p}{()}
+\PYG{p}{\PYGZob{}}
+    \PYG{n}{color} \PYG{o}{=} \PYG{n}{texture}\PYG{p}{(}\PYG{n}{ourTexture1}\PYG{p}{,} \PYG{n}{TexCoord}\PYG{p}{);}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

@@ -1,0 +1,23 @@
+# Not in-build emscripten libraries, 
+set(DEP_EMSDK_LIBS
+    soil2
+)
+
+# The libraries, required by application, 
+# however they are already built in emscripten
+# But they are not built in the ordinar one.
+if (NOT FOR_EMSDK)
+    set(DEP_LIBS
+        glfw 
+        libglew_shared
+    )
+endif()
+
+# Other Libs, actually created by my-self.
+set(LIBS 
+    ConfigLoader
+)
+
+set(INTERFACE_LIB 
+    glm 
+)

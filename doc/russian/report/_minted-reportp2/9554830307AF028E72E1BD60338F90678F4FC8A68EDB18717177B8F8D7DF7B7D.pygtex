@@ -1,0 +1,41 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{Texture}\PYG{o}{::}\PYG{n}{Texture}\PYG{p}{(}\PYG{k}{const} \PYG{k+kt}{char} \PYG{o}{*}\PYG{n}{file\PYGZus{}name}\PYG{p}{,} \PYG{k+kt}{unsigned} \PYG{k+kt}{int} \PYG{n}{type}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+    \PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{type} \PYG{o}{=} \PYG{n}{type}\PYG{p}{;}
+
+    \PYG{k+kt}{unsigned} \PYG{k+kt}{char} \PYG{o}{*}\PYG{n}{image} \PYG{o}{=} \PYG{n}{SOIL\PYGZus{}load\PYGZus{}image}\PYG{p}{(}
+                                            \PYG{n}{file\PYGZus{}name}\PYG{p}{,}
+                                            \PYG{o}{\PYGZam{}}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{width}\PYG{p}{,}
+                                            \PYG{o}{\PYGZam{}}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{height}\PYG{p}{,}
+                                            \PYG{n+nb}{NULL}\PYG{p}{,}
+                                            \PYG{n}{SOIL\PYGZus{}LOAD\PYGZus{}RGBA}
+                                          \PYG{p}{);}
+
+    \PYG{c+c1}{// generate texture names}
+    \PYG{n}{glGenTextures}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{o}{\PYGZam{}}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{id}\PYG{p}{);}
+    \PYG{n}{glBindTexture}\PYG{p}{(}\PYG{n}{type}\PYG{p}{,} \PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{id}\PYG{p}{);}
+    \PYG{c+c1}{// Set our texture parameters}
+    \PYG{n}{glTexParameteri}\PYG{p}{(}\PYG{n}{type}\PYG{p}{,} \PYG{n}{GL\PYGZus{}TEXTURE\PYGZus{}WRAP\PYGZus{}S}\PYG{p}{,} \PYG{n}{GL\PYGZus{}REPEAT}\PYG{p}{);}
+    \PYG{n}{glTexParameteri}\PYG{p}{(}\PYG{n}{type}\PYG{p}{,} \PYG{n}{GL\PYGZus{}TEXTURE\PYGZus{}WRAP\PYGZus{}T}\PYG{p}{,} \PYG{n}{GL\PYGZus{}REPEAT}\PYG{p}{);}
+    \PYG{c+c1}{// Set texture filtering}
+    \PYG{n}{glTexParameteri}\PYG{p}{(}\PYG{n}{type}\PYG{p}{,} \PYG{n}{GL\PYGZus{}TEXTURE\PYGZus{}MAG\PYGZus{}FILTER}\PYG{p}{,} \PYG{n}{GL\PYGZus{}LINEAR\PYGZus{}MIPMAP\PYGZus{}LINEAR}\PYG{p}{);}
+    \PYG{n}{glTexParameteri}\PYG{p}{(}\PYG{n}{type}\PYG{p}{,} \PYG{n}{GL\PYGZus{}TEXTURE\PYGZus{}MIN\PYGZus{}FILTER}\PYG{p}{,} \PYG{n}{GL\PYGZus{}LINEAR}\PYG{p}{);}
+
+    \PYG{k}{if} \PYG{p}{(}\PYG{n}{image}\PYG{p}{)}
+    \PYG{p}{\PYGZob{}}
+    	\PYG{c+c1}{// specify 2d img}
+        \PYG{n}{glTexImage2D}\PYG{p}{(}\PYG{n}{type}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{n}{GL\PYGZus{}RGBA}\PYG{p}{,} \PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{width}\PYG{p}{,} \PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{height}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{n}{GL\PYGZus{}RGBA}\PYG{p}{,} \PYG{n}{GL\PYGZus{}UNSIGNED\PYGZus{}BYTE}\PYG{p}{,} \PYG{n}{image}\PYG{p}{);}
+        \PYG{n}{glGenerateMipmap}\PYG{p}{(}\PYG{n}{type}\PYG{p}{);}
+    \PYG{p}{\PYGZcb{}}
+    \PYG{k}{else}
+    \PYG{p}{\PYGZob{}}
+        \PYG{n}{std}\PYG{o}{::}\PYG{n}{cerr} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+s}{\PYGZdq{}An error has occured in the \PYGZdq{}} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{n}{\PYGZus{}\PYGZus{}FILE\PYGZus{}\PYGZus{}} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+s}{\PYGZdq{} in line \PYGZdq{}}
+                  \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{n}{\PYGZus{}\PYGZus{}LINE\PYGZus{}\PYGZus{}} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+s}{\PYGZdq{}.\PYGZdq{}} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{n}{std}\PYG{o}{::}\PYG{n}{endl}
+                  \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+s}{\PYGZdq{}Error occured in the: \PYGZdq{}} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{n}{file\PYGZus{}name} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{n}{std}\PYG{o}{::}\PYG{n}{endl}\PYG{p}{;}
+    \PYG{p}{\PYGZcb{}}
+
+    \PYG{n}{glActiveTexture}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{);}
+    \PYG{n}{glBindTexture}\PYG{p}{(}\PYG{n}{type}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{);}
+    \PYG{n}{SOIL\PYGZus{}free\PYGZus{}image\PYGZus{}data}\PYG{p}{(}\PYG{n}{image}\PYG{p}{);}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

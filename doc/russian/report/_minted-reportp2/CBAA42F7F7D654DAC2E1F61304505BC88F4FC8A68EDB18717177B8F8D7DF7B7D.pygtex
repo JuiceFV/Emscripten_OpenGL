@@ -1,0 +1,29 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kt}{int} \PYG{n+nf}{main}\PYG{p}{()}
+\PYG{p}{\PYGZob{}}
+    \PYG{p}{...}
+    \PYG{c+c1}{// the type is GL\PYGZus{}TEXTURE\PYGZus{}2D}
+    \PYG{n}{Texture} \PYG{n}{texture}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}assets/images/image1.jpg\PYGZdq{}}\PYG{p}{,} \PYG{n}{GL\PYGZus{}TEXTURE\PYGZus{}2D}\PYG{p}{);}
+\PYG{c+cp}{\PYGZsh{}ifdef \PYGZus{}\PYGZus{}EMSCRIPTEN\PYGZus{}\PYGZus{}}
+    \PYG{n}{std}\PYG{o}{::}\PYG{n}{function}\PYG{o}{\PYGZlt{}}\PYG{k+kt}{void}\PYG{p}{()}\PYG{o}{\PYGZgt{}} \PYG{n}{mainLoop} \PYG{o}{=} \PYG{p}{[}\PYG{o}{\PYGZam{}}\PYG{p}{]()} \PYG{p}{\PYGZob{}}
+\PYG{c+cp}{\PYGZsh{}else}
+    \PYG{k}{while} \PYG{p}{(}\PYG{o}{!}\PYG{n}{glfwWindowShouldClose}\PYG{p}{(}\PYG{n}{window}\PYG{p}{))}
+    \PYG{p}{\PYGZob{}}
+\PYG{c+cp}{\PYGZsh{}endif}
+        \PYG{p}{...}
+
+        \PYG{c+c1}{// Bind Textures using texture units}
+        \PYG{n}{texture}\PYG{p}{.}\PYG{n}{bind}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{);}
+        \PYG{n}{ourShader}\PYG{p}{.}\PYG{n}{set1i}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+s}{\PYGZdq{}ourTexture1\PYGZdq{}}\PYG{p}{);}
+
+        \PYG{p}{...}
+
+\PYG{c+cp}{\PYGZsh{}ifdef \PYGZus{}\PYGZus{}EMSCRIPTEN\PYGZus{}\PYGZus{}}
+    \PYG{p}{\PYGZcb{};}
+    \PYG{n}{emscripten\PYGZus{}set\PYGZus{}main\PYGZus{}loop\PYGZus{}arg}\PYG{p}{(}\PYG{n}{dispatch\PYGZus{}main}\PYG{p}{,} \PYG{o}{\PYGZam{}}\PYG{n}{mainLoop}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{);}
+\PYG{c+cp}{\PYGZsh{}else}
+    \PYG{p}{\PYGZcb{}}
+\PYG{c+cp}{\PYGZsh{}endif}
+\PYG{p}{...}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

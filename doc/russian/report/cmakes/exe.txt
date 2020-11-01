@@ -1,0 +1,24 @@
+# adding executable
+add_executable(${PROJECT_NAME} 
+                ${${PROJECT_NAME}_MAIN} 
+                ${${PROJECT_NAME}_SOURCES}
+                ${${PROJECT_NAME}_INCLUDES}
+                ${CFG_FILES}
+                ${ASSETS}
+            )
+target_link_libraries(${PROJECT_NAME} 
+                        ${LIBS}
+                        ${DEP_LIBS} 
+                        ${DEP_EMSDK_LIBS} 
+                        ${INTERFACE_LIB}
+                    ) 
+target_include_directories(
+    ${PROJECT_NAME} PUBLIC
+    $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/application/includes>
+    $<INSTALL_INTERFACE:${PROJECT_SOURCE_DIR}/application/includes>
+) 
+
+if (NOT FOR_EMSDK)
+    find_package(OpenGL REQUIRED)
+    target_link_libraries(${PROJECT_NAME} OpenGL::GL)
+endif()

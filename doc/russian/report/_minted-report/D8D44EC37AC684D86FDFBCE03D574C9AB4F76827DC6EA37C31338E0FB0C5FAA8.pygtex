@@ -1,0 +1,55 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{std}\PYG{o}{::}\PYG{n}{string} \PYG{n}{Shader}\PYG{o}{::}\PYG{n}{loadShaderFile}\PYG{p}{(}\PYG{k}{const} \PYG{k+kt}{char} \PYG{o}{*}\PYG{n}{path}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+    \PYG{n}{std}\PYG{o}{::}\PYG{n}{string} \PYG{n}{shader\PYGZus{}code}\PYG{p}{;}   \PYG{c+c1}{// The code of shaders as a string}
+    \PYG{n}{std}\PYG{o}{::}\PYG{n}{ifstream} \PYG{n}{shader\PYGZus{}file}\PYG{p}{;} \PYG{c+c1}{// The very file}
+    \PYG{c+c1}{// ensures ifstream objects able to throw exceptions}
+    \PYG{n}{shader\PYGZus{}file}\PYG{p}{.}\PYG{n}{exceptions}\PYG{p}{(}\PYG{n}{std}\PYG{o}{::}\PYG{n}{ifstream}\PYG{o}{::}\PYG{n}{badbit}\PYG{p}{);}
+    \PYG{k}{try}
+    \PYG{p}{\PYGZob{}}
+        \PYG{c+c1}{// Open file}
+        \PYG{n}{shader\PYGZus{}file}\PYG{p}{.}\PYG{n}{open}\PYG{p}{(}\PYG{n}{path}\PYG{p}{);}
+        \PYG{n}{std}\PYG{o}{::}\PYG{n}{stringstream} \PYG{n}{shader\PYGZus{}stream}\PYG{p}{;}
+        \PYG{c+c1}{// Read file\PYGZsq{}s buffer contents into stream}
+        \PYG{n}{shader\PYGZus{}stream} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{n}{shader\PYGZus{}file}\PYG{p}{.}\PYG{n}{rdbuf}\PYG{p}{();}
+        \PYG{c+c1}{// close file handler}
+        \PYG{n}{shader\PYGZus{}file}\PYG{p}{.}\PYG{n}{close}\PYG{p}{();}
+        \PYG{c+c1}{// Convert stream into string}
+        \PYG{n}{shader\PYGZus{}code} \PYG{o}{=} \PYG{n}{shader\PYGZus{}stream}\PYG{p}{.}\PYG{n}{str}\PYG{p}{();}
+    \PYG{p}{\PYGZcb{}}
+    \PYG{k}{catch} \PYG{p}{(}\PYG{n}{std}\PYG{o}{::}\PYG{n}{ifstream}\PYG{o}{::}\PYG{n}{failure} \PYG{o}{\PYGZam{}}\PYG{n}{error}\PYG{p}{)}
+    \PYG{p}{\PYGZob{}}
+        \PYG{n}{std}\PYG{o}{::}\PYG{n}{cerr} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+s}{\PYGZdq{}An error has occured in the \PYGZdq{}} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{n}{\PYGZus{}\PYGZus{}FILE\PYGZus{}\PYGZus{}}
+                  \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+s}{\PYGZdq{} in line \PYGZdq{}} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{n}{\PYGZus{}\PYGZus{}LINE\PYGZus{}\PYGZus{}} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+s}{\PYGZdq{}.\PYGZdq{}} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{n}{std}\PYG{o}{::}\PYG{n}{endl}
+                  \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+s}{\PYGZdq{}Details: \PYGZdq{}} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{n}{error}\PYG{p}{.}\PYG{n}{what}\PYG{p}{()} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{n}{std}\PYG{o}{::}\PYG{n}{endl}\PYG{p}{;}
+    \PYG{p}{\PYGZcb{}}
+    \PYG{k}{return} \PYG{p}{(}\PYG{n}{shader\PYGZus{}code}\PYG{p}{);}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{k+kt}{unsigned} \PYG{k+kt}{int} \PYG{n}{Shader}\PYG{o}{::}\PYG{n}{compileShader}\PYG{p}{(}\PYG{k+kt}{unsigned} \PYG{k+kt}{int} \PYG{n}{type}\PYG{p}{,} \PYG{k}{const} \PYG{k+kt}{char} \PYG{o}{*}\PYG{n}{path}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+    \PYG{k+kt}{char} \PYG{n}{log\PYGZus{}info}\PYG{p}{[}\PYG{l+m+mi}{512}\PYG{p}{];} \PYG{c+c1}{// log information if something wrong}
+    \PYG{k+kt}{int} \PYG{n}{success}\PYG{p}{;}        \PYG{c+c1}{// the variable indicates if a shader\PYGZsq{}s compilation went wrong}
+
+    \PYG{c+c1}{// shader of a specific type (vertex/fragment/geometry)}
+    \PYG{k+kt}{unsigned} \PYG{k+kt}{int} \PYG{n}{shader} \PYG{o}{=} \PYG{n}{glCreateShader}\PYG{p}{(}\PYG{n}{type}\PYG{p}{);}
+    \PYG{c+c1}{// load source code from a file}
+    \PYG{n}{std}\PYG{o}{::}\PYG{n}{string} \PYG{n}{str\PYGZus{}shader\PYGZus{}code} \PYG{o}{=} \PYG{n}{loadShaderFile}\PYG{p}{(}\PYG{n}{path}\PYG{p}{);}
+    \PYG{k}{const} \PYG{k+kt}{char} \PYG{o}{*}\PYG{n}{shader\PYGZus{}code} \PYG{o}{=} \PYG{n}{str\PYGZus{}shader\PYGZus{}code}\PYG{p}{.}\PYG{n}{c\PYGZus{}str}\PYG{p}{();}
+    \PYG{c+c1}{// compile shaders itself}
+    \PYG{n}{glShaderSource}\PYG{p}{(}\PYG{n}{shader}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{o}{\PYGZam{}}\PYG{n}{shader\PYGZus{}code}\PYG{p}{,} \PYG{n+nb}{NULL}\PYG{p}{);}
+    \PYG{n}{glCompileShader}\PYG{p}{(}\PYG{n}{shader}\PYG{p}{);}
+
+    \PYG{c+c1}{// check if a compilation done well}
+    \PYG{n}{glGetShaderiv}\PYG{p}{(}\PYG{n}{shader}\PYG{p}{,} \PYG{n}{GL\PYGZus{}COMPILE\PYGZus{}STATUS}\PYG{p}{,} \PYG{o}{\PYGZam{}}\PYG{n}{success}\PYG{p}{);}
+    \PYG{k}{if} \PYG{p}{(}\PYG{o}{!}\PYG{n}{success}\PYG{p}{)}
+    \PYG{p}{\PYGZob{}}
+        \PYG{n}{glGetShaderInfoLog}\PYG{p}{(}\PYG{n}{shader}\PYG{p}{,} \PYG{l+m+mi}{512}\PYG{p}{,} \PYG{n+nb}{NULL}\PYG{p}{,} \PYG{n}{log\PYGZus{}info}\PYG{p}{);}
+        \PYG{n}{std}\PYG{o}{::}\PYG{n}{cerr} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+s}{\PYGZdq{}An error has occured in the \PYGZdq{}} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{n}{\PYGZus{}\PYGZus{}FILE\PYGZus{}\PYGZus{}}
+                  \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+s}{\PYGZdq{} in line \PYGZdq{}} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{n}{\PYGZus{}\PYGZus{}LINE\PYGZus{}\PYGZus{}} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+s}{\PYGZdq{}.\PYGZdq{}} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{n}{std}\PYG{o}{::}\PYG{n}{endl}
+                  \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+s}{\PYGZdq{}Error occured in the: \PYGZdq{}} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{n}{path} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{n}{std}\PYG{o}{::}\PYG{n}{endl}
+                  \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+s}{\PYGZdq{}Details: \PYGZdq{}} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{n}{log\PYGZus{}info} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{n}{std}\PYG{o}{::}\PYG{n}{endl}\PYG{p}{;}
+    \PYG{p}{\PYGZcb{}}
+    \PYG{k}{return} \PYG{n}{shader}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

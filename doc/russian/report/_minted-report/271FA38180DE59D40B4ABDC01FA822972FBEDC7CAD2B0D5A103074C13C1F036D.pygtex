@@ -1,0 +1,25 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c}{\PYGZsh{} Not in\PYGZhy{}build emscripten libraries, }
+\PYG{n+nb}{set}\PYG{p}{(}\PYG{l+s}{DEP\PYGZus{}EMSDK\PYGZus{}LIBS}
+    \PYG{l+s}{soil2}
+\PYG{p}{)}
+
+\PYG{c}{\PYGZsh{} The libraries, required by application, }
+\PYG{c}{\PYGZsh{} however they are already built in emscripten}
+\PYG{c}{\PYGZsh{} But they are not built in the ordinar one.}
+\PYG{n+nb}{if} \PYG{p}{(}\PYG{l+s}{NOT} \PYG{l+s}{FOR\PYGZus{}EMSDK}\PYG{p}{)}
+    \PYG{n+nb}{set}\PYG{p}{(}\PYG{l+s}{DEP\PYGZus{}LIBS}
+        \PYG{l+s}{glfw} 
+        \PYG{l+s}{libglew\PYGZus{}shared}
+    \PYG{p}{)}
+\PYG{n+nb}{endif}\PYG{p}{()}
+
+\PYG{c}{\PYGZsh{} Other Libs, actually created by my\PYGZhy{}self.}
+\PYG{n+nb}{set}\PYG{p}{(}\PYG{l+s}{LIBS} 
+    \PYG{l+s}{ConfigLoader}
+\PYG{p}{)}
+
+\PYG{n+nb}{set}\PYG{p}{(}\PYG{l+s}{INTERFACE\PYGZus{}LIB} 
+    \PYG{l+s}{glm} 
+\PYG{p}{)}
+\end{Verbatim}

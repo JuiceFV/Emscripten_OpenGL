@@ -1,0 +1,247 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c}{\PYGZsh{} set the minimal version of the cmake}
+\PYG{n+nb}{cmake\PYGZus{}minimum\PYGZus{}required}\PYG{p}{(}\PYG{l+s}{VERSION} \PYG{l+s}{3.9}\PYG{p}{)}
+
+\PYG{c}{\PYGZsh{}============================= Main application information =========================\PYGZsh{} }
+\PYG{c}{\PYGZsh{} set the name of the project}
+\PYG{n+nb}{project}\PYG{p}{(}\PYG{l+s}{Emscripten\PYGZus{}Graphics}\PYG{p}{)}
+
+\PYG{c}{\PYGZsh{} Showing the system type}
+\PYG{n+nb}{message}\PYG{p}{(}\PYG{l+s}{STATUS} \PYG{l+s+s2}{\PYGZdq{}We are on a \PYGZdl{}\PYGZob{}CMAKE\PYGZus{}SYSTEM\PYGZus{}NAME\PYGZcb{} system\PYGZdq{}}\PYG{p}{)}
+
+\PYG{c}{\PYGZsh{} setting the version of the project}
+\PYG{n+nb}{set}\PYG{p}{(}\PYG{o}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{PROJECT\PYGZus{}NAME}\PYG{o}{\PYGZcb{}}\PYG{l+s}{\PYGZus{}MAJOR\PYGZus{}VERSION} \PYG{l+s}{0}\PYG{p}{)}
+\PYG{n+nb}{set}\PYG{p}{(}\PYG{o}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{PROJECT\PYGZus{}NAME}\PYG{o}{\PYGZcb{}}\PYG{l+s}{\PYGZus{}MINOR\PYGZus{}VERSION} \PYG{l+s}{1}\PYG{p}{)}
+\PYG{n+nb}{set}\PYG{p}{(}\PYG{o}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{PROJECT\PYGZus{}NAME}\PYG{o}{\PYGZcb{}}\PYG{l+s}{\PYGZus{}VERSION} \PYG{l+s+s2}{\PYGZdq{}\PYGZdl{}\PYGZob{}\PYGZdl{}\PYGZob{}PROJECT\PYGZus{}NAME\PYGZcb{}\PYGZus{}MAJOR\PYGZus{}VERSION\PYGZcb{}.\PYGZdl{}\PYGZob{}\PYGZdl{}\PYGZob{}PROJECT\PYGZus{}NAME\PYGZcb{}\PYGZus{}MINOR\PYGZus{}VERSION\PYGZcb{}\PYGZdq{}}\PYG{p}{)}
+
+\PYG{c}{\PYGZsh{} Output the version of the project}
+\PYG{n+nb}{message}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}\PYGZdl{}\PYGZob{}PROJECT\PYGZus{}NAME\PYGZcb{} version: \PYGZdl{}\PYGZob{}\PYGZdl{}\PYGZob{}PROJECT\PYGZus{}NAME\PYGZcb{}\PYGZus{}VERSION\PYGZcb{}\PYGZdq{}}\PYG{p}{)}
+\PYG{c}{\PYGZsh{}====================================================================================\PYGZsh{} }
+
+\PYG{c}{\PYGZsh{}============================= Set Main Variables ===================================\PYGZsh{} }
+\PYG{c}{\PYGZsh{} Set cmake\PYGZsq{}s modules path}
+\PYG{n+nb}{set}\PYG{p}{(}\PYG{l+s}{CMAKE\PYGZus{}MODULE\PYGZus{}PATH}
+  \PYG{o}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{CMAKE\PYGZus{}SOURCE\PYGZus{}DIR}\PYG{o}{\PYGZcb{}}\PYG{l+s}{/cmake/Modules}
+\PYG{p}{)}
+
+\PYG{c}{\PYGZsh{} set output dirictories dedicated for libs and binaries}
+\PYG{n+nb}{set}\PYG{p}{(}\PYG{l+s}{CMAKE\PYGZus{}ARCHIVE\PYGZus{}OUTPUT\PYGZus{}DIRECTORY} \PYG{o}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{CMAKE\PYGZus{}BINARY\PYGZus{}DIR}\PYG{o}{\PYGZcb{}}\PYG{l+s}{/lib}\PYG{p}{)}
+\PYG{n+nb}{set}\PYG{p}{(}\PYG{l+s}{CMAKE\PYGZus{}LIBRARY\PYGZus{}OUTPUT\PYGZus{}DIRECTORY} \PYG{o}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{CMAKE\PYGZus{}BINARY\PYGZus{}DIR}\PYG{o}{\PYGZcb{}}\PYG{l+s}{/lib}\PYG{p}{)}
+\PYG{n+nb}{set}\PYG{p}{(}\PYG{l+s}{CMAKE\PYGZus{}RUNTIME\PYGZus{}OUTPUT\PYGZus{}DIRECTORY} \PYG{o}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{CMAKE\PYGZus{}BINARY\PYGZus{}DIR}\PYG{o}{\PYGZcb{}}\PYG{l+s}{/bin}\PYG{p}{)}
+
+\PYG{c}{\PYGZsh{} Adding options (flags)}
+\PYG{c}{\PYGZsh{} 1) The flag, which has to be ON if we compile via emcc}
+\PYG{c}{\PYGZsh{} 2) The flag, responsible for tests}
+\PYG{n+nb}{option}\PYG{p}{(}\PYG{l+s}{FOR\PYGZus{}EMSDK} 
+        \PYG{l+s+s2}{\PYGZdq{}The libraries compilation occurs for the emsdk compilers\PYGZdq{}} 
+        \PYG{l+s}{OFF}
+    \PYG{p}{)}
+\PYG{n+nb}{option}\PYG{p}{(}\PYG{l+s}{ENABLE\PYGZus{}TESTS} 
+        \PYG{l+s+s2}{\PYGZdq{}Turn tests on/off\PYGZdq{}} 
+        \PYG{l+s}{OFF}
+    \PYG{p}{)}
+
+\PYG{c}{\PYGZsh{} So far, tests available only for WINDOWS}
+\PYG{n+nb}{if}\PYG{p}{(}\PYG{l+s}{FOR\PYGZus{}EMSDK}\PYG{p}{)}
+    \PYG{n+nb}{set}\PYG{p}{(}\PYG{l+s}{ENABLE\PYGZus{}TESTS} \PYG{l+s}{OFF}\PYG{p}{)}
+\PYG{n+nb}{endif}\PYG{p}{()}
+
+\PYG{c}{\PYGZsh{} Set the variables responsible for specific files.}
+\PYG{n+nb}{set}\PYG{p}{(}\PYG{o}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{PROJECT\PYGZus{}NAME}\PYG{o}{\PYGZcb{}}\PYG{l+s}{\PYGZus{}SOURCES} 
+                \PYG{l+s+s2}{\PYGZdq{}application/sources/shader.cpp\PYGZdq{}}
+                \PYG{l+s+s2}{\PYGZdq{}application/sources/camera.cpp\PYGZdq{}}
+                \PYG{l+s+s2}{\PYGZdq{}application/sources/texture.cpp\PYGZdq{}}
+                \PYG{l+s+s2}{\PYGZdq{}application/sources/application.cpp\PYGZdq{}}
+            \PYG{p}{)}
+\PYG{n+nb}{set}\PYG{p}{(}\PYG{o}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{PROJECT\PYGZus{}NAME}\PYG{o}{\PYGZcb{}}\PYG{l+s}{\PYGZus{}INCLUDES} 
+                \PYG{l+s+s2}{\PYGZdq{}application/includes/shader.h\PYGZdq{}}
+                \PYG{l+s+s2}{\PYGZdq{}application/includes/camera.h\PYGZdq{}}
+                \PYG{l+s+s2}{\PYGZdq{}application/includes/texture.h\PYGZdq{}}
+                \PYG{l+s+s2}{\PYGZdq{}application/includes/vertex.h\PYGZdq{}}
+                \PYG{l+s+s2}{\PYGZdq{}application/includes/application.h\PYGZdq{}}
+            \PYG{p}{)}
+\PYG{n+nb}{set}\PYG{p}{(}\PYG{o}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{PROJECT\PYGZus{}NAME}\PYG{o}{\PYGZcb{}}\PYG{l+s}{\PYGZus{}MAIN} \PYG{l+s+s2}{\PYGZdq{}application/main.cxx\PYGZdq{}}\PYG{p}{)}
+
+\PYG{n+nb}{file}\PYG{p}{(}\PYG{l+s}{GLOB\PYGZus{}RECURSE} \PYG{l+s}{CFG\PYGZus{}FILES} \PYG{o}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{CMAKE\PYGZus{}SOURCE\PYGZus{}DIR}\PYG{o}{\PYGZcb{}}\PYG{l+s}{/config/*.yaml}\PYG{p}{)}
+\PYG{n+nb}{file}\PYG{p}{(}\PYG{l+s}{GLOB\PYGZus{}RECURSE} \PYG{l+s}{ASSETS} \PYG{o}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{CMAKE\PYGZus{}SOURCE\PYGZus{}DIR}\PYG{o}{\PYGZcb{}}\PYG{l+s}{/assets/*}\PYG{p}{)}
+
+\PYG{n+nb}{source\PYGZus{}group}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}Config Files\PYGZdq{}} \PYG{l+s}{FILES} \PYG{o}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{CFG\PYGZus{}FILES}\PYG{o}{\PYGZcb{}}\PYG{p}{)}
+
+\PYG{n+nb}{function}\PYG{p}{(}\PYG{l+s}{assign\PYGZus{}source\PYGZus{}group}\PYG{p}{)}
+    \PYG{n+nb}{foreach}\PYG{p}{(}\PYG{l+s}{\PYGZus{}source} \PYG{l+s}{IN} \PYG{l+s}{ITEMS} \PYG{o}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{ARGN}\PYG{o}{\PYGZcb{}}\PYG{p}{)}
+        \PYG{n+nb}{if} \PYG{p}{(}\PYG{l+s}{IS\PYGZus{}ABSOLUTE} \PYG{l+s+s2}{\PYGZdq{}\PYGZdl{}\PYGZob{}\PYGZus{}source\PYGZcb{}\PYGZdq{}}\PYG{p}{)}
+            \PYG{n+nb}{file}\PYG{p}{(}\PYG{l+s}{RELATIVE\PYGZus{}PATH} \PYG{l+s}{\PYGZus{}source\PYGZus{}rel} 
+                \PYG{l+s+s2}{\PYGZdq{}\PYGZdl{}\PYGZob{}CMAKE\PYGZus{}CURRENT\PYGZus{}SOURCE\PYGZus{}DIR\PYGZcb{}\PYGZdq{}} \PYG{l+s+s2}{\PYGZdq{}\PYGZdl{}\PYGZob{}\PYGZus{}source\PYGZcb{}\PYGZdq{}}\PYG{p}{)}
+        \PYG{n+nb}{else}\PYG{p}{()}
+            \PYG{n+nb}{set}\PYG{p}{(}\PYG{l+s}{\PYGZus{}source\PYGZus{}rel} \PYG{l+s+s2}{\PYGZdq{}\PYGZdl{}\PYGZob{}\PYGZus{}source\PYGZcb{}\PYGZdq{}}\PYG{p}{)}
+        \PYG{n+nb}{endif}\PYG{p}{()}
+        \PYG{n+nb}{get\PYGZus{}filename\PYGZus{}component}\PYG{p}{(}\PYG{l+s}{\PYGZus{}source\PYGZus{}path} \PYG{l+s+s2}{\PYGZdq{}\PYGZdl{}\PYGZob{}\PYGZus{}source\PYGZus{}rel\PYGZcb{}\PYGZdq{}} \PYG{l+s}{PATH}\PYG{p}{)}
+        \PYG{n+nb}{string}\PYG{p}{(}\PYG{l+s}{REPLACE} \PYG{l+s+s2}{\PYGZdq{}/\PYGZdq{}} \PYG{l+s+s2}{\PYGZdq{}\PYGZbs{}\PYGZbs{}\PYGZdq{}} \PYG{l+s}{\PYGZus{}source\PYGZus{}path\PYGZus{}msvc} \PYG{l+s+s2}{\PYGZdq{}\PYGZdl{}\PYGZob{}\PYGZus{}source\PYGZus{}path\PYGZcb{}\PYGZdq{}}\PYG{p}{)}
+        \PYG{n+nb}{source\PYGZus{}group}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}\PYGZdl{}\PYGZob{}\PYGZus{}source\PYGZus{}path\PYGZus{}msvc\PYGZcb{}\PYGZdq{}} \PYG{l+s}{FILES} \PYG{l+s+s2}{\PYGZdq{}\PYGZdl{}\PYGZob{}\PYGZus{}source\PYGZcb{}\PYGZdq{}}\PYG{p}{)}
+    \PYG{n+nb}{endforeach}\PYG{p}{()}
+\PYG{n+nb}{endfunction}\PYG{p}{(}\PYG{l+s}{assign\PYGZus{}source\PYGZus{}group}\PYG{p}{)}
+\PYG{n+nb}{assign\PYGZus{}source\PYGZus{}group}\PYG{p}{(}\PYG{o}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{ASSETS}\PYG{o}{\PYGZcb{}}\PYG{p}{)}
+\PYG{c}{\PYGZsh{}====================================================================================\PYGZsh{} }
+
+\PYG{c}{\PYGZsh{}============================= Include additional cmake\PYGZhy{}files =======================\PYGZsh{} }
+\PYG{c}{\PYGZsh{} 1) Set compilation\PYGZsq{}s flags}
+\PYG{c}{\PYGZsh{} 2) Safe guards against in\PYGZhy{}source builds and bad build types.}
+\PYG{c}{\PYGZsh{} 3) Including file looking for libraries for the graphics.}
+\PYG{c}{\PYGZsh{} 4) Include the file which compiles and looks for the configuration\PYGZsq{}s library.}
+\PYG{n+nb}{include}\PYG{p}{(}\PYG{l+s}{setflags}\PYG{p}{)}
+\PYG{n+nb}{include}\PYG{p}{(}\PYG{l+s}{safeguard}\PYG{p}{)}
+\PYG{n+nb}{include}\PYG{p}{(}\PYG{l+s}{graphics}\PYG{p}{)}
+\PYG{n+nb}{include}\PYG{p}{(}\PYG{l+s}{configloader}\PYG{p}{)}
+\PYG{c}{\PYGZsh{}====================================================================================\PYGZsh{} }
+
+\PYG{c}{\PYGZsh{}============================= Set libraries ========================================\PYGZsh{} }
+\PYG{c}{\PYGZsh{} Not in\PYGZhy{}build emscripten libraries, }
+\PYG{n+nb}{set}\PYG{p}{(}\PYG{l+s}{DEP\PYGZus{}EMSDK\PYGZus{}LIBS}
+    \PYG{l+s}{soil2}
+\PYG{p}{)}
+
+\PYG{c}{\PYGZsh{} The libraries, required by application, however they are already built in emscripten}
+\PYG{c}{\PYGZsh{} But they are not built in the ordinar one.}
+\PYG{n+nb}{if} \PYG{p}{(}\PYG{l+s}{NOT} \PYG{l+s}{FOR\PYGZus{}EMSDK}\PYG{p}{)}
+    \PYG{n+nb}{set}\PYG{p}{(}\PYG{l+s}{DEP\PYGZus{}LIBS}
+        \PYG{l+s}{glfw} 
+        \PYG{l+s}{libglew\PYGZus{}shared}
+    \PYG{p}{)}
+\PYG{n+nb}{endif}\PYG{p}{()}
+
+\PYG{c}{\PYGZsh{} Other Libs, actually created by my\PYGZhy{}self.}
+\PYG{n+nb}{set}\PYG{p}{(}\PYG{l+s}{LIBS} 
+    \PYG{l+s}{ConfigLoader}
+\PYG{p}{)}
+
+\PYG{n+nb}{set}\PYG{p}{(}\PYG{l+s}{INTERFACE\PYGZus{}LIB} 
+    \PYG{l+s}{glm} 
+\PYG{p}{)}
+\PYG{c}{\PYGZsh{}====================================================================================\PYGZsh{} }
+
+\PYG{c}{\PYGZsh{}============================= Generate executable ==================================\PYGZsh{} }
+\PYG{n+nb}{if} \PYG{p}{(}\PYG{l+s}{NOT} \PYG{l+s}{ENABLE\PYGZus{}TESTS}\PYG{p}{)}
+    \PYG{n+nb}{message}\PYG{p}{(}\PYG{l+s}{STATUS} \PYG{l+s+s2}{\PYGZdq{}Executable mode is on!\PYGZdq{}}\PYG{p}{)}
+
+    \PYG{c}{\PYGZsh{} adding executable}
+    \PYG{n+nb}{add\PYGZus{}executable}\PYG{p}{(}\PYG{o}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{PROJECT\PYGZus{}NAME}\PYG{o}{\PYGZcb{}} 
+                    \PYG{o}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{\PYGZdl{}\PYGZob{}PROJECT\PYGZus{}NAME}\PYG{o}{\PYGZcb{}}\PYG{l+s}{\PYGZus{}MAIN\PYGZcb{}} 
+                    \PYG{o}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{\PYGZdl{}\PYGZob{}PROJECT\PYGZus{}NAME}\PYG{o}{\PYGZcb{}}\PYG{l+s}{\PYGZus{}SOURCES\PYGZcb{}}
+                    \PYG{o}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{\PYGZdl{}\PYGZob{}PROJECT\PYGZus{}NAME}\PYG{o}{\PYGZcb{}}\PYG{l+s}{\PYGZus{}INCLUDES\PYGZcb{}}
+                    \PYG{o}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{CFG\PYGZus{}FILES}\PYG{o}{\PYGZcb{}}
+                    \PYG{o}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{ASSETS}\PYG{o}{\PYGZcb{}}
+                \PYG{p}{)}
+    \PYG{n+nb}{target\PYGZus{}link\PYGZus{}libraries}\PYG{p}{(}\PYG{o}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{PROJECT\PYGZus{}NAME}\PYG{o}{\PYGZcb{}} 
+                            \PYG{o}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{LIBS}\PYG{o}{\PYGZcb{}}
+                            \PYG{o}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{DEP\PYGZus{}LIBS}\PYG{o}{\PYGZcb{}} 
+                            \PYG{o}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{DEP\PYGZus{}EMSDK\PYGZus{}LIBS}\PYG{o}{\PYGZcb{}} 
+                            \PYG{o}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{INTERFACE\PYGZus{}LIB}\PYG{o}{\PYGZcb{}}
+                        \PYG{p}{)} 
+    \PYG{n+nb}{target\PYGZus{}include\PYGZus{}directories}\PYG{p}{(}
+        \PYG{o}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{PROJECT\PYGZus{}NAME}\PYG{o}{\PYGZcb{}} \PYG{l+s}{PUBLIC}
+        \PYG{o}{\PYGZdl{}\PYGZlt{}}\PYG{n+nv}{BUILD\PYGZus{}INTERFACE:\PYGZdl{}\PYGZob{}PROJECT\PYGZus{}SOURCE\PYGZus{}DIR\PYGZcb{}/application/includes}\PYG{o}{\PYGZgt{}}
+        \PYG{o}{\PYGZdl{}\PYGZlt{}}\PYG{n+nv}{INSTALL\PYGZus{}INTERFACE:\PYGZdl{}\PYGZob{}PROJECT\PYGZus{}SOURCE\PYGZus{}DIR\PYGZcb{}/application/includes}\PYG{o}{\PYGZgt{}}
+    \PYG{p}{)} 
+
+    \PYG{n+nb}{if} \PYG{p}{(}\PYG{l+s}{NOT} \PYG{l+s}{FOR\PYGZus{}EMSDK}\PYG{p}{)}
+        \PYG{n+nb}{find\PYGZus{}package}\PYG{p}{(}\PYG{l+s}{OpenGL} \PYG{l+s}{REQUIRED}\PYG{p}{)}
+        \PYG{n+nb}{target\PYGZus{}link\PYGZus{}libraries}\PYG{p}{(}\PYG{o}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{PROJECT\PYGZus{}NAME}\PYG{o}{\PYGZcb{}} \PYG{l+s}{OpenGL::GL}\PYG{p}{)}
+    \PYG{n+nb}{endif}\PYG{p}{()}
+
+    \PYG{c}{\PYGZsh{} Set some properties related only with emsdk}
+    \PYG{c}{\PYGZsh{} Specifically, we creates some output and supporting dirictories:                           }
+    \PYG{c}{\PYGZsh{}+\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}+}
+    \PYG{c}{\PYGZsh{}| To begin with, I tie volumes in the docker\PYGZhy{}compose and for these purposes                 |}
+    \PYG{c}{\PYGZsh{}| I pass executable (.html, .js, .wasm, .data) to the tied directory. So that we            |   }
+    \PYG{c}{\PYGZsh{}| may acquire those files on our host machine.                                              |}
+    \PYG{c}{\PYGZsh{}+\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}+}
+    \PYG{c}{\PYGZsh{}| 2\PYGZam{}3) Due to, whereas building occurs in the docker container, I created so\PYGZhy{}called warapper|}
+    \PYG{c}{\PYGZsh{}| in python, which lunches a server and handles requests if those appears. Thus I have to   |}
+    \PYG{c}{\PYGZsh{}| shove the entry.py and its config to the binary dir, in purpose to launch it properly.    |}
+    \PYG{c}{\PYGZsh{}+\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}+}
+    \PYG{c}{\PYGZsh{}| I\PYGZsq{}d like to emphasize the problem appears when the compilation occurs via emcc.           |}
+    \PYG{c}{\PYGZsh{}| Emscripten creates its own filesystem and assign the start\PYGZhy{}dir as the root one.           |}
+    \PYG{c}{\PYGZsh{}| In c++ code I have to step back to the previous directory to derive the config.yaml       |}
+    \PYG{c}{\PYGZsh{}| (../config/config.yaml) if project was built via msvc\PYGZhy{}compiler, however for the emcc it   |}
+    \PYG{c}{\PYGZsh{}| looks like (/config/config.yaml). I do not really want to do a mess from the code,        |}
+    \PYG{c}{\PYGZsh{}| therefore I copy the config file to bin dir to make paths equal.                          |}
+    \PYG{c}{\PYGZsh{}+\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}+}
+    \PYG{n+nb}{if} \PYG{p}{(}\PYG{l+s}{FOR\PYGZus{}EMSDK}\PYG{p}{)} 
+        \PYG{n+nb}{set}\PYG{p}{(}\PYG{l+s}{CMAKE\PYGZus{}EXECUTABLE\PYGZus{}SUFFIX} \PYG{l+s+s2}{\PYGZdq{}.html\PYGZdq{}}\PYG{p}{)}
+        \PYG{n+nb}{set\PYGZus{}target\PYGZus{}properties}\PYG{p}{(}\PYG{o}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{PROJECT\PYGZus{}NAME}\PYG{o}{\PYGZcb{}}
+                    \PYG{l+s}{PROPERTIES} \PYG{l+s}{RUNTIME\PYGZus{}OUTPUT\PYGZus{}DIRECTORY} \PYG{l+s+s2}{\PYGZdq{}\PYGZdl{}\PYGZob{}CMAKE\PYGZus{}BINARY\PYGZus{}DIR\PYGZcb{}/application/out\PYGZdq{}}\PYG{p}{)}
+        \PYG{n+nb}{configure\PYGZus{}file}\PYG{p}{(}\PYG{o}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{CMAKE\PYGZus{}SOURCE\PYGZus{}DIR}\PYG{o}{\PYGZcb{}}\PYG{l+s}{/application/entry.py} 
+                        \PYG{o}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{CMAKE\PYGZus{}BINARY\PYGZus{}DIR}\PYG{o}{\PYGZcb{}}\PYG{l+s}{/application/entry.py} 
+                        \PYG{l+s}{COPYONLY}
+                    \PYG{p}{)}
+        \PYG{n+nb}{configure\PYGZus{}file}\PYG{p}{(}\PYG{o}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{CMAKE\PYGZus{}SOURCE\PYGZus{}DIR}\PYG{o}{\PYGZcb{}}\PYG{l+s}{/config/servconfig.yaml} 
+                        \PYG{o}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{CMAKE\PYGZus{}BINARY\PYGZus{}DIR}\PYG{o}{\PYGZcb{}}\PYG{l+s}{/config/servconfig.yaml} 
+                        \PYG{l+s}{COPYONLY}
+                    \PYG{p}{)}
+    \PYG{n+nb}{else}\PYG{p}{()}
+        \PYG{n+nb}{configure\PYGZus{}file}\PYG{p}{(}\PYG{o}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{CMAKE\PYGZus{}SOURCE\PYGZus{}DIR}\PYG{o}{\PYGZcb{}}\PYG{l+s}{/config/appconfig.yaml} 
+                        \PYG{o}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{CMAKE\PYGZus{}BINARY\PYGZus{}DIR}\PYG{o}{\PYGZcb{}}\PYG{l+s}{/config/appconfig.yaml} 
+                        \PYG{l+s}{COPYONLY}
+                    \PYG{p}{)}
+        \PYG{n+nb}{macro}\PYG{p}{(}\PYG{l+s}{copy\PYGZus{}files} \PYG{l+s}{srcDir} \PYG{l+s}{destDir}\PYG{p}{)}
+            \PYG{n+nb}{message}\PYG{p}{(}\PYG{l+s}{STATUS} \PYG{l+s+s2}{\PYGZdq{}Configuring directory \PYGZdl{}\PYGZob{}destDir\PYGZcb{}\PYGZdq{}}\PYG{p}{)}
+            \PYG{n+nb}{make\PYGZus{}directory}\PYG{p}{(}\PYG{o}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{destDir}\PYG{o}{\PYGZcb{}}\PYG{p}{)}
+
+            \PYG{n+nb}{file}\PYG{p}{(}\PYG{l+s}{GLOB} \PYG{l+s}{templateFiles} \PYG{l+s}{RELATIVE} \PYG{o}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{srcDir}\PYG{o}{\PYGZcb{}} \PYG{o}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{srcDir}\PYG{o}{\PYGZcb{}}\PYG{l+s}{/*}\PYG{p}{)}
+            \PYG{n+nb}{foreach}\PYG{p}{(}\PYG{l+s}{templateFile} \PYG{o}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{templateFiles}\PYG{o}{\PYGZcb{}}\PYG{p}{)}
+                \PYG{n+nb}{set}\PYG{p}{(}\PYG{l+s}{srcTemplatePath} \PYG{o}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{srcDir}\PYG{o}{\PYGZcb{}}\PYG{l+s}{/}\PYG{o}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{templateFile}\PYG{o}{\PYGZcb{}}\PYG{p}{)}
+                \PYG{n+nb}{if}\PYG{p}{(}\PYG{l+s}{NOT} \PYG{l+s}{IS\PYGZus{}DIRECTORY} \PYG{o}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{srcTemplatePath}\PYG{o}{\PYGZcb{}}\PYG{p}{)}
+                    \PYG{n+nb}{message}\PYG{p}{(}\PYG{l+s}{STATUS} \PYG{l+s+s2}{\PYGZdq{}Configuring file \PYGZdl{}\PYGZob{}templateFile\PYGZcb{}\PYGZdq{}}\PYG{p}{)}
+                    \PYG{n+nb}{configure\PYGZus{}file}\PYG{p}{(}
+                            \PYG{o}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{srcTemplatePath}\PYG{o}{\PYGZcb{}}
+                            \PYG{o}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{destDir}\PYG{o}{\PYGZcb{}}\PYG{l+s}{/}\PYG{o}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{templateFile}\PYG{o}{\PYGZcb{}}
+                            \PYG{l+s}{COPYONLY}\PYG{p}{)}
+                \PYG{n+nb}{endif}\PYG{p}{(}\PYG{l+s}{NOT} \PYG{l+s}{IS\PYGZus{}DIRECTORY} \PYG{o}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{srcTemplatePath}\PYG{o}{\PYGZcb{}}\PYG{p}{)}
+            \PYG{n+nb}{endforeach}\PYG{p}{(}\PYG{l+s}{templateFile}\PYG{p}{)}
+        \PYG{n+nb}{endmacro}\PYG{p}{(}\PYG{l+s}{configure\PYGZus{}files}\PYG{p}{)}
+        \PYG{n+nb}{copy\PYGZus{}files}\PYG{p}{(}\PYG{o}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{CMAKE\PYGZus{}SOURCE\PYGZus{}DIR}\PYG{o}{\PYGZcb{}}\PYG{l+s}{/assets/*} \PYG{o}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{CMAKE\PYGZus{}BINARY\PYGZus{}DIR}\PYG{o}{\PYGZcb{}}\PYG{l+s}{/assets/*}\PYG{p}{)}
+    \PYG{n+nb}{endif}\PYG{p}{()}
+
+    \PYG{c}{\PYGZsh{} If msvs then set the Emscripten\PYGZus{}Graphics as startup project }
+    \PYG{n+nb}{if}\PYG{p}{(}\PYG{l+s}{MSVC}\PYG{p}{)}
+        \PYG{n+nb}{if}\PYG{p}{(}\PYG{o}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{CMAKE\PYGZus{}VERSION}\PYG{o}{\PYGZcb{}} \PYG{l+s}{VERSION\PYGZus{}LESS} \PYG{l+s+s2}{\PYGZdq{}3.6.0\PYGZdq{}}\PYG{p}{)} 
+            \PYG{n+nb}{message}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}\PYGZbs{}n\PYGZbs{}t[ WARNING ]\PYGZbs{}n\PYGZbs{}n\PYGZbs{}tCMake version lower than 3.6.\PYGZbs{}n\PYGZbs{}n\PYGZbs{}t \PYGZhy{} Please update CMake and rerun; OR\PYGZbs{}n\PYGZbs{}t \PYGZhy{} Manually set \PYGZdl{}\PYGZob{}PROJECT\PYGZus{}NAME\PYGZcb{} as StartUp Project in Visual Studio.\PYGZbs{}n\PYGZdq{}} \PYG{p}{)}
+        \PYG{n+nb}{else}\PYG{p}{()}
+            \PYG{n+nb}{set\PYGZus{}property}\PYG{p}{(}\PYG{l+s}{DIRECTORY} \PYG{o}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{CMAKE\PYGZus{}CURRENT\PYGZus{}SOURCE\PYGZus{}DIR}\PYG{o}{\PYGZcb{}} \PYG{l+s}{PROPERTY} \PYG{l+s}{VS\PYGZus{}STARTUP\PYGZus{}PROJECT} \PYG{o}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{PROJECT\PYGZus{}NAME}\PYG{o}{\PYGZcb{}}\PYG{p}{)}
+        \PYG{n+nb}{endif}\PYG{p}{()}
+    \PYG{n+nb}{endif}\PYG{p}{()}
+\PYG{n+nb}{else}\PYG{p}{()}
+    \PYG{n+nb}{message}\PYG{p}{(}\PYG{l+s}{STATUS} \PYG{l+s+s2}{\PYGZdq{}Test mode is on!\PYGZdq{}}\PYG{p}{)}
+    \PYG{n+nb}{if}\PYG{p}{(}\PYG{l+s}{MSVC}\PYG{p}{)}
+        \PYG{n+nb}{enable\PYGZus{}testing}\PYG{p}{()}
+
+        \PYG{c}{\PYGZsh{} adding test\PYGZsq{}s dir}
+        \PYG{n+nb}{add\PYGZus{}subdirectory}\PYG{p}{(}\PYG{o}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{CMAKE\PYGZus{}SOURCE\PYGZus{}DIR}\PYG{o}{\PYGZcb{}}\PYG{l+s}{/application/tests}\PYG{p}{)}
+        \PYG{n+nb}{configure\PYGZus{}file}\PYG{p}{(}\PYG{o}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{CMAKE\PYGZus{}SOURCE\PYGZus{}DIR}\PYG{o}{\PYGZcb{}}\PYG{l+s}{/application/tests/config/appconfig.yaml} 
+                        \PYG{o}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{CMAKE\PYGZus{}BINARY\PYGZus{}DIR}\PYG{o}{\PYGZcb{}}\PYG{l+s}{/application/tests/config/appconfig.yaml} 
+                        \PYG{l+s}{COPYONLY}
+                    \PYG{p}{)}
+        \PYG{n+nb}{file}\PYG{p}{(}\PYG{l+s}{COPY} \PYG{o}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{CMAKE\PYGZus{}SOURCE\PYGZus{}DIR}\PYG{o}{\PYGZcb{}}\PYG{l+s}{/application/tests/badconfig} 
+                    \PYG{l+s}{DESTINATION} \PYG{o}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{CMAKE\PYGZus{}BINARY\PYGZus{}DIR}\PYG{o}{\PYGZcb{}}\PYG{l+s}{/application/tests/badconfig}
+                \PYG{p}{)}
+    \PYG{n+nb}{endif}\PYG{p}{()}
+\PYG{n+nb}{endif}\PYG{p}{()}\PYG{c}{\PYGZsh{} endif (NOT ENABLE\PYGZus{}TEST)}
+
+\PYG{c}{\PYGZsh{} Set the only directory for the outsource libs.}
+\PYG{n+nb}{set\PYGZus{}property}\PYG{p}{(}\PYG{l+s}{GLOBAL} \PYG{l+s}{PROPERTY} \PYG{l+s}{USE\PYGZus{}FOLDERS} \PYG{l+s}{ON}\PYG{p}{)}
+    \PYG{n+nb}{if} \PYG{p}{(}\PYG{l+s}{FOR\PYGZus{}EMSDK}\PYG{p}{)}
+        \PYG{n+nb}{set\PYGZus{}target\PYGZus{}properties}\PYG{p}{(}\PYG{o}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{DEP\PYGZus{}EMSDK\PYGZus{}LIBS}\PYG{o}{\PYGZcb{}} \PYG{l+s}{PROPERTIES} \PYG{l+s}{FOLDER} \PYG{l+s+s2}{\PYGZdq{}dependencies\PYGZdq{}}\PYG{p}{)}
+    \PYG{n+nb}{elseif}\PYG{p}{(}\PYG{l+s}{DEP\PYGZus{}EMSDK\PYGZus{}LIBS}\PYG{p}{)}
+        \PYG{n+nb}{set\PYGZus{}target\PYGZus{}properties}\PYG{p}{(}\PYG{o}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{DEP\PYGZus{}LIBS}\PYG{o}{\PYGZcb{}} \PYG{l+s}{PROPERTIES} \PYG{l+s}{FOLDER} \PYG{l+s+s2}{\PYGZdq{}dependencies\PYGZdq{}}\PYG{p}{)}
+        \PYG{n+nb}{set\PYGZus{}target\PYGZus{}properties}\PYG{p}{(}\PYG{o}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{DEP\PYGZus{}EMSDK\PYGZus{}LIBS}\PYG{o}{\PYGZcb{}} \PYG{l+s}{PROPERTIES} \PYG{l+s}{FOLDER} \PYG{l+s+s2}{\PYGZdq{}dependencies\PYGZdq{}}\PYG{p}{)}
+    \PYG{n+nb}{else}\PYG{p}{()}
+        \PYG{n+nb}{set\PYGZus{}target\PYGZus{}properties}\PYG{p}{(}\PYG{o}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{DEP\PYGZus{}LIBS}\PYG{o}{\PYGZcb{}} \PYG{l+s}{PROPERTIES} \PYG{l+s}{FOLDER} \PYG{l+s+s2}{\PYGZdq{}dependencies\PYGZdq{}}\PYG{p}{)}
+\PYG{n+nb}{endif}\PYG{p}{()}
+
+\PYG{c}{\PYGZsh{} If the application is builded via emcc sets appropriate flags}
+\PYG{n+nb}{if} \PYG{p}{(}\PYG{l+s}{FOR\PYGZus{}EMSDK}\PYG{p}{)}
+    \PYG{n+nb}{message}\PYG{p}{(}\PYG{l+s}{STATUS} \PYG{l+s+s2}{\PYGZdq{}Setting EMCC flags\PYGZbs{}n\PYGZdq{}}\PYG{p}{)}
+    \PYG{n+nb}{set}\PYG{p}{(}\PYG{l+s}{CMAKE\PYGZus{}CXX\PYGZus{}FLAGS} \PYG{l+s+s2}{\PYGZdq{}\PYGZdl{}\PYGZob{}CMAKE\PYGZus{}CXX\PYGZus{}FLAGS\PYGZcb{} \PYGZhy{}s FORCE\PYGZus{}FILESYSTEM=1 \PYGZhy{}s USE\PYGZus{}WEBGL2=1 \PYGZhy{}s USE\PYGZus{}GLFW=3  \PYGZhy{}s FULL\PYGZus{}ES3=1 \PYGZhy{}s ALLOW\PYGZus{}MEMORY\PYGZus{}GROWTH=1 \PYGZhy{}s ASSERTIONS=1 \PYGZhy{}s WASM=1  \PYGZhy{}std=c++11  \PYGZhy{}\PYGZhy{}preload\PYGZhy{}file \PYGZdl{}\PYGZob{}CMAKE\PYGZus{}SOURCE\PYGZus{}DIR\PYGZcb{}/config/@/config \PYGZhy{}\PYGZhy{}preload\PYGZhy{}file \PYGZdl{}\PYGZob{}CMAKE\PYGZus{}SOURCE\PYGZus{}DIR\PYGZcb{}/assets/@/assets\PYGZdq{}}\PYG{p}{)}
+\PYG{n+nb}{endif}\PYG{p}{()}
+\PYG{c}{\PYGZsh{}====================================================================================\PYGZsh{} }
+\end{Verbatim}

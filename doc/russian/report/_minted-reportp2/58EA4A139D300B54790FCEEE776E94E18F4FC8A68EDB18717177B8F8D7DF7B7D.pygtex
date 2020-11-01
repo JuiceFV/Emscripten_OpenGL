@@ -1,0 +1,18 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+cp}{\PYGZsh{}version 330 core}
+\PYG{n}{layout} \PYG{p}{(}\PYG{n}{location} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{)} \PYG{n}{in} \PYG{n}{vec3} \PYG{n}{position}\PYG{p}{;}
+\PYG{n}{layout} \PYG{p}{(}\PYG{n}{location} \PYG{o}{=} \PYG{l+m+mi}{2}\PYG{p}{)} \PYG{n}{in} \PYG{n}{vec2} \PYG{n}{texCoord}\PYG{p}{;}
+
+\PYG{n}{out} \PYG{n}{vec2} \PYG{n}{TexCoord}\PYG{p}{;}
+
+\PYG{n}{uniform} \PYG{n}{mat4} \PYG{n}{model}\PYG{p}{;}
+\PYG{n}{uniform} \PYG{n}{mat4} \PYG{n}{view}\PYG{p}{;}
+\PYG{n}{uniform} \PYG{n}{mat4} \PYG{n}{projection}\PYG{p}{;}
+
+\PYG{k+kt}{void} \PYG{n+nf}{main}\PYG{p}{()}
+\PYG{p}{\PYGZob{}}
+    \PYG{n}{gl\PYGZus{}Position} \PYG{o}{=} \PYG{n}{projection} \PYG{o}{*} \PYG{n}{view} \PYG{o}{*} \PYG{n}{model}
+                    \PYG{o}{*} \PYG{n}{vec4}\PYG{p}{(}\PYG{n}{position}\PYG{p}{,} \PYG{l+m+mf}{1.0f}\PYG{p}{);}
+    \PYG{n}{TexCoord} \PYG{o}{=} \PYG{n}{vec2}\PYG{p}{(}\PYG{n}{texCoord}\PYG{p}{.}\PYG{n}{x}\PYG{p}{,} \PYG{l+m+mf}{1.0} \PYG{o}{\PYGZhy{}} \PYG{n}{texCoord}\PYG{p}{.}\PYG{n}{y}\PYG{p}{);}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

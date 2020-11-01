@@ -1,7 +1,7 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.10) (preloaded format=pdflatex 2020.10.13)  18 OCT 2020 20:11
+This is pdfTeX, Version 3.14159265-2.6-1.40.21 (MiKTeX 20.10) (preloaded format=pdflatex 2020.10.13)  19 OCT 2020 22:17
 entering extended mode
-**d:/GitHub/Emscripten_OpenGL/doc/russian/instructions/instructions.tex
-(d:/GitHub/Emscripten_OpenGL/doc/russian/instructions/instructions.tex
+**d:/GitHub/Emscripten_OpenGL/doc/russian/description/cmake.tex
+(d:/GitHub/Emscripten_OpenGL/doc/russian/description/cmake.tex
 LaTeX2e <2020-10-01> patch level 1
 L3 programming layer <2020-10-05> xparse <2020-03-03> ("C:\Program Files\MiKTeX 2.9\tex/latex/base\article.cls"
 Document Class: article 2020/04/10 v1.4m Standard LaTeX document class
@@ -1160,7 +1160,7 @@ Package: framed 2011/10/22 v 0.96: framed or shaded text with page breaks
 \@float@every@listing=\toks70
 \c@listing=\count420
 )
-runsystem(if not exist _minted-instructions mkdir _minted-instructions)...executed.
+runsystem(if not exist _minted-cmake mkdir _minted-cmake)...executed.
 
  ("C:\Program Files\MiKTeX 2.9\tex/latex/csquotes\csquotes.sty"
 Package: csquotes 2019-12-06 v5.2j context-sensitive quotations (JAW)
@@ -1252,16 +1252,16 @@ Package: multicol 2019/12/09 v1.8y multicolumn formatting (FMi)
 )
 \c@subsubsubsection=\count437
 Package hyperref Info: Option `colorlinks' set `true' on input line 150.
-runsystem(for ^%i in (pygmentize.exe pygmentize.bat pygmentize.cmd) do set > instructions.aex <nul: /p x=^%~$PATH:i>> instructions.aex)...executed.
+runsystem(for ^%i in (pygmentize.exe pygmentize.bat pygmentize.cmd) do set > cmake.aex <nul: /p x=^%~$PATH:i>> cmake.aex)...executed.
 
-runsystem(del instructions.aex)...executed.
+runsystem(del cmake.aex)...executed.
 
 Package csquotes Info: Checking for multilingual support...
 Package csquotes Info: ... found 'babel' package.
 Package csquotes Info: Adjusting default style.
 Package csquotes Info: Redefining alias 'default' -> 'english'.
- (d:/GitHub\Emscripten_OpenGL\doc\russian\instructions\instructions.aux)
-\openout1 = `instructions.aux'.
+ (d:/GitHub\Emscripten_OpenGL\doc\russian\description\cmake.aux)
+\openout1 = `cmake.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 178.
 LaTeX Font Info:    ... okay on input line 178.
@@ -1317,9 +1317,9 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 LaTeX Info: Redefining \ref on input line 178.
 LaTeX Info: Redefining \pageref on input line 178.
 LaTeX Info: Redefining \nameref on input line 178.
- (d:/GitHub\Emscripten_OpenGL\doc\russian\instructions\instructions.out) (d:/GitHub\Emscripten_OpenGL\doc\russian\instructions\instructions.out)
+ (d:/GitHub\Emscripten_OpenGL\doc\russian\description\cmake.out) (d:/GitHub\Emscripten_OpenGL\doc\russian\description\cmake.out)
 \@outlinefile=\write9
-\openout9 = `instructions.out'.
+\openout9 = `cmake.out'.
 
 
 *geometry* driver: auto-detecting
@@ -1329,13 +1329,13 @@ LaTeX Info: Redefining \nameref on input line 178.
 * paper: a4paper
 * layout: <same size as paper>
 * layoutoffset:(h,v)=(0.0pt,0.0pt)
-* modes: 
-* h-part:(L,W,R)=(56.9055pt, 483.69687pt, 56.9055pt)
-* v-part:(T,H,B)=(42.67912pt, 759.6886pt, 42.67912pt)
-* \paperwidth=597.50787pt
-* \paperheight=845.04684pt
-* \textwidth=483.69687pt
-* \textheight=759.6886pt
+* modes: landscape 
+* h-part:(L,W,R)=(56.9055pt, 731.23584pt, 56.9055pt)
+* v-part:(T,H,B)=(42.67912pt, 512.14963pt, 42.67912pt)
+* \paperwidth=845.04684pt
+* \paperheight=597.50787pt
+* \textwidth=731.23584pt
+* \textheight=512.14963pt
 * \oddsidemargin=-15.36449pt
 * \evensidemargin=-15.36449pt
 * \topmargin=-66.59087pt
@@ -1343,7 +1343,7 @@ LaTeX Info: Redefining \nameref on input line 178.
 * \headsep=25.0pt
 * \topskip=12.0pt
 * \footskip=30.0pt
-* \marginparwidth=44.0pt
+* \marginparwidth=144.0pt
 * \marginparsep=10.0pt
 * \columnsep=10.0pt
 * \skip\footins=10.8pt plus 4.0pt minus 2.0pt
@@ -1374,73 +1374,43 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 File: uni-4.def 2013/05/13 UCS: Unicode data U+0400..U+04FF
 ) [1
 
-{C:/Users/alexc/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}] (d:/GitHub\Emscripten_OpenGL\doc\russian\instructions\instructions.toc)
+{C:/Users/alexc/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}] (d:/GitHub\Emscripten_OpenGL\doc\russian\description\cmake.toc)
 \tf@toc=\write10
-\openout10 = `instructions.toc'.
+\openout10 = `cmake.toc'.
 
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.205     \newpage
-                   [1] [2]
-LaTeX Font Info:    Trying to load font information for T2A+cmtt on input line 226.
+l.201     \newpage
+                   [1] [2] [3] (d:/GitHub\Emscripten_OpenGL\doc\russian\description\_minted-cmake/default-pyg-prefix.pygstyle) (d:/GitHub\Emscripten_OpenGL\doc\russian\description\_minted-cmake/default.pygstyle) (d:/GitHub\Emscripten_OpenGL\doc\russian\description\_minted-cmake/1DD38471F15BC9C0FE8CA23D08AEDB8358EAE98BBDB9748E0FC35F8F46203E8F.pygtex
+LaTeX Font Info:    Trying to load font information for T2A+cmtt on input line 1.
  ("C:\Program Files\MiKTeX 2.9\tex/latex/cyrillic\t2acmtt.fd"
 File: t2acmtt.fd 2001/08/11 v1.0a Computer Modern Cyrillic font definitions
-) [3]
-Underfull \hbox (badness 10000) in paragraph at lines 320--324
-[][][][][][]\T2A/cmr/m/n/12 .
- []
+)
+LaTeX Font Info:    Trying to load font information for TS1+cmtt on input line 22.
+ ("C:\Program Files\MiKTeX 2.9\tex/latex/base\ts1cmtt.fd"
+File: ts1cmtt.fd 2019/12/16 v2.5j Standard LaTeX font definitions
+) [4] [5] [6] [7] [8] [9] [10]) [11]
+\openout7 = `cmake.pyg'.
 
-[4]
-Underfull \hbox (badness 5771) in paragraph at lines 341--344
-\T2A/cmr/m/n/12 конфигурационных файлов, таких как CMake. Собираем:
- []
-
-[5]
-Missing character: There is no , in font nullfont!
-
-Underfull \hbox (badness 10000) in paragraph at lines 391--393
-[]\T2A/cmr/bx/n/12 appconfig.yaml \T2A/cmr/m/n/12 - данный файл
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 391--393
-\T2A/cmr/m/n/12 приложения (ширина/высота окна,
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 393--395
-[]\T2A/cmr/bx/n/12 servconfig.yaml \T2A/cmr/m/n/12 - конфигурация
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 371--398
-
- []
-
-\openout7 = `instructions.pyg'.
-
-(d:/GitHub\Emscripten_OpenGL\doc\russian\instructions\_minted-instructions/default-pyg-prefix.pygstyle) (d:/GitHub\Emscripten_OpenGL\doc\russian\instructions\_minted-instructions/default.pygstyle) (d:/GitHub\Emscripten_OpenGL\doc\russian\instructions\_minted-instructions/9A746168CE619B3E09BC1D874FBE5811881E700045371E6D003D50860C7153B0.pygtex
-LaTeX Font Info:    Font shape `T2A/cmtt/bx/n' in size <10> not available
-(Font)              Font shape `T2A/cmtt/m/n' tried instead on input line 2.
-) [6] (d:/GitHub\Emscripten_OpenGL\doc\russian\instructions\instructions.aux)
-Package rerunfilecheck Info: File `instructions.out' has not changed.
-(rerunfilecheck)             Checksum: D90E9FDCF22430B2826C32849413F35F;1529.
-runsystem(del instructions.pyg)...executed.
+ (d:/GitHub\Emscripten_OpenGL\doc\russian\description\_minted-cmake/ADC4475BB6983E9C1BB0FEA1ECECA23DFF7D3FC3DA782DBF676D00097F43A976.pygtex) [12] (d:/GitHub\Emscripten_OpenGL\doc\russian\description\cmake.aux)
+Package rerunfilecheck Info: File `cmake.out' has not changed.
+(rerunfilecheck)             Checksum: 49088987480B91DAFEDFF8A7E966B38A;442.
+runsystem(del cmake.pyg)...executed.
 
  ) 
 Here is how much of TeX's memory you used:
- 56753 strings out of 480236
- 1326511 string characters out of 2888533
- 1830570 words of memory out of 3000000
- 72454 multiletter control sequences out of 15000+200000
- 553139 words of font info for 76 fonts, out of 3000000 for 9000
+ 55326 strings out of 480236
+ 1302162 string characters out of 2888533
+ 1799302 words of memory out of 3000000
+ 71045 multiletter control sequences out of 15000+200000
+ 550918 words of font info for 74 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 135i,13n,177p,1660b,1995s stack positions out of 5000i,500n,10000p,200000b,50000s
- <C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/lh/lh-t2a/dpi600\latt1000.pk> <C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/lh/lh-t2a/dpi600\larm0600.pk> <C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/lh/lh-t2a/dpi600\labx1440.pk> <C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/lh/lh-t2a/dpi600\latt1200.pk> <C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/lh/lh-t2a/dpi600\lati1200.pk> <C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1200.pk> <C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/lh/lh-t2a/dpi600\larm1200.pk> <C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/lh/lh-t2a/dpi600\labx1200.pk> <C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/lh/lh-t2a/dpi600\labx1728.pk> <C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/lh/lh-t2a/dpi600\larm1440.pk> <C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/lh/lh-t2a/dpi600\labx2074.pk><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on d:/GitHub\Emscripten_OpenGL\doc\russian\instructions\instructions.pdf (7 pages, 191845 bytes).
+ 79i,5n,136p,1652b,1081s stack positions out of 5000i,500n,10000p,200000b,50000s
+ <C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/lh/lh-t2a/dpi600\latt1000.pk> <C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600\tcit1200.pk> <C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/lh/lh-t2a/dpi600\latt1200.pk> <C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/lh/lh-t2a/dpi600\lait1200.pk> <C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/lh/lh-t2a/dpi600\larm1200.pk> <C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/lh/lh-t2a/dpi600\labx1200.pk> <C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/lh/lh-t2a/dpi600\labx1728.pk> <C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/lh/lh-t2a/dpi600\larm1440.pk> <C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/lh/lh-t2a/dpi600\labx2074.pk>
+Output written on d:/GitHub\Emscripten_OpenGL\doc\russian\description\cmake.pdf (13 pages, 147758 bytes).
 PDF statistics:
- 601 PDF objects out of 1000 (max. 8388607)
- 42 named destinations out of 1000 (max. 500000)
- 81 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 476 PDF objects out of 1000 (max. 8388607)
+ 16 named destinations out of 1000 (max. 500000)
+ 37 words of extra memory for PDF output out of 10000 (max. 10000000)
 

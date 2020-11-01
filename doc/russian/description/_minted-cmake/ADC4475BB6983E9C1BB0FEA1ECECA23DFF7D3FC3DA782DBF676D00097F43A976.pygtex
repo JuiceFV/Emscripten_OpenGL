@@ -1,0 +1,5 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n+nb}{set}\PYG{p}{(}\PYG{l+s}{CMAKE\PYGZus{}ARCHIVE\PYGZus{}OUTPUT\PYGZus{}DIRECTORY} \PYG{o}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{CMAKE\PYGZus{}BINARY\PYGZus{}DIR}\PYG{o}{\PYGZcb{}}\PYG{l+s}{/lib}\PYG{p}{)}
+\PYG{n+nb}{set}\PYG{p}{(}\PYG{l+s}{CMAKE\PYGZus{}LIBRARY\PYGZus{}OUTPUT\PYGZus{}DIRECTORY} \PYG{o}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{CMAKE\PYGZus{}BINARY\PYGZus{}DIR}\PYG{o}{\PYGZcb{}}\PYG{l+s}{/lib}\PYG{p}{)}
+\PYG{n+nb}{set}\PYG{p}{(}\PYG{l+s}{CMAKE\PYGZus{}RUNTIME\PYGZus{}OUTPUT\PYGZus{}DIRECTORY} \PYG{o}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{CMAKE\PYGZus{}BINARY\PYGZus{}DIR}\PYG{o}{\PYGZcb{}}\PYG{l+s}{/bin}\PYG{p}{)}
+\end{Verbatim}

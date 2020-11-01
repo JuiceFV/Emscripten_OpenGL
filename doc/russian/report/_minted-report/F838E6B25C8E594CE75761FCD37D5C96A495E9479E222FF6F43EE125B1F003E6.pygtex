@@ -1,0 +1,20 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c}{\PYGZsh{} Set the variables responsible for specific files.}
+\PYG{n+nb}{set}\PYG{p}{(}\PYG{o}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{PROJECT\PYGZus{}NAME}\PYG{o}{\PYGZcb{}}\PYG{l+s}{\PYGZus{}SOURCES} 
+                \PYG{l+s+s2}{\PYGZdq{}application/sources/shader.cpp\PYGZdq{}}
+                \PYG{l+s+s2}{\PYGZdq{}application/sources/camera.cpp\PYGZdq{}}
+                \PYG{l+s+s2}{\PYGZdq{}application/sources/texture.cpp\PYGZdq{}}
+                \PYG{l+s+s2}{\PYGZdq{}application/sources/application.cpp\PYGZdq{}}
+            \PYG{p}{)}
+\PYG{n+nb}{set}\PYG{p}{(}\PYG{o}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{PROJECT\PYGZus{}NAME}\PYG{o}{\PYGZcb{}}\PYG{l+s}{\PYGZus{}INCLUDES} 
+                \PYG{l+s+s2}{\PYGZdq{}application/includes/shader.h\PYGZdq{}}
+                \PYG{l+s+s2}{\PYGZdq{}application/includes/camera.h\PYGZdq{}}
+                \PYG{l+s+s2}{\PYGZdq{}application/includes/texture.h\PYGZdq{}}
+                \PYG{l+s+s2}{\PYGZdq{}application/includes/vertex.h\PYGZdq{}}
+                \PYG{l+s+s2}{\PYGZdq{}application/includes/application.h\PYGZdq{}}
+            \PYG{p}{)}
+\PYG{n+nb}{set}\PYG{p}{(}\PYG{o}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{PROJECT\PYGZus{}NAME}\PYG{o}{\PYGZcb{}}\PYG{l+s}{\PYGZus{}MAIN} \PYG{l+s+s2}{\PYGZdq{}application/main.cxx\PYGZdq{}}\PYG{p}{)}
+
+\PYG{n+nb}{file}\PYG{p}{(}\PYG{l+s}{GLOB\PYGZus{}RECURSE} \PYG{l+s}{CFG\PYGZus{}FILES} \PYG{o}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{CMAKE\PYGZus{}SOURCE\PYGZus{}DIR}\PYG{o}{\PYGZcb{}}\PYG{l+s}{/config/*.yaml}\PYG{p}{)}
+\PYG{n+nb}{file}\PYG{p}{(}\PYG{l+s}{GLOB\PYGZus{}RECURSE} \PYG{l+s}{ASSETS} \PYG{o}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{CMAKE\PYGZus{}SOURCE\PYGZus{}DIR}\PYG{o}{\PYGZcb{}}\PYG{l+s}{/assets/*}\PYG{p}{)}
+\end{Verbatim}

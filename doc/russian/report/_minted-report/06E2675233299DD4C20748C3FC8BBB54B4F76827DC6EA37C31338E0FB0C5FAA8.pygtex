@@ -1,0 +1,20 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{class} \PYG{n+nc}{Shader}
+\PYG{p}{\PYGZob{}}
+  \PYG{k}{private}\PYG{o}{:}
+    \PYG{c+c1}{// Member vars}
+    \PYG{k+kt}{unsigned} \PYG{k+kt}{int} \PYG{n}{program}\PYG{p}{;}
+    \PYG{n}{std}\PYG{o}{::}\PYG{n}{string} \PYG{n}{loadShaderFile}\PYG{p}{(}\PYG{k}{const} \PYG{k+kt}{char} \PYG{o}{*}\PYG{n}{path}\PYG{p}{);}
+    \PYG{k+kt}{unsigned} \PYG{k+kt}{int} \PYG{n+nf}{compileShader}\PYG{p}{(}\PYG{k+kt}{unsigned} \PYG{k+kt}{int} \PYG{n}{type}\PYG{p}{,} \PYG{k}{const} \PYG{k+kt}{char} \PYG{o}{*}\PYG{n}{path}\PYG{p}{);}
+    \PYG{k+kt}{void} \PYG{n+nf}{linkProgram}\PYG{p}{(}\PYG{k+kt}{unsigned} \PYG{k+kt}{int} \PYG{n}{vertex\PYGZus{}shader}\PYG{p}{,} \PYG{k+kt}{unsigned} \PYG{k+kt}{int} \PYG{n}{fragment\PYGZus{}shader}\PYG{p}{);}
+  \PYG{k}{public}\PYG{o}{:}
+    \PYG{c+c1}{// Constructor generates the shader on the fly}
+    \PYG{n}{Shader}\PYG{p}{(}\PYG{k}{const} \PYG{k+kt}{char} \PYG{o}{*}\PYG{n}{vertex\PYGZus{}path}\PYG{p}{,} \PYG{k}{const} \PYG{k+kt}{char} \PYG{o}{*}\PYG{n}{fragment\PYGZus{}path}\PYG{p}{);}
+    \PYG{c+c1}{// Uses the current shader}
+    \PYG{k+kt}{void} \PYG{n+nf}{Use}\PYG{p}{();}
+    \PYG{k+kt}{void} \PYG{n+nf}{Unuse}\PYG{p}{();}
+    \PYG{k+kt}{void} \PYG{n+nf}{set1i}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{value}\PYG{p}{,} \PYG{k}{const} \PYG{k+kt}{char} \PYG{o}{*}\PYG{n}{name}\PYG{p}{);}
+    \PYG{k+kt}{void} \PYG{n+nf}{setMat4fv}\PYG{p}{(}\PYG{n}{glm}\PYG{o}{::}\PYG{n}{mat4} \PYG{n}{value}\PYG{p}{,} \PYG{k}{const} \PYG{k+kt}{char} \PYG{o}{*}\PYG{n}{name}\PYG{p}{,} \PYG{k+kt}{unsigned} \PYG{k+kt}{char} \PYG{n}{transpose} \PYG{o}{=} \PYG{n}{GL\PYGZus{}FALSE}\PYG{p}{);}
+    \PYG{o}{\PYGZti{}}\PYG{n}{Shader}\PYG{p}{();}
+\PYG{p}{\PYGZcb{};}
+\end{Verbatim}

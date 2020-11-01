@@ -1,0 +1,65 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kt}{int} \PYG{n+nf}{main}\PYG{p}{()}
+\PYG{p}{\PYGZob{}}
+    \PYG{p}{...}
+\PYG{c+cp}{\PYGZsh{}ifndef \PYGZus{}\PYGZus{}EMSCRIPTEN\PYGZus{}\PYGZus{}}
+    \PYG{n}{Shader} \PYG{n}{ourShader}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}assets/shaders/core.vs\PYGZdq{}}\PYG{p}{,} \PYG{l+s}{\PYGZdq{}assets/shaders/core.frag\PYGZdq{}}\PYG{p}{);}
+\PYG{c+cp}{\PYGZsh{}else}
+    \PYG{n}{Shader} \PYG{n}{ourShader}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}assets/shaders/core.wvs\PYGZdq{}}\PYG{p}{,} \PYG{l+s}{\PYGZdq{}assets/shaders/core.wfrag\PYGZdq{}}\PYG{p}{);}
+\PYG{c+cp}{\PYGZsh{}endif}
+    \PYG{p}{...}
+\PYG{c+cp}{\PYGZsh{}ifdef \PYGZus{}\PYGZus{}EMSCRIPTEN\PYGZus{}\PYGZus{}}
+    \PYG{n}{std}\PYG{o}{::}\PYG{n}{function}\PYG{o}{\PYGZlt{}}\PYG{k+kt}{void}\PYG{p}{()}\PYG{o}{\PYGZgt{}} \PYG{n}{mainLoop} \PYG{o}{=} \PYG{p}{[}\PYG{o}{\PYGZam{}}\PYG{p}{]()} \PYG{p}{\PYGZob{}}
+\PYG{c+cp}{\PYGZsh{}else}
+    \PYG{k}{while} \PYG{p}{(}\PYG{o}{!}\PYG{n}{glfwWindowShouldClose}\PYG{p}{(}\PYG{n}{window}\PYG{p}{))}
+    \PYG{p}{\PYGZob{}}
+\PYG{c+cp}{\PYGZsh{}endif}
+        \PYG{c+c1}{// Set frame time}
+        \PYG{p}{...}
+        \PYG{c+c1}{// Check and call events}
+        \PYG{p}{...}
+        \PYG{c+c1}{// Clear the colorbuffer}
+        \PYG{p}{...}
+        \PYG{c+c1}{// Draw our first triangle}
+        \PYG{n}{ourShader}\PYG{p}{.}\PYG{n}{Use}\PYG{p}{();}
+
+        \PYG{c+c1}{// Bind Textures using texture units}
+        \PYG{n}{texture}\PYG{p}{.}\PYG{n}{bind}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{);}
+        \PYG{n}{ourShader}\PYG{p}{.}\PYG{n}{set1i}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+s}{\PYGZdq{}ourTexture1\PYGZdq{}}\PYG{p}{);}
+
+        \PYG{n}{glm}\PYG{o}{::}\PYG{n}{mat4} \PYG{n}{projection}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{);}
+        \PYG{n}{projection} \PYG{o}{=} \PYG{n}{glm}\PYG{o}{::}\PYG{n}{perspective}\PYG{p}{(}\PYG{n}{camera}\PYG{p}{.}\PYG{n}{GetZoom}\PYG{p}{(),}
+                     \PYG{p}{(}\PYG{n}{GLfloat}\PYG{p}{)}\PYG{n}{SCREEN\PYGZus{}WIDTH} \PYG{o}{/} \PYG{p}{(}\PYG{n}{GLfloat}\PYG{p}{)}\PYG{n}{SCREEN\PYGZus{}HEIGHT}\PYG{p}{,}
+                     \PYG{l+m+mf}{0.1f}\PYG{p}{,} \PYG{l+m+mf}{1000.0f}\PYG{p}{);}
+
+        \PYG{c+c1}{// Create camera transformation}
+        \PYG{n}{glm}\PYG{o}{::}\PYG{n}{mat4} \PYG{n}{view}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{);}
+        \PYG{n}{view} \PYG{o}{=} \PYG{n}{camera}\PYG{p}{.}\PYG{n}{GetViewMatrix}\PYG{p}{();}
+
+        \PYG{c+c1}{// Pass the matrices to the shader}
+        \PYG{n}{ourShader}\PYG{p}{.}\PYG{n}{setMat4fv}\PYG{p}{(}\PYG{n}{view}\PYG{p}{,} \PYG{l+s}{\PYGZdq{}view\PYGZdq{}}\PYG{p}{);}
+        \PYG{n}{ourShader}\PYG{p}{.}\PYG{n}{setMat4fv}\PYG{p}{(}\PYG{n}{projection}\PYG{p}{,} \PYG{l+s}{\PYGZdq{}projection\PYGZdq{}}\PYG{p}{);}
+
+        \PYG{n}{glBindVertexArray}\PYG{p}{(}\PYG{n}{VAO}\PYG{p}{);}
+
+        \PYG{k}{for} \PYG{p}{(}\PYG{n}{GLuint} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;} \PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{l+m+mi}{10}\PYG{p}{;} \PYG{n}{i}\PYG{o}{++}\PYG{p}{)}
+        \PYG{p}{\PYGZob{}}
+            \PYG{c+c1}{// Calculate the model matrix for each object and pass it to shader before drawing}
+            \PYG{n}{ourShader}\PYG{p}{.}\PYG{n}{setMat4fv}\PYG{p}{(}\PYG{n}{model}\PYG{p}{,} \PYG{l+s}{\PYGZdq{}model\PYGZdq{}}\PYG{p}{);}
+            \PYG{n}{ourShader}\PYG{p}{.}\PYG{n}{Use}\PYG{p}{();}
+            \PYG{n}{glDrawArrays}\PYG{p}{(}\PYG{n}{GL\PYGZus{}TRIANGLES}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{36}\PYG{p}{);}
+        \PYG{p}{\PYGZcb{}}
+
+        \PYG{n}{glBindVertexArray}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{);}
+
+        \PYG{c+c1}{// Swap the buffers}
+        \PYG{n}{glfwSwapBuffers}\PYG{p}{(}\PYG{n}{window}\PYG{p}{);}
+\PYG{c+cp}{\PYGZsh{}ifdef \PYGZus{}\PYGZus{}EMSCRIPTEN\PYGZus{}\PYGZus{}}
+    \PYG{p}{\PYGZcb{};}
+    \PYG{n}{emscripten\PYGZus{}set\PYGZus{}main\PYGZus{}loop\PYGZus{}arg}\PYG{p}{(}\PYG{n}{dispatch\PYGZus{}main}\PYG{p}{,} \PYG{o}{\PYGZam{}}\PYG{n}{mainLoop}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{);}
+\PYG{c+cp}{\PYGZsh{}else}
+    \PYG{p}{\PYGZcb{}}
+\PYG{c+cp}{\PYGZsh{}endif}
+\PYG{p}{...}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

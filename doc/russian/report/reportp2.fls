@@ -1,7 +1,7 @@
-PWD d:\GitHub\Emscripten_OpenGL\doc\russian\instructions
+PWD d:\GitHub\Emscripten_OpenGL\doc\russian\report
 INPUT C:\Users\alexc\AppData\Local\MiKTeX\2.9\miktex\data\le\pdftex\pdflatex.fmt
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\instructions.tex
-OUTPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\instructions.log
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\reportp2.tex
+OUTPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\reportp2.log
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\base\article.cls
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\base\article.cls
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\base\article.cls
@@ -348,6 +348,33 @@ INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tools\array.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tools\array.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tools\array.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tools\array.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\mathtools\mathtools.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\mathtools\mathtools.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\mathtools\mathtools.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\mathtools\mathtools.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\mathtools\mathtools.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\mathtools\mathtools.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\mathtools\mathtools.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\mathtools\mathtools.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\mathtools\mathtools.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tools\calc.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tools\calc.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tools\calc.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tools\calc.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tools\calc.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tools\calc.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tools\calc.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tools\calc.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tools\calc.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\mathtools\mhsetup.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\mathtools\mhsetup.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\mathtools\mhsetup.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\mathtools\mhsetup.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\mathtools\mhsetup.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\mathtools\mhsetup.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\mathtools\mhsetup.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\mathtools\mhsetup.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\mathtools\mhsetup.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\hyperref.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\hyperref.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\hyperref\hyperref.sty
@@ -745,33 +772,6 @@ INPUT C:\Program Files\MiKTeX 2.9\tex\latex\titlesec\titlesec.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\titlesec\titlesec.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\titlesec\titlesec.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\titlesec\titlesec.sty
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\mathtools\mathtools.sty
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\mathtools\mathtools.sty
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\mathtools\mathtools.sty
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\mathtools\mathtools.sty
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\mathtools\mathtools.sty
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\mathtools\mathtools.sty
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\mathtools\mathtools.sty
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\mathtools\mathtools.sty
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\mathtools\mathtools.sty
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tools\calc.sty
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tools\calc.sty
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tools\calc.sty
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tools\calc.sty
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tools\calc.sty
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tools\calc.sty
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tools\calc.sty
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tools\calc.sty
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tools\calc.sty
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\mathtools\mhsetup.sty
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\mathtools\mhsetup.sty
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\mathtools\mhsetup.sty
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\mathtools\mhsetup.sty
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\mathtools\mhsetup.sty
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\mathtools\mhsetup.sty
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\mathtools\mhsetup.sty
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\mathtools\mhsetup.sty
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\mathtools\mhsetup.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tcolorbox\tcolorbox.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tcolorbox\tcolorbox.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tcolorbox\tcolorbox.sty
@@ -1150,12 +1150,12 @@ INPUT C:\Program Files\MiKTeX 2.9\tex\generic\iftex\ifluatex.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\generic\iftex\ifluatex.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\generic\iftex\ifluatex.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\generic\iftex\ifluatex.sty
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\nul:.tex
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\nul:.tex
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\nul:.tex
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\nul:.tex
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\nul:.tex
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\nul:.tex
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\nul:.tex
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\nul:.tex
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\nul:.tex
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\nul:.tex
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\nul:.tex
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\nul:.tex
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\framed\framed.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\framed\framed.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\framed\framed.sty
@@ -1182,6 +1182,305 @@ INPUT C:\Program Files\MiKTeX 2.9\tex\latex\csquotes\csquotes.cfg
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\csquotes\csquotes.cfg
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\csquotes\csquotes.cfg
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\csquotes\csquotes.cfg
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\caption\subcaption.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\caption\subcaption.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\caption\subcaption.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\caption\subcaption.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\caption\subcaption.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\caption\subcaption.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\caption\subcaption.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\caption\subcaption.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\caption\subcaption.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\caption\caption.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\caption\caption.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\caption\caption.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\caption\caption.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\caption\caption.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\caption\caption.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\caption\caption.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\caption\caption.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\caption\caption.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\caption\caption3.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\caption\caption3.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\caption\caption3.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\caption\caption3.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\caption\caption3.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\caption\caption3.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\caption\caption3.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\caption\caption3.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\caption\caption3.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tikz-3dplot\tikz-3dplot.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tikz-3dplot\tikz-3dplot.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tikz-3dplot\tikz-3dplot.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tikz-3dplot\tikz-3dplot.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tikz-3dplot\tikz-3dplot.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tikz-3dplot\tikz-3dplot.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tikz-3dplot\tikz-3dplot.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tikz-3dplot\tikz-3dplot.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tikz-3dplot\tikz-3dplot.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibrary3d.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibrary3d.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tkz-euclide\tkz-euclide.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tkz-euclide\tkz-euclide.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tkz-euclide\tkz-euclide.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tkz-euclide\tkz-euclide.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tkz-euclide\tkz-euclide.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tkz-euclide\tkz-euclide.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tkz-euclide\tkz-euclide.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tkz-euclide\tkz-euclide.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tkz-euclide\tkz-euclide.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tkz-base\tkz-base.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tkz-base\tkz-base.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tkz-base\tkz-base.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tkz-base\tkz-base.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tkz-base\tkz-base.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tkz-base\tkz-base.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tkz-base\tkz-base.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tkz-base\tkz-base.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tkz-base\tkz-base.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibraryangles.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibraryangles.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\libraries\pgflibraryarrows.meta.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\libraries\pgflibraryarrows.meta.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\libraries\pgflibraryarrows.meta.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibrarybabel.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibrarybabel.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibrarydecorations.markings.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibrarydecorations.markings.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\libraries\decorations\pgflibrarydecorations.markings.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\libraries\decorations\pgflibrarydecorations.markings.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibrarydecorations.shapes.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibrarydecorations.shapes.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\libraries\decorations\pgflibrarydecorations.shapes.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\libraries\decorations\pgflibrarydecorations.shapes.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibrarydecorations.text.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibrarydecorations.text.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\libraries\decorations\pgflibrarydecorations.text.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\libraries\decorations\pgflibrarydecorations.text.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibraryintersections.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibraryintersections.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibrarypatterns.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibrarypatterns.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\libraries\pgflibrarypatterns.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\libraries\pgflibrarypatterns.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibrarypositioning.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibrarypositioning.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibraryquotes.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibraryquotes.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibraryshadows.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibraryshadows.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibraryfadings.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibraryfadings.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\libraries\pgflibraryfadings.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\libraries\pgflibraryfadings.code.tex
+OUTPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\reportp2.pdf
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibrarythrough.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibrarythrough.code.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\numprint\numprint.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\numprint\numprint.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\numprint\numprint.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\numprint\numprint.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\numprint\numprint.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\numprint\numprint.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\numprint\numprint.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\numprint\numprint.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\numprint\numprint.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\l3packages\xfp\xfp.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\l3packages\xfp\xfp.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\l3packages\xfp\xfp.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\l3packages\xfp\xfp.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\l3packages\xfp\xfp.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\l3packages\xfp\xfp.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\l3packages\xfp\xfp.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\l3packages\xfp\xfp.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\l3packages\xfp\xfp.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fp\defpattern.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fp\defpattern.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fp\defpattern.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fp\defpattern.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fp\defpattern.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fp\defpattern.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fp\defpattern.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fp\defpattern.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fp\defpattern.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp-basic.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp-basic.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp-basic.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp-basic.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp-basic.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp-basic.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp-basic.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp-basic.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp-basic.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp-addons.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp-addons.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp-addons.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp-addons.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp-addons.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp-addons.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp-addons.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp-addons.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp-addons.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp-snap.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp-snap.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp-snap.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp-snap.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp-snap.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp-snap.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp-snap.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp-snap.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp-snap.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp-exp.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp-exp.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp-exp.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp-exp.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp-exp.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp-exp.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp-exp.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp-exp.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp-exp.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp-trigo.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp-trigo.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp-trigo.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp-trigo.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp-trigo.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp-trigo.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp-trigo.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp-trigo.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp-trigo.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp-pas.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp-pas.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp-pas.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp-pas.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp-pas.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp-pas.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp-pas.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp-pas.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp-pas.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp-random.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp-random.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp-random.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp-random.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp-random.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp-random.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp-random.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp-random.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp-random.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp-eqn.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp-eqn.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp-eqn.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp-eqn.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp-eqn.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp-eqn.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp-eqn.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp-eqn.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp-eqn.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp-upn.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp-upn.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp-upn.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp-upn.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp-upn.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp-upn.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp-upn.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp-upn.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp-upn.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp-eval.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp-eval.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp-eval.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp-eval.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp-eval.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp-eval.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp-eval.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp-eval.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\fp\fp-eval.sty
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tkz-base\tkz-base.cfg
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tkz-base\tkz-base.cfg
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tkz-base\tkz-base.cfg
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tkz-base\tkz-base.cfg
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tkz-base\tkz-tools-modules.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tkz-base\tkz-tools-modules.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tkz-base\tkz-tools-modules.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tkz-base\tkz-tools-modules.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tkz-base\tkz-tools-modules.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tkz-base\tkz-tools-modules.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tkz-base\tkz-tools-modules.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tkz-base\tkz-tools-modules.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tkz-base\tkz-tools-modules.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tkz-base\tkz-tools-modules.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tkz-base\tkz-tools-modules.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tkz-base\tkz-lib-marks.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tkz-base\tkz-lib-marks.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tkz-base\tkz-lib-marks.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tkz-base\tkz-lib-marks.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tkz-base\tkz-lib-marks.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tkz-base\tkz-lib-marks.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tkz-base\tkz-lib-marks.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tkz-base\tkz-lib-marks.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tkz-base\tkz-lib-marks.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tkz-base\tkz-lib-marks.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tkz-base\tkz-lib-marks.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tkz-base\tkz-tools-base.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tkz-base\tkz-tools-utilities.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tkz-euclide\tkz-tools-math.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tkz-base\tkz-tools-text.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tkz-base\tkz-tools-BB.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tkz-base\tkz-tools-arith.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tkz-base\tkz-tools-print.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tkz-base\tkz-tools-misc.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tkz-base\tkz-obj-axes.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tkz-base\tkz-obj-grids.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tkz-base\tkz-obj-marks.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tkz-base\tkz-obj-points.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tkz-base\tkz-obj-rep.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tkz-euclide\tkz-tools-intersections.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tkz-euclide\tkz-tools-intersections.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tkz-euclide\tkz-tools-intersections.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tkz-euclide\tkz-tools-intersections.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tkz-euclide\tkz-tools-intersections.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tkz-euclide\tkz-tools-intersections.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tkz-euclide\tkz-tools-intersections.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tkz-euclide\tkz-tools-intersections.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tkz-euclide\tkz-tools-intersections.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tkz-euclide\tkz-tools-intersections.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tkz-euclide\tkz-tools-intersections.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tkz-euclide\tkz-tools-angles.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tkz-euclide\tkz-tools-angles.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tkz-euclide\tkz-tools-angles.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tkz-euclide\tkz-tools-angles.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tkz-euclide\tkz-tools-angles.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tkz-euclide\tkz-tools-angles.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tkz-euclide\tkz-tools-angles.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tkz-euclide\tkz-tools-angles.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tkz-euclide\tkz-tools-angles.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tkz-euclide\tkz-tools-angles.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tkz-euclide\tkz-tools-angles.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tkz-euclide\tkz-obj-eu-angles.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tkz-euclide\tkz-obj-eu-arcs.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tkz-euclide\tkz-obj-eu-compass.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tkz-euclide\tkz-obj-eu-circles.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tkz-euclide\tkz-obj-eu-draw-circles.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tkz-euclide\tkz-obj-eu-draw-lines.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tkz-euclide\tkz-obj-eu-draw-polygons.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tkz-euclide\tkz-obj-eu-draw-triangles.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tkz-euclide\tkz-obj-eu-lines.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tkz-euclide\tkz-obj-eu-points.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tkz-euclide\tkz-obj-eu-points-by.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tkz-euclide\tkz-obj-eu-points-rnd.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tkz-euclide\tkz-obj-eu-points-with.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tkz-euclide\tkz-obj-eu-polygons.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tkz-euclide\tkz-obj-eu-protractor.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tkz-euclide\tkz-obj-eu-sectors.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tkz-euclide\tkz-obj-eu-show.tex
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tkz-euclide\tkz-obj-eu-triangles.tex
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tools\multicol.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tools\multicol.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tools\multicol.sty
@@ -1191,13 +1490,13 @@ INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tools\multicol.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tools\multicol.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tools\multicol.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\tools\multicol.sty
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\instructions.aex
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\instructions.aex
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\instructions.aex
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\instructions.aux
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\instructions.aux
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\instructions.aux
-OUTPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\instructions.aux
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\reportp2.aex
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\reportp2.aex
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\reportp2.aex
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\reportp2.aux
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\reportp2.aux
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\reportp2.aux
+OUTPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\reportp2.aux
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\ucs\ucsencs.def
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\ucs\ucsencs.def
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\ucs\ucsencs.def
@@ -1242,18 +1541,17 @@ INPUT C:\Program Files\MiKTeX 2.9\tex\generic\gettitlestring\gettitlestring.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\generic\gettitlestring\gettitlestring.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\generic\gettitlestring\gettitlestring.sty
 INPUT C:\Program Files\MiKTeX 2.9\tex\generic\gettitlestring\gettitlestring.sty
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\instructions.out
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\instructions.out
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\instructions.out
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\instructions.out
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\instructions.out
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\instructions.out
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\instructions.out
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\instructions.out
-OUTPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\instructions.pdf
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\instructions.out
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\instructions.out
-OUTPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\instructions.out
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\reportp2.out
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\reportp2.out
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\reportp2.out
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\reportp2.out
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\reportp2.out
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\reportp2.out
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\reportp2.out
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\reportp2.out
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\reportp2.out
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\reportp2.out
+OUTPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\reportp2.out
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\siunitx\siunitx-abbreviations.cfg
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\siunitx\siunitx-abbreviations.cfg
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\siunitx\siunitx-abbreviations.cfg
@@ -1307,83 +1605,301 @@ INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmss8.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmtt12.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmtt8.tfm
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmtt8.tfm
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\images\logo.jpg
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\images\logo.jpg
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\images\logo.jpg
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\images\logo.jpg
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\images\logo.jpg
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\images\logo.jpg
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\images\logo.jpg
 INPUT C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts\tfm\lh\lh-t2a\labx1200.tfm
-INPUT C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts\tfm\lh\lh-t2a\labx2074.tfm
+INPUT C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts\tfm\lh\lh-t2a\labx1440.tfm
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\ucs\uni-4.def
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\ucs\uni-4.def
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\ucs\uni-4.def
 INPUT C:\Program Files\MiKTeX 2.9\tex\latex\ucs\uni-4.def
-INPUT C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts\tfm\lh\lh-t2a\larm1440.tfm
-INPUT C:\Users\alexc\AppData\Local\MiKTeX\2.9\pdftex\config\pdftex.map
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\ucs\uni-0.def
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\ucs\uni-0.def
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\ucs\uni-0.def
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\ucs\uni-0.def
 INPUT C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts\tfm\lh\lh-t2a\larm1728.tfm
 INPUT C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts\tfm\lh\lh-t2a\labx1728.tfm
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\instructions.toc
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\instructions.toc
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\instructions.toc
-OUTPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\instructions.toc
+INPUT C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts\tfm\lh\lh-t2a\larm1440.tfm
+INPUT C:\Users\alexc\AppData\Local\MiKTeX\2.9\pdftex\config\pdftex.map
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\reportp2.toc
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\reportp2.toc
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\reportp2.toc
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmr17.tfm
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmmi12.tfm
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmsy10.tfm
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmex10.tfm
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmss17.tfm
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmss10.tfm
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmtt12.tfm
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmtt10.tfm
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\amsfonts\symbols\msam10.tfm
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\amsfonts\symbols\msam10.tfm
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\amsfonts\symbols\msbm10.tfm
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\amsfonts\symbols\msbm10.tfm
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmbx12.tfm
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmbx10.tfm
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmmib10.tfm
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmmib10.tfm
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmbsy10.tfm
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\public\cm\cmbsy10.tfm
+OUTPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\reportp2.toc
 INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\jknappen\ec\tcrm1200.tfm
-INPUT C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts\tfm\lh\lh-t2a\lati1200.tfm
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\cyrillic\t2acmtt.fd
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\cyrillic\t2acmtt.fd
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\cyrillic\t2acmtt.fd
-INPUT C:\Program Files\MiKTeX 2.9\tex\latex\cyrillic\t2acmtt.fd
-INPUT C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts\tfm\lh\lh-t2a\latt1200.tfm
-INPUT C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts\tfm\lh\lh-t2a\labx1440.tfm
-OUTPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\instructions.pyg
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\_minted-instructions\default-pyg-prefix.pygstyle
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\_minted-instructions\default-pyg-prefix.pygstyle
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\_minted-instructions\default-pyg-prefix.pygstyle
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\_minted-instructions\default-pyg-prefix.pygstyle
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\_minted-instructions\default-pyg-prefix.pygstyle
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\_minted-instructions\default-pyg-prefix.pygstyle
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\_minted-instructions\default-pyg-prefix.pygstyle
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\_minted-instructions\default-pyg-prefix.pygstyle
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\_minted-instructions\default.pygstyle
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\_minted-instructions\default.pygstyle
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\_minted-instructions\default.pygstyle
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\_minted-instructions\default.pygstyle
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\_minted-instructions\default.pygstyle
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\_minted-instructions\default.pygstyle
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\_minted-instructions\default.pygstyle
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\_minted-instructions\default.pygstyle
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\instructions.pyg
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\_minted-instructions\9A746168CE619B3E09BC1D874FBE5811881E700045371E6D003D50860C7153B0.pygtex
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\_minted-instructions\9A746168CE619B3E09BC1D874FBE5811881E700045371E6D003D50860C7153B0.pygtex
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\_minted-instructions\9A746168CE619B3E09BC1D874FBE5811881E700045371E6D003D50860C7153B0.pygtex
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\_minted-instructions\9A746168CE619B3E09BC1D874FBE5811881E700045371E6D003D50860C7153B0.pygtex
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\_minted-instructions\9A746168CE619B3E09BC1D874FBE5811881E700045371E6D003D50860C7153B0.pygtex
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\_minted-instructions\9A746168CE619B3E09BC1D874FBE5811881E700045371E6D003D50860C7153B0.pygtex
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\_minted-instructions\9A746168CE619B3E09BC1D874FBE5811881E700045371E6D003D50860C7153B0.pygtex
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\_minted-instructions\9A746168CE619B3E09BC1D874FBE5811881E700045371E6D003D50860C7153B0.pygtex
+OUTPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\reportp2.pyg
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\_minted-reportp2\default-pyg-prefix.pygstyle
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\_minted-reportp2\default-pyg-prefix.pygstyle
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\_minted-reportp2\default-pyg-prefix.pygstyle
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\_minted-reportp2\default-pyg-prefix.pygstyle
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\_minted-reportp2\default-pyg-prefix.pygstyle
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\_minted-reportp2\default-pyg-prefix.pygstyle
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\_minted-reportp2\default-pyg-prefix.pygstyle
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\_minted-reportp2\default-pyg-prefix.pygstyle
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\_minted-reportp2\emacs.pygstyle
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\_minted-reportp2\emacs.pygstyle
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\_minted-reportp2\emacs.pygstyle
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\_minted-reportp2\emacs.pygstyle
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\_minted-reportp2\emacs.pygstyle
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\_minted-reportp2\emacs.pygstyle
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\_minted-reportp2\emacs.pygstyle
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\_minted-reportp2\emacs.pygstyle
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\reportp2.pyg
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\_minted-reportp2\63FCB4473C66C92540863723E8653D998F4FC8A68EDB18717177B8F8D7DF7B7D.pygtex
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\_minted-reportp2\63FCB4473C66C92540863723E8653D998F4FC8A68EDB18717177B8F8D7DF7B7D.pygtex
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\_minted-reportp2\63FCB4473C66C92540863723E8653D998F4FC8A68EDB18717177B8F8D7DF7B7D.pygtex
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\_minted-reportp2\63FCB4473C66C92540863723E8653D998F4FC8A68EDB18717177B8F8D7DF7B7D.pygtex
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\_minted-reportp2\63FCB4473C66C92540863723E8653D998F4FC8A68EDB18717177B8F8D7DF7B7D.pygtex
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\_minted-reportp2\63FCB4473C66C92540863723E8653D998F4FC8A68EDB18717177B8F8D7DF7B7D.pygtex
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\_minted-reportp2\63FCB4473C66C92540863723E8653D998F4FC8A68EDB18717177B8F8D7DF7B7D.pygtex
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\_minted-reportp2\63FCB4473C66C92540863723E8653D998F4FC8A68EDB18717177B8F8D7DF7B7D.pygtex
 INPUT C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts\tfm\lh\lh-t2a\larm1000.tfm
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\cyrillic\t2acmtt.fd
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\cyrillic\t2acmtt.fd
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\cyrillic\t2acmtt.fd
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\cyrillic\t2acmtt.fd
 INPUT C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts\tfm\lh\lh-t2a\latt1000.tfm
 INPUT C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts\tfm\lh\lh-t2a\larm0600.tfm
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\instructions.aux
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\instructions.out
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\instructions.out
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\instructions.pyg
-INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\instructions\instructions.pyg
+INPUT C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts\tfm\lh\lh-t2a\latt1200.tfm
+OUTPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\reportp2.pyg
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\reportp2.pyg
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\_minted-reportp2\9554830307AF028E72E1BD60338F90678F4FC8A68EDB18717177B8F8D7DF7B7D.pygtex
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\_minted-reportp2\9554830307AF028E72E1BD60338F90678F4FC8A68EDB18717177B8F8D7DF7B7D.pygtex
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\_minted-reportp2\9554830307AF028E72E1BD60338F90678F4FC8A68EDB18717177B8F8D7DF7B7D.pygtex
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\_minted-reportp2\9554830307AF028E72E1BD60338F90678F4FC8A68EDB18717177B8F8D7DF7B7D.pygtex
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\_minted-reportp2\9554830307AF028E72E1BD60338F90678F4FC8A68EDB18717177B8F8D7DF7B7D.pygtex
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\_minted-reportp2\9554830307AF028E72E1BD60338F90678F4FC8A68EDB18717177B8F8D7DF7B7D.pygtex
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\_minted-reportp2\9554830307AF028E72E1BD60338F90678F4FC8A68EDB18717177B8F8D7DF7B7D.pygtex
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\_minted-reportp2\9554830307AF028E72E1BD60338F90678F4FC8A68EDB18717177B8F8D7DF7B7D.pygtex
+INPUT C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts\tfm\lh\lh-t2a\lait1000.tfm
+OUTPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\reportp2.pyg
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\reportp2.pyg
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\_minted-reportp2\58EA4A139D300B54790FCEEE776E94E18F4FC8A68EDB18717177B8F8D7DF7B7D.pygtex
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\_minted-reportp2\58EA4A139D300B54790FCEEE776E94E18F4FC8A68EDB18717177B8F8D7DF7B7D.pygtex
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\_minted-reportp2\58EA4A139D300B54790FCEEE776E94E18F4FC8A68EDB18717177B8F8D7DF7B7D.pygtex
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\_minted-reportp2\58EA4A139D300B54790FCEEE776E94E18F4FC8A68EDB18717177B8F8D7DF7B7D.pygtex
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\_minted-reportp2\58EA4A139D300B54790FCEEE776E94E18F4FC8A68EDB18717177B8F8D7DF7B7D.pygtex
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\_minted-reportp2\58EA4A139D300B54790FCEEE776E94E18F4FC8A68EDB18717177B8F8D7DF7B7D.pygtex
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\_minted-reportp2\58EA4A139D300B54790FCEEE776E94E18F4FC8A68EDB18717177B8F8D7DF7B7D.pygtex
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\_minted-reportp2\58EA4A139D300B54790FCEEE776E94E18F4FC8A68EDB18717177B8F8D7DF7B7D.pygtex
+INPUT C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts\tfm\lh\lh-t2a\larm1095.tfm
+OUTPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\reportp2.pyg
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\reportp2.pyg
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\_minted-reportp2\E240ECBA64A558B38C22CC21382F9B5A8F4FC8A68EDB18717177B8F8D7DF7B7D.pygtex
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\_minted-reportp2\E240ECBA64A558B38C22CC21382F9B5A8F4FC8A68EDB18717177B8F8D7DF7B7D.pygtex
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\_minted-reportp2\E240ECBA64A558B38C22CC21382F9B5A8F4FC8A68EDB18717177B8F8D7DF7B7D.pygtex
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\_minted-reportp2\E240ECBA64A558B38C22CC21382F9B5A8F4FC8A68EDB18717177B8F8D7DF7B7D.pygtex
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\_minted-reportp2\E240ECBA64A558B38C22CC21382F9B5A8F4FC8A68EDB18717177B8F8D7DF7B7D.pygtex
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\_minted-reportp2\E240ECBA64A558B38C22CC21382F9B5A8F4FC8A68EDB18717177B8F8D7DF7B7D.pygtex
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\_minted-reportp2\E240ECBA64A558B38C22CC21382F9B5A8F4FC8A68EDB18717177B8F8D7DF7B7D.pygtex
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\_minted-reportp2\E240ECBA64A558B38C22CC21382F9B5A8F4FC8A68EDB18717177B8F8D7DF7B7D.pygtex
+OUTPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\reportp2.pyg
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\reportp2.pyg
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\_minted-reportp2\CBAA42F7F7D654DAC2E1F61304505BC88F4FC8A68EDB18717177B8F8D7DF7B7D.pygtex
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\_minted-reportp2\CBAA42F7F7D654DAC2E1F61304505BC88F4FC8A68EDB18717177B8F8D7DF7B7D.pygtex
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\_minted-reportp2\CBAA42F7F7D654DAC2E1F61304505BC88F4FC8A68EDB18717177B8F8D7DF7B7D.pygtex
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\_minted-reportp2\CBAA42F7F7D654DAC2E1F61304505BC88F4FC8A68EDB18717177B8F8D7DF7B7D.pygtex
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\_minted-reportp2\CBAA42F7F7D654DAC2E1F61304505BC88F4FC8A68EDB18717177B8F8D7DF7B7D.pygtex
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\_minted-reportp2\CBAA42F7F7D654DAC2E1F61304505BC88F4FC8A68EDB18717177B8F8D7DF7B7D.pygtex
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\_minted-reportp2\CBAA42F7F7D654DAC2E1F61304505BC88F4FC8A68EDB18717177B8F8D7DF7B7D.pygtex
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\_minted-reportp2\CBAA42F7F7D654DAC2E1F61304505BC88F4FC8A68EDB18717177B8F8D7DF7B7D.pygtex
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\images\shaders_result.png
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\images\shaders_result.png
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\images\shaders_result.png
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\images\shaders_result.png
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\images\shaders_result.png
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\images\shaders_result.png
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\images\shaders_result.png
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\images\texture_res.png
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\images\texture_res.png
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\images\texture_res.png
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\images\texture_res.png
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\images\texture_res.png
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\images\texture_res.png
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\images\texture_res.png
+OUTPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\reportp2.pyg
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\reportp2.pyg
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\_minted-reportp2\FB8366C5E28DA5D047EC2BC26257819B8F4FC8A68EDB18717177B8F8D7DF7B7D.pygtex
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\_minted-reportp2\FB8366C5E28DA5D047EC2BC26257819B8F4FC8A68EDB18717177B8F8D7DF7B7D.pygtex
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\_minted-reportp2\FB8366C5E28DA5D047EC2BC26257819B8F4FC8A68EDB18717177B8F8D7DF7B7D.pygtex
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\_minted-reportp2\FB8366C5E28DA5D047EC2BC26257819B8F4FC8A68EDB18717177B8F8D7DF7B7D.pygtex
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\_minted-reportp2\FB8366C5E28DA5D047EC2BC26257819B8F4FC8A68EDB18717177B8F8D7DF7B7D.pygtex
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\_minted-reportp2\FB8366C5E28DA5D047EC2BC26257819B8F4FC8A68EDB18717177B8F8D7DF7B7D.pygtex
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\_minted-reportp2\FB8366C5E28DA5D047EC2BC26257819B8F4FC8A68EDB18717177B8F8D7DF7B7D.pygtex
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\_minted-reportp2\FB8366C5E28DA5D047EC2BC26257819B8F4FC8A68EDB18717177B8F8D7DF7B7D.pygtex
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\base\ts1cmtt.fd
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\base\ts1cmtt.fd
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\base\ts1cmtt.fd
+INPUT C:\Program Files\MiKTeX 2.9\tex\latex\base\ts1cmtt.fd
+INPUT C:\Program Files\MiKTeX 2.9\fonts\tfm\jknappen\ec\tcit1000.tfm
+OUTPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\reportp2.pyg
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\reportp2.pyg
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\_minted-reportp2\A1BD4C46D0DC826211D54EFDA87984678F4FC8A68EDB18717177B8F8D7DF7B7D.pygtex
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\_minted-reportp2\A1BD4C46D0DC826211D54EFDA87984678F4FC8A68EDB18717177B8F8D7DF7B7D.pygtex
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\_minted-reportp2\A1BD4C46D0DC826211D54EFDA87984678F4FC8A68EDB18717177B8F8D7DF7B7D.pygtex
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\_minted-reportp2\A1BD4C46D0DC826211D54EFDA87984678F4FC8A68EDB18717177B8F8D7DF7B7D.pygtex
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\_minted-reportp2\A1BD4C46D0DC826211D54EFDA87984678F4FC8A68EDB18717177B8F8D7DF7B7D.pygtex
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\_minted-reportp2\A1BD4C46D0DC826211D54EFDA87984678F4FC8A68EDB18717177B8F8D7DF7B7D.pygtex
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\_minted-reportp2\A1BD4C46D0DC826211D54EFDA87984678F4FC8A68EDB18717177B8F8D7DF7B7D.pygtex
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\_minted-reportp2\A1BD4C46D0DC826211D54EFDA87984678F4FC8A68EDB18717177B8F8D7DF7B7D.pygtex
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\images\camera_pitch_yaw_roll.png
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\images\camera_pitch_yaw_roll.png
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\images\camera_pitch_yaw_roll.png
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\images\camera_pitch_yaw_roll.png
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\images\camera_pitch_yaw_roll.png
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\images\camera_pitch_yaw_roll.png
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\images\camera_pitch_yaw_roll.png
+INPUT C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts\tfm\lh\lh-t2a\lati1200.tfm
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\images\camera_yaw_coord.png
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\images\camera_yaw_coord.png
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\images\camera_yaw_coord.png
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\images\camera_yaw_coord.png
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\images\camera_yaw_coord.png
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\images\camera_yaw_coord.png
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\images\camera_yaw_coord.png
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\images\camera_pitch_coord.png
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\images\camera_pitch_coord.png
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\images\camera_pitch_coord.png
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\images\camera_pitch_coord.png
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\images\camera_pitch_coord.png
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\images\camera_pitch_coord.png
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\images\camera_pitch_coord.png
+INPUT C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts\tfm\lh\lh-t2a\larm0800.tfm
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\images\c4_transformation.png
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\images\c4_transformation.png
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\images\c4_transformation.png
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\images\c4_transformation.png
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\images\c4_transformation.png
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\images\c4_transformation.png
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\images\c4_transformation.png
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\images\fov.png
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\images\fov.png
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\images\fov.png
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\images\fov.png
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\images\fov.png
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\images\fov.png
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\images\fov.png
+OUTPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\reportp2.pyg
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\reportp2.pyg
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\_minted-reportp2\B8F994A06A3649BEE92DEC20461EF35C8F4FC8A68EDB18717177B8F8D7DF7B7D.pygtex
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\_minted-reportp2\B8F994A06A3649BEE92DEC20461EF35C8F4FC8A68EDB18717177B8F8D7DF7B7D.pygtex
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\_minted-reportp2\B8F994A06A3649BEE92DEC20461EF35C8F4FC8A68EDB18717177B8F8D7DF7B7D.pygtex
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\_minted-reportp2\B8F994A06A3649BEE92DEC20461EF35C8F4FC8A68EDB18717177B8F8D7DF7B7D.pygtex
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\_minted-reportp2\B8F994A06A3649BEE92DEC20461EF35C8F4FC8A68EDB18717177B8F8D7DF7B7D.pygtex
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\_minted-reportp2\B8F994A06A3649BEE92DEC20461EF35C8F4FC8A68EDB18717177B8F8D7DF7B7D.pygtex
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\_minted-reportp2\B8F994A06A3649BEE92DEC20461EF35C8F4FC8A68EDB18717177B8F8D7DF7B7D.pygtex
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\_minted-reportp2\B8F994A06A3649BEE92DEC20461EF35C8F4FC8A68EDB18717177B8F8D7DF7B7D.pygtex
+OUTPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\reportp2.pyg
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\reportp2.pyg
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\_minted-reportp2\8E2B6E34904F67F5C9C9C2048D2739E58F4FC8A68EDB18717177B8F8D7DF7B7D.pygtex
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\_minted-reportp2\8E2B6E34904F67F5C9C9C2048D2739E58F4FC8A68EDB18717177B8F8D7DF7B7D.pygtex
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\_minted-reportp2\8E2B6E34904F67F5C9C9C2048D2739E58F4FC8A68EDB18717177B8F8D7DF7B7D.pygtex
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\_minted-reportp2\8E2B6E34904F67F5C9C9C2048D2739E58F4FC8A68EDB18717177B8F8D7DF7B7D.pygtex
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\_minted-reportp2\8E2B6E34904F67F5C9C9C2048D2739E58F4FC8A68EDB18717177B8F8D7DF7B7D.pygtex
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\_minted-reportp2\8E2B6E34904F67F5C9C9C2048D2739E58F4FC8A68EDB18717177B8F8D7DF7B7D.pygtex
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\_minted-reportp2\8E2B6E34904F67F5C9C9C2048D2739E58F4FC8A68EDB18717177B8F8D7DF7B7D.pygtex
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\_minted-reportp2\8E2B6E34904F67F5C9C9C2048D2739E58F4FC8A68EDB18717177B8F8D7DF7B7D.pygtex
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\images\res_proj2.png
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\images\res_proj2.png
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\images\res_proj2.png
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\images\res_proj2.png
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\images\res_proj2.png
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\images\res_proj2.png
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\images\res_proj2.png
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\images\res_rotation.png
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\images\res_rotation.png
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\images\res_rotation.png
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\images\res_rotation.png
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\images\res_rotation.png
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\images\res_rotation.png
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\images\res_rotation.png
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\images\res_movement.png
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\images\res_movement.png
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\images\res_movement.png
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\images\res_movement.png
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\images\res_movement.png
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\images\res_movement.png
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\images\res_movement.png
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\images\res_zoom.png
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\images\res_zoom.png
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\images\res_zoom.png
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\images\res_zoom.png
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\images\res_zoom.png
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\images\res_zoom.png
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\images\res_zoom.png
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\images\web_res.png
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\images\web_res.png
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\images\web_res.png
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\images\web_res.png
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\images\web_res.png
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\images\web_res.png
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\images\web_res.png
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\reportp2.aux
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\reportp2.out
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\reportp2.out
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\reportp2.pyg
+INPUT d:\GitHub\Emscripten_OpenGL\doc\russian\report\reportp2.pyg
+INPUT C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\lh\lh-t2a\dpi600\larm0800.pk
+INPUT C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\lh\lh-t2a\dpi600\larm0800.pk
+INPUT C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\lh\lh-t2a\dpi600\lati1200.pk
+INPUT C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\lh\lh-t2a\dpi600\lati1200.pk
+INPUT C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\tcit1000.pk
+INPUT C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\tcit1000.pk
+INPUT C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\lh\lh-t2a\dpi600\larm1095.pk
+INPUT C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\lh\lh-t2a\dpi600\larm1095.pk
+INPUT C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\lh\lh-t2a\dpi600\lait1000.pk
+INPUT C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\lh\lh-t2a\dpi600\lait1000.pk
+INPUT C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\lh\lh-t2a\dpi600\latt1200.pk
+INPUT C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\lh\lh-t2a\dpi600\latt1200.pk
 INPUT C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\lh\lh-t2a\dpi600\latt1000.pk
 INPUT C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\lh\lh-t2a\dpi600\latt1000.pk
 INPUT C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\lh\lh-t2a\dpi600\larm0600.pk
 INPUT C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\lh\lh-t2a\dpi600\larm0600.pk
-INPUT C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\lh\lh-t2a\dpi600\labx1440.pk
-INPUT C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\lh\lh-t2a\dpi600\labx1440.pk
-INPUT C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\lh\lh-t2a\dpi600\latt1200.pk
-INPUT C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\lh\lh-t2a\dpi600\latt1200.pk
-INPUT C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\lh\lh-t2a\dpi600\lati1200.pk
-INPUT C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\lh\lh-t2a\dpi600\lati1200.pk
 INPUT C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\tcrm1200.pk
 INPUT C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\jknappen\ec\dpi600\tcrm1200.pk
 INPUT C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\lh\lh-t2a\dpi600\larm1200.pk
 INPUT C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\lh\lh-t2a\dpi600\larm1200.pk
-INPUT C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\lh\lh-t2a\dpi600\labx1200.pk
-INPUT C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\lh\lh-t2a\dpi600\labx1200.pk
-INPUT C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\lh\lh-t2a\dpi600\labx1728.pk
-INPUT C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\lh\lh-t2a\dpi600\labx1728.pk
 INPUT C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\lh\lh-t2a\dpi600\larm1440.pk
 INPUT C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\lh\lh-t2a\dpi600\larm1440.pk
-INPUT C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\lh\lh-t2a\dpi600\labx2074.pk
-INPUT C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\lh\lh-t2a\dpi600\labx2074.pk
+INPUT C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\lh\lh-t2a\dpi600\labx1728.pk
+INPUT C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\lh\lh-t2a\dpi600\labx1728.pk
+INPUT C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\lh\lh-t2a\dpi600\labx1200.pk
+INPUT C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\lh\lh-t2a\dpi600\labx1200.pk
+INPUT C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\lh\lh-t2a\dpi600\labx1440.pk
+INPUT C:\Users\alexc\AppData\Local\MiKTeX\2.9\fonts\pk\ljfour\lh\lh-t2a\dpi600\labx1440.pk
+INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmex10.pfb
+INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmex10.pfb
+INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmmi12.pfb
+INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmmi12.pfb
+INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmmi8.pfb
+INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmmi8.pfb
+INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmr12.pfb
+INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmr12.pfb
+INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmr17.pfb
+INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmr17.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmsy10.pfb
 INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmsy10.pfb
+INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmsy8.pfb
+INPUT C:\Program Files\MiKTeX 2.9\fonts\type1\public\amsfonts\cm\cmsy8.pfb

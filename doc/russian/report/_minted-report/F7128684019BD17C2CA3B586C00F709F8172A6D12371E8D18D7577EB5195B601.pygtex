@@ -1,0 +1,26 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c}{\PYGZsh{} adding executable}
+\PYG{n+nb}{add\PYGZus{}executable}\PYG{p}{(}\PYG{o}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{PROJECT\PYGZus{}NAME}\PYG{o}{\PYGZcb{}} 
+                \PYG{o}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{\PYGZdl{}\PYGZob{}PROJECT\PYGZus{}NAME}\PYG{o}{\PYGZcb{}}\PYG{l+s}{\PYGZus{}MAIN\PYGZcb{}} 
+                \PYG{o}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{\PYGZdl{}\PYGZob{}PROJECT\PYGZus{}NAME}\PYG{o}{\PYGZcb{}}\PYG{l+s}{\PYGZus{}SOURCES\PYGZcb{}}
+                \PYG{o}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{\PYGZdl{}\PYGZob{}PROJECT\PYGZus{}NAME}\PYG{o}{\PYGZcb{}}\PYG{l+s}{\PYGZus{}INCLUDES\PYGZcb{}}
+                \PYG{o}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{CFG\PYGZus{}FILES}\PYG{o}{\PYGZcb{}}
+                \PYG{o}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{ASSETS}\PYG{o}{\PYGZcb{}}
+            \PYG{p}{)}
+\PYG{n+nb}{target\PYGZus{}link\PYGZus{}libraries}\PYG{p}{(}\PYG{o}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{PROJECT\PYGZus{}NAME}\PYG{o}{\PYGZcb{}} 
+                        \PYG{o}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{LIBS}\PYG{o}{\PYGZcb{}}
+                        \PYG{o}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{DEP\PYGZus{}LIBS}\PYG{o}{\PYGZcb{}} 
+                        \PYG{o}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{DEP\PYGZus{}EMSDK\PYGZus{}LIBS}\PYG{o}{\PYGZcb{}} 
+                        \PYG{o}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{INTERFACE\PYGZus{}LIB}\PYG{o}{\PYGZcb{}}
+                    \PYG{p}{)} 
+\PYG{n+nb}{target\PYGZus{}include\PYGZus{}directories}\PYG{p}{(}
+    \PYG{o}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{PROJECT\PYGZus{}NAME}\PYG{o}{\PYGZcb{}} \PYG{l+s}{PUBLIC}
+    \PYG{o}{\PYGZdl{}\PYGZlt{}}\PYG{n+nv}{BUILD\PYGZus{}INTERFACE:\PYGZdl{}\PYGZob{}PROJECT\PYGZus{}SOURCE\PYGZus{}DIR\PYGZcb{}/application/includes}\PYG{o}{\PYGZgt{}}
+    \PYG{o}{\PYGZdl{}\PYGZlt{}}\PYG{n+nv}{INSTALL\PYGZus{}INTERFACE:\PYGZdl{}\PYGZob{}PROJECT\PYGZus{}SOURCE\PYGZus{}DIR\PYGZcb{}/application/includes}\PYG{o}{\PYGZgt{}}
+\PYG{p}{)} 
+
+\PYG{n+nb}{if} \PYG{p}{(}\PYG{l+s}{NOT} \PYG{l+s}{FOR\PYGZus{}EMSDK}\PYG{p}{)}
+    \PYG{n+nb}{find\PYGZus{}package}\PYG{p}{(}\PYG{l+s}{OpenGL} \PYG{l+s}{REQUIRED}\PYG{p}{)}
+    \PYG{n+nb}{target\PYGZus{}link\PYGZus{}libraries}\PYG{p}{(}\PYG{o}{\PYGZdl{}\PYGZob{}}\PYG{n+nv}{PROJECT\PYGZus{}NAME}\PYG{o}{\PYGZcb{}} \PYG{l+s}{OpenGL::GL}\PYG{p}{)}
+\PYG{n+nb}{endif}\PYG{p}{()}
+\end{Verbatim}

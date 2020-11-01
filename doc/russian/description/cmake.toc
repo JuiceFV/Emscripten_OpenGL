@@ -1,0 +1,4 @@
+\babel@toc {english}{}
+\contentsline {section}{\numberline {1}\IeC {\CYRV }\IeC {\cyrv }\IeC {\cyro }\IeC {\cyrd }\IeC {\cyrn }\IeC {\cyro }\IeC {\cyre } \IeC {\cyrs }\IeC {\cyrl }\IeC {\cyro }\IeC {\cyrv }\IeC {\cyro }}{2}{section.1}%
+\contentsline {section}{\numberline {2}\IeC {\CYRI }\IeC {\cyrz }\IeC {\cyrm }\IeC {\cyre }\IeC {\cyrn }\IeC {\cyre }\IeC {\cyrn }\IeC {\cyri }\IeC {\cyrya }}{3}{section.2}%
+\contentsline {section}{\numberline {3}\IeC {\CYRO }\IeC {\cyrs }\IeC {\cyrn }\IeC {\cyro }\IeC {\cyrv }\IeC {\cyrn }\IeC {\cyro }\IeC {\cyrishrt } CMakeList.txt}{4}{section.3}%

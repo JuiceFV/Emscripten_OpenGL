@@ -222,6 +222,18 @@
     \newpage
     \section{Что изминилось и новый функционал.}
     \label{sec:fickle}
+    \begin{itemize}
+      \item Я убрал \colorbox{gray!25!}{\texttt{git submodules}}, чтобы 
+      избежать ошибок в будущем. В данном проекте используются:
+      \begin{itemize}
+        \item \href{https://github.com/glfw/glfw/releases/tag/3.3.2}{GLFW 3.3.2} API для OpenGL.
+        \item \href{https://github.com/nigels-com/glew/releases/tag/glew-2.1.0}{GLEW 2.1.0} для низкоуровневого взаимодействия с OpenGL.
+        \item \href{https://github.com/SpartanJ/SOIL2/releases/tag/release-1.20}{SOIL 1.20} библиотека для загрузки изображений.
+        \item \href{https://github.com/g-truc/glm/releases/tag/0.9.9.8}{GLM 0.9.9.8} библиотека для удобной работы с линейной алгеброй и OpenGL.
+        \item \href{https://github.com/emscripten-core/emsdk/releases/tag/2.0.7}{EMSDK 2.0.7} emscripten compiler.
+        \item \href{https://github.com/jbeder/yaml-cpp/releases/tag/yaml-cpp-0.6.3}{YAML-CPP 0.6.3} библиотека для работы с YAML файлами.
+      \end{itemize}
+    \end{itemize}
     \newpage
     \section{Установка, Сборка и Запуск}
     Я сразу хочу подметить, что проект не создавался как кроссплатформенное
@@ -261,7 +273,7 @@
     \textcolor{red}{Вся работа происходит через cmd/terminal!}
 
     \begin{enumerate}
-        \item \texttt{> git clone ---recursive https://github.com/JuiceFV/Emscripten\_OpenGL.git}
+        \item \texttt{> git clone https://github.com/JuiceFV/Emscripten\_OpenGL.git}
         \item \texttt{> cd Emscripten\_OpenGL}
         \item Сейчас, если вы в cmd наберёте \colorbox{gray!25!}{\texttt{tree .}}
         то получите более развёрнутую версию этого дерева (здесь приведено всё

@@ -1,0 +1,14 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kt}{void} \PYG{n}{Shader}\PYG{o}{::}\PYG{n}{set1i}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{value}\PYG{p}{,} \PYG{k}{const} \PYG{k+kt}{char} \PYG{o}{*}\PYG{n}{name}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+    \PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{Use}\PYG{p}{();}
+    \PYG{n}{glUniform1i}\PYG{p}{(}\PYG{n}{glGetUniformLocation}\PYG{p}{(}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{program}\PYG{p}{,} \PYG{n}{name}\PYG{p}{),} \PYG{n}{value}\PYG{p}{);}
+    \PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{Unuse}\PYG{p}{();}
+\PYG{p}{\PYGZcb{}}
+\PYG{k+kt}{void} \PYG{n}{Shader}\PYG{o}{::}\PYG{n}{setMat4fv}\PYG{p}{(}\PYG{n}{glm}\PYG{o}{::}\PYG{n}{mat4} \PYG{n}{value}\PYG{p}{,} \PYG{k}{const} \PYG{k+kt}{char} \PYG{o}{*}\PYG{n}{name}\PYG{p}{,} \PYG{k+kt}{unsigned} \PYG{k+kt}{char} \PYG{n}{transpose}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+    \PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{Use}\PYG{p}{();}
+    \PYG{n}{glUniformMatrix4fv}\PYG{p}{(}\PYG{n}{glGetUniformLocation}\PYG{p}{(}\PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{program}\PYG{p}{,} \PYG{n}{name}\PYG{p}{),} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{transpose}\PYG{p}{,} \PYG{n}{glm}\PYG{o}{::}\PYG{n}{value\PYGZus{}ptr}\PYG{p}{(}\PYG{n}{value}\PYG{p}{));}
+    \PYG{k}{this}\PYG{o}{\PYGZhy{}\PYGZgt{}}\PYG{n}{Unuse}\PYG{p}{();}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

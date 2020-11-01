@@ -1,0 +1,104 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{const} \PYG{n}{GLuint} \PYG{n}{WIDTH} \PYG{o}{=} \PYG{l+m+mi}{800}\PYG{p}{,} \PYG{n}{HEIGHT} \PYG{o}{=} \PYG{l+m+mi}{600}\PYG{p}{;}
+\PYG{k+kt}{int} \PYG{n}{SCREEN\PYGZus{}WIDTH}\PYG{p}{,} \PYG{n}{SCREEN\PYGZus{}HEIGHT}\PYG{p}{;}
+\PYG{c+c1}{// Function prototypes}
+\PYG{k+kt}{void} \PYG{n+nf}{KeyCallback}\PYG{p}{(}\PYG{n}{GLFWwindow} \PYG{o}{*}\PYG{n}{window}\PYG{p}{,} \PYG{k+kt}{int} \PYG{n}{key}\PYG{p}{,} \PYG{k+kt}{int} \PYG{n}{scancode}\PYG{p}{,} \PYG{k+kt}{int} \PYG{n}{action}\PYG{p}{,} \PYG{k+kt}{int} \PYG{n}{mode}\PYG{p}{);}
+\PYG{k+kt}{void} \PYG{n+nf}{ScrollCallback}\PYG{p}{(}\PYG{n}{GLFWwindow} \PYG{o}{*}\PYG{n}{window}\PYG{p}{,} \PYG{k+kt}{double} \PYG{n}{xOffset}\PYG{p}{,} \PYG{k+kt}{double}\PYG{p}{);}
+\PYG{k+kt}{void} \PYG{n+nf}{MouseCallback}\PYG{p}{(}\PYG{n}{GLFWwindow} \PYG{o}{*}\PYG{n}{window}\PYG{p}{,} \PYG{k+kt}{double} \PYG{n}{xPos}\PYG{p}{,} \PYG{k+kt}{double} \PYG{n}{yPos}\PYG{p}{);}
+\PYG{k+kt}{void} \PYG{n+nf}{DoMovement}\PYG{p}{();}
+\PYG{n}{Camera} \PYG{n+nf}{camera}\PYG{p}{(}\PYG{n}{glm}\PYG{o}{::}\PYG{n}{vec3}\PYG{p}{(}\PYG{l+m+mf}{0.0f}\PYG{p}{,} \PYG{l+m+mf}{0.0f}\PYG{p}{,} \PYG{l+m+mf}{3.0f}\PYG{p}{));}
+\PYG{n}{GLfloat} \PYG{n}{lastX} \PYG{o}{=} \PYG{n}{WIDTH} \PYG{o}{/} \PYG{l+m+mf}{2.0}\PYG{p}{;}
+\PYG{n}{GLfloat} \PYG{n}{lastY} \PYG{o}{=} \PYG{n}{HEIGHT} \PYG{o}{/} \PYG{l+m+mf}{2.0}\PYG{p}{;}
+\PYG{k+kt}{bool} \PYG{n}{keys}\PYG{p}{[}\PYG{l+m+mi}{1024}\PYG{p}{];}
+\PYG{k+kt}{bool} \PYG{n}{firstMouse} \PYG{o}{=} \PYG{n+nb}{true}\PYG{p}{;}
+\PYG{n}{GLfloat} \PYG{n}{deltaTime} \PYG{o}{=} \PYG{l+m+mf}{0.0f}\PYG{p}{;}
+\PYG{n}{GLfloat} \PYG{n}{lastFrame} \PYG{o}{=} \PYG{l+m+mf}{0.0f}\PYG{p}{;}
+\PYG{k+kt}{int} \PYG{n+nf}{main}\PYG{p}{()}
+\PYG{p}{\PYGZob{}}
+ \PYG{p}{...}
+    \PYG{n}{Texture} \PYG{n}{texture}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}assets/images/image1.jpg\PYGZdq{}}\PYG{p}{,} \PYG{n}{GL\PYGZus{}TEXTURE\PYGZus{}2D}\PYG{p}{);}
+\PYG{c+cp}{\PYGZsh{}ifdef \PYGZus{}\PYGZus{}EMSCRIPTEN\PYGZus{}\PYGZus{}}
+    \PYG{n}{std}\PYG{o}{::}\PYG{n}{function}\PYG{o}{\PYGZlt{}}\PYG{k+kt}{void}\PYG{p}{()}\PYG{o}{\PYGZgt{}} \PYG{n}{mainLoop} \PYG{o}{=} \PYG{p}{[}\PYG{o}{\PYGZam{}}\PYG{p}{]()} \PYG{p}{\PYGZob{}}
+\PYG{c+cp}{\PYGZsh{}else}
+    \PYG{k}{while} \PYG{p}{(}\PYG{o}{!}\PYG{n}{glfwWindowShouldClose}\PYG{p}{(}\PYG{n}{window}\PYG{p}{))}
+    \PYG{p}{\PYGZob{}}
+\PYG{c+cp}{\PYGZsh{}endif}
+\PYG{p}{...}
+        \PYG{n}{glm}\PYG{o}{::}\PYG{n}{mat4} \PYG{n}{projection}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{);}
+        \PYG{n}{projection} \PYG{o}{=} \PYG{n}{glm}\PYG{o}{::}\PYG{n}{perspective}\PYG{p}{(}\PYG{n}{glm}\PYG{o}{::}\PYG{n}{radians}\PYG{p}{(}\PYG{n}{camera}\PYG{p}{.}\PYG{n}{GetZoom}\PYG{p}{()),}
+                    \PYG{p}{(}\PYG{n}{GLfloat}\PYG{p}{)}\PYG{n}{SCREEN\PYGZus{}WIDTH} \PYG{o}{/} \PYG{p}{(}\PYG{n}{GLfloat}\PYG{p}{)}\PYG{n}{SCREEN\PYGZus{}HEIGHT}\PYG{p}{,} \PYG{l+m+mf}{0.1f}\PYG{p}{,} \PYG{l+m+mf}{1000.0f}\PYG{p}{);}
+        \PYG{c+c1}{// Create camera transformation}
+        \PYG{n}{glm}\PYG{o}{::}\PYG{n}{mat4} \PYG{n}{view}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{);}
+        \PYG{n}{view} \PYG{o}{=} \PYG{n}{camera}\PYG{p}{.}\PYG{n}{GetViewMatrix}\PYG{p}{();}
+        \PYG{c+c1}{// Pass the matrices to the shader}
+        \PYG{n}{ourShader}\PYG{p}{.}\PYG{n}{setMat4fv}\PYG{p}{(}\PYG{n}{view}\PYG{p}{,} \PYG{l+s}{\PYGZdq{}view\PYGZdq{}}\PYG{p}{);}
+        \PYG{n}{ourShader}\PYG{p}{.}\PYG{n}{setMat4fv}\PYG{p}{(}\PYG{n}{projection}\PYG{p}{,} \PYG{l+s}{\PYGZdq{}projection\PYGZdq{}}\PYG{p}{);}
+        \PYG{n}{glBindVertexArray}\PYG{p}{(}\PYG{n}{VAO}\PYG{p}{);}
+        \PYG{k}{for} \PYG{p}{(}\PYG{n}{GLuint} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;} \PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{l+m+mi}{10}\PYG{p}{;} \PYG{n}{i}\PYG{o}{++}\PYG{p}{)}
+        \PYG{p}{\PYGZob{}}
+            \PYG{c+c1}{// Calculate the model matrix for each object and pass it to shader before drawing}
+            \PYG{n}{glm}\PYG{o}{::}\PYG{n}{mat4} \PYG{n}{model}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{);}
+            \PYG{n}{model} \PYG{o}{=} \PYG{n}{glm}\PYG{o}{::}\PYG{n}{translate}\PYG{p}{(}\PYG{n}{model}\PYG{p}{,} \PYG{n}{cubePositions}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]);}
+            \PYG{n}{GLfloat} \PYG{n}{angle} \PYG{o}{=} \PYG{l+m+mf}{20.0f} \PYG{o}{*} \PYG{n}{i}\PYG{p}{;}
+            \PYG{n}{model} \PYG{o}{=} \PYG{n}{glm}\PYG{o}{::}\PYG{n}{rotate}\PYG{p}{(}\PYG{n}{model}\PYG{p}{,} \PYG{n}{angle}\PYG{p}{,} \PYG{n}{glm}\PYG{o}{::}\PYG{n}{vec3}\PYG{p}{(}\PYG{l+m+mf}{1.0f}\PYG{p}{,} \PYG{l+m+mf}{0.3f}\PYG{p}{,} \PYG{l+m+mf}{0.5f}\PYG{p}{));}
+            \PYG{n}{ourShader}\PYG{p}{.}\PYG{n}{setMat4fv}\PYG{p}{(}\PYG{n}{model}\PYG{p}{,} \PYG{l+s}{\PYGZdq{}model\PYGZdq{}}\PYG{p}{);}
+            \PYG{n}{ourShader}\PYG{p}{.}\PYG{n}{Use}\PYG{p}{();}
+            \PYG{n}{glDrawArrays}\PYG{p}{(}\PYG{n}{GL\PYGZus{}TRIANGLES}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{36}\PYG{p}{);}
+        \PYG{p}{\PYGZcb{}}
+\PYG{p}{...}
+\PYG{c+cp}{\PYGZsh{}ifdef \PYGZus{}\PYGZus{}EMSCRIPTEN\PYGZus{}\PYGZus{}}
+    \PYG{p}{\PYGZcb{};}
+    \PYG{n}{emscripten\PYGZus{}set\PYGZus{}main\PYGZus{}loop\PYGZus{}arg}\PYG{p}{(}\PYG{n}{dispatch\PYGZus{}main}\PYG{p}{,} \PYG{o}{\PYGZam{}}\PYG{n}{mainLoop}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{);}
+\PYG{c+cp}{\PYGZsh{}else}
+    \PYG{p}{\PYGZcb{}}
+\PYG{c+cp}{\PYGZsh{}endif}
+\PYG{p}{...}
+\PYG{p}{\PYGZcb{}}
+\PYG{c+c1}{// Moves/alters the camera positions based on user input}
+\PYG{k+kt}{void} \PYG{n+nf}{DoMovement}\PYG{p}{()}
+\PYG{p}{\PYGZob{}}
+    \PYG{c+c1}{// Camera controls}
+    \PYG{k}{if} \PYG{p}{(}\PYG{n}{keys}\PYG{p}{[}\PYG{n}{GLFW\PYGZus{}KEY\PYGZus{}W}\PYG{p}{]} \PYG{o}{||} \PYG{n}{keys}\PYG{p}{[}\PYG{n}{GLFW\PYGZus{}KEY\PYGZus{}UP}\PYG{p}{])} \PYG{p}{\PYGZob{}} \PYG{n}{camera}\PYG{p}{.}\PYG{n}{ProcessKeyboard}\PYG{p}{(}\PYG{n}{FORWARD}\PYG{p}{,} \PYG{n}{deltaTime}\PYG{p}{);} \PYG{p}{\PYGZcb{}}
+    \PYG{k}{if} \PYG{p}{(}\PYG{n}{keys}\PYG{p}{[}\PYG{n}{GLFW\PYGZus{}KEY\PYGZus{}S}\PYG{p}{]} \PYG{o}{||} \PYG{n}{keys}\PYG{p}{[}\PYG{n}{GLFW\PYGZus{}KEY\PYGZus{}DOWN}\PYG{p}{])} \PYG{p}{\PYGZob{}} \PYG{n}{camera}\PYG{p}{.}\PYG{n}{ProcessKeyboard}\PYG{p}{(}\PYG{n}{BACKWARD}\PYG{p}{,} \PYG{n}{deltaTime}\PYG{p}{);} \PYG{p}{\PYGZcb{}}
+    \PYG{k}{if} \PYG{p}{(}\PYG{n}{keys}\PYG{p}{[}\PYG{n}{GLFW\PYGZus{}KEY\PYGZus{}A}\PYG{p}{]} \PYG{o}{||} \PYG{n}{keys}\PYG{p}{[}\PYG{n}{GLFW\PYGZus{}KEY\PYGZus{}LEFT}\PYG{p}{])} \PYG{p}{\PYGZob{}} \PYG{n}{camera}\PYG{p}{.}\PYG{n}{ProcessKeyboard}\PYG{p}{(}\PYG{n}{LEFT}\PYG{p}{,} \PYG{n}{deltaTime}\PYG{p}{);} \PYG{p}{\PYGZcb{}}
+    \PYG{k}{if} \PYG{p}{(}\PYG{n}{keys}\PYG{p}{[}\PYG{n}{GLFW\PYGZus{}KEY\PYGZus{}D}\PYG{p}{]} \PYG{o}{||} \PYG{n}{keys}\PYG{p}{[}\PYG{n}{GLFW\PYGZus{}KEY\PYGZus{}RIGHT}\PYG{p}{])} \PYG{p}{\PYGZob{}} \PYG{n}{camera}\PYG{p}{.}\PYG{n}{ProcessKeyboard}\PYG{p}{(}\PYG{n}{RIGHT}\PYG{p}{,} \PYG{n}{deltaTime}\PYG{p}{);} \PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{c+c1}{// Is called whenever a key is pressed/released via GLFW}
+\PYG{k+kt}{void} \PYG{n+nf}{KeyCallback}\PYG{p}{(}\PYG{n}{GLFWwindow} \PYG{o}{*}\PYG{n}{window}\PYG{p}{,} \PYG{k+kt}{int} \PYG{n}{key}\PYG{p}{,} \PYG{k+kt}{int} \PYG{n}{scancode}\PYG{p}{,} \PYG{k+kt}{int} \PYG{n}{action}\PYG{p}{,} \PYG{k+kt}{int} \PYG{n}{mode}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+    \PYG{k}{if} \PYG{p}{(}\PYG{n}{key} \PYG{o}{==} \PYG{n}{GLFW\PYGZus{}KEY\PYGZus{}ESCAPE} \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{n}{action} \PYG{o}{==} \PYG{n}{GLFW\PYGZus{}PRESS}\PYG{p}{)} \PYG{p}{\PYGZob{}} \PYG{n}{glfwSetWindowShouldClose}\PYG{p}{(}\PYG{n}{window}\PYG{p}{,} \PYG{n}{GL\PYGZus{}TRUE}\PYG{p}{);} \PYG{p}{\PYGZcb{}}
+
+    \PYG{k}{if} \PYG{p}{(}\PYG{n}{key} \PYG{o}{\PYGZgt{}=} \PYG{l+m+mi}{0} \PYG{o}{\PYGZam{}\PYGZam{}} \PYG{n}{key} \PYG{o}{\PYGZlt{}} \PYG{l+m+mi}{1024}\PYG{p}{)}
+    \PYG{p}{\PYGZob{}}
+        \PYG{k}{if} \PYG{p}{(}\PYG{n}{action} \PYG{o}{==} \PYG{n}{GLFW\PYGZus{}PRESS}\PYG{p}{)} \PYG{p}{\PYGZob{}} \PYG{n}{keys}\PYG{p}{[}\PYG{n}{key}\PYG{p}{]} \PYG{o}{=} \PYG{n+nb}{true}\PYG{p}{;} \PYG{p}{\PYGZcb{}}
+        \PYG{k}{else} \PYG{k}{if} \PYG{p}{(}\PYG{n}{action} \PYG{o}{==} \PYG{n}{GLFW\PYGZus{}RELEASE}\PYG{p}{)}
+        \PYG{p}{\PYGZob{}}
+            \PYG{n}{keys}\PYG{p}{[}\PYG{n}{key}\PYG{p}{]} \PYG{o}{=} \PYG{n+nb}{false}\PYG{p}{;}
+        \PYG{p}{\PYGZcb{}}
+    \PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{k+kt}{void} \PYG{n+nf}{MouseCallback}\PYG{p}{(}\PYG{n}{GLFWwindow} \PYG{o}{*}\PYG{n}{window}\PYG{p}{,} \PYG{k+kt}{double} \PYG{n}{xPos}\PYG{p}{,} \PYG{k+kt}{double} \PYG{n}{yPos}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+    \PYG{k}{if} \PYG{p}{(}\PYG{n}{firstMouse}\PYG{p}{)}
+    \PYG{p}{\PYGZob{}}
+        \PYG{n}{lastX} \PYG{o}{=} \PYG{n}{xPos}\PYG{p}{;}
+        \PYG{n}{lastY} \PYG{o}{=} \PYG{n}{yPos}\PYG{p}{;}
+        \PYG{n}{firstMouse} \PYG{o}{=} \PYG{n+nb}{false}\PYG{p}{;}
+    \PYG{p}{\PYGZcb{}}
+
+    \PYG{n}{GLfloat} \PYG{n}{xOffset} \PYG{o}{=} \PYG{n}{xPos} \PYG{o}{\PYGZhy{}} \PYG{n}{lastX}\PYG{p}{;}
+    \PYG{n}{GLfloat} \PYG{n}{yOffset} \PYG{o}{=} \PYG{n}{lastY} \PYG{o}{\PYGZhy{}} \PYG{n}{yPos}\PYG{p}{;} \PYG{c+c1}{// Reversed since y\PYGZhy{}coordinates go from bottom to left}
+
+    \PYG{n}{lastX} \PYG{o}{=} \PYG{n}{xPos}\PYG{p}{;}
+    \PYG{n}{lastY} \PYG{o}{=} \PYG{n}{yPos}\PYG{p}{;}
+
+    \PYG{n}{camera}\PYG{p}{.}\PYG{n}{ProcessMouseMovement}\PYG{p}{(}\PYG{n}{xOffset}\PYG{p}{,} \PYG{n}{yOffset}\PYG{p}{);}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{k+kt}{void} \PYG{n+nf}{ScrollCallback}\PYG{p}{(}\PYG{n}{GLFWwindow} \PYG{o}{*}\PYG{n}{window}\PYG{p}{,} \PYG{k+kt}{double} \PYG{n}{xOffset}\PYG{p}{,} \PYG{k+kt}{double} \PYG{n}{yOffset}\PYG{p}{)}
+\PYG{p}{\PYGZob{}}
+   \PYG{n}{camera}\PYG{p}{.}\PYG{n}{ProcessMouseScroll}\PYG{p}{(}\PYG{n}{yOffset}\PYG{p}{);}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}
