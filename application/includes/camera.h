@@ -29,7 +29,7 @@ enum Camera_Movement
 const float YAW = -90.0f;
 const float PITCH = 0.0f;
 const float SPEED = 6.0f;
-const float SENSITIVTY = 0.25f;
+const float SENSITIVTY = 0.15f;
 const float ZOOM = 45.0f;
 
 // An abstract camera class that processes input and calculates the corresponding Eular Angles, Vectors and Matrices for
