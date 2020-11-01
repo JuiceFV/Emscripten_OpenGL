@@ -6,9 +6,9 @@ Texture::Texture(const char *file_name, unsigned int type)
 
     unsigned char *image = SOIL_load_image(file_name, &this->width, &this->height, NULL, SOIL_LOAD_RGBA);
 
+    // generate texture names
     glGenTextures(1, &this->id);
     glBindTexture(type, this->id);
-
     // Set our texture parameters
     glTexParameteri(type, GL_TEXTURE_WRAP_S, GL_REPEAT);
     glTexParameteri(type, GL_TEXTURE_WRAP_T, GL_REPEAT);
@@ -18,12 +18,14 @@ Texture::Texture(const char *file_name, unsigned int type)
 
     if (image)
     {
+    	// specify 2d img
         glTexImage2D(type, 0, GL_RGBA, this->width, this->height, 0, GL_RGBA, GL_UNSIGNED_BYTE, image);
         glGenerateMipmap(type);
     }
     else
     {
-        std::cout << "ERROR::TEXTURE::TEXTURE_LOADING_FAILED: " << file_name << "\n";
+        std::cerr << "An error has occured in the " << __FILE__ << " in line " << __LINE__ << "." << std::endl
+                  << "Error occured in the: " << file_name << std::endl;
     }
 
     glActiveTexture(0);
