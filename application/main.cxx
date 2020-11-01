@@ -9,18 +9,17 @@
 #include <GL/glew.h>
 #endif
 
-#include "shader.h"
 #include "camera.h"
+#include "shader.h"
 #include "texture.h"
 #include <GLFW/glfw3.h>
+#include <SOIL2.h>
 #include <functional>
 #include <iostream>
-#include <SOIL2.h>
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
-
 
 #ifdef __EMSCRIPTEN__
 static void dispatch_main(void *fp)
@@ -35,7 +34,7 @@ int SCREEN_WIDTH, SCREEN_HEIGHT;
 
 // Function prototypes
 void KeyCallback(GLFWwindow *window, int key, int scancode, int action, int mode);
-void ScrollCallback(GLFWwindow *window, double xOffset, double );
+void ScrollCallback(GLFWwindow *window, double xOffset, double);
 void MouseCallback(GLFWwindow *window, double xPos, double yPos);
 void DoMovement();
 
@@ -105,8 +104,8 @@ int main()
     Shader ourShader("assets/shaders/core.wvs", "assets/shaders/core.wfrag");
 #endif
     GLfloat vertices[] = {
-        -0.5f, -0.5f, -0.5f, 0.0f, 0.0f, 0.5f,  -0.5f, -0.5f, 1.0f, 0.0f, 0.5f,  0.5f,  -0.5f, 1.0f, 1.0f,
-        0.5f,  0.5f,  -0.5f, 1.0f, 1.0f, -0.5f, 0.5f,  -0.5f, 0.0f, 1.0f, -0.5f, -0.5f, -0.5f, 0.0f, 0.0f,
+        -0.5f, -0.5f, -0.5f,  0.0f, 0.0f, 0.5f,  -0.5f, -0.5f, 1.0f, 0.0f, 0.5f,  0.5f,  -0.5f, 1.0f, 1.0f,
+        0.5f,  0.5f,  -0.5f,  1.0f, 1.0f, -0.5f, 0.5f,  -0.5f, 0.0f, 1.0f, -0.5f, -0.5f, -0.5f, 0.0f, 0.0f,
 
         -0.5f, -0.5f, 0.5f,  0.0f, 0.0f, 0.5f,  -0.5f, 0.5f,  1.0f, 0.0f, 0.5f,  0.5f,  0.5f,  1.0f, 1.0f,
         0.5f,  0.5f,  0.5f,  1.0f, 1.0f, -0.5f, 0.5f,  0.5f,  0.0f, 1.0f, -0.5f, -0.5f, 0.5f,  0.0f, 0.0f,
@@ -175,7 +174,7 @@ int main()
         ourShader.set1i(0, "ourTexture1");
 
         glm::mat4 projection(1);
-        projection = glm::perspective(camera.GetZoom(), (GLfloat)SCREEN_WIDTH / (GLfloat)SCREEN_HEIGHT, 0.1f, 1000.0f);
+        projection = glm::perspective(glm::radians(camera.GetZoom()), (GLfloat)SCREEN_WIDTH / (GLfloat)SCREEN_HEIGHT, 0.1f, 1000.0f);
 
         // Create camera transformation
         glm::mat4 view(1);
@@ -187,7 +186,7 @@ int main()
 
         glBindVertexArray(VAO);
 
-        for (GLuint i = 0; i < 10; i++)
+        for (GLuint i = 0; i < 1; i++)
         {
             // Calculate the model matrix for each object and pass it to shader before drawing
             glm::mat4 model(1);
@@ -197,10 +196,8 @@ int main()
             ourShader.setMat4fv(model, "model");
             ourShader.Use();
 
-
             glDrawArrays(GL_TRIANGLES, 0, 36);
         }
-
 
         glBindVertexArray(0);
 
