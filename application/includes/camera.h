@@ -17,7 +17,7 @@
 
 // Defines several possible options for camera movement. Used as abstraction to stay away from window-system specific
 // input methods
-enum Camera_Movement
+enum class Camera_Movement
 {
     FORWARD,
     BACKWARD,
@@ -26,11 +26,11 @@ enum Camera_Movement
 };
 
 // Default camera values
-const float YAW = -90.0f;
-const float PITCH = 0.0f;
-const float SPEED = 6.0f;
-const float SENSITIVTY = 0.15f;
-const float ZOOM = 45.0f;
+constexpr float YAW = -90.0f;
+constexpr float PITCH = 0.0f;
+constexpr float SPEED = 6.0f;
+constexpr float SENSITIVTY = 0.15f;
+constexpr float ZOOM = 45.0f;
 
 // An abstract camera class that processes input and calculates the corresponding Eular Angles, Vectors and Matrices for
 // use in OpenGL
@@ -57,9 +57,15 @@ class Camera
     // Processes input received from a mouse scroll-wheel event. Only requires input on the vertical wheel-axis
     void ProcessMouseScroll(float y_offset);
 
-    float GetZoom();
+    float GetZoom() const;
+
+    glm::vec3 GetPosition() const;
+
+    glm::vec3 GetFront() const;
 
   private:
+    glm::mat4 view_matrix;
+
     // Camera Attributes
     glm::vec3 position;
     glm::vec3 front;
