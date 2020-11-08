@@ -51,6 +51,9 @@ set(${PROJECT_NAME}_SOURCES
                 "application/sources/camera.cpp"
                 "application/sources/texture.cpp"
                 "application/sources/application.cpp"
+                "application/sources/mesh.cpp"
+                "application/sources/model.cpp"
+                "application/sources/light.cpp"
             )
 set(${PROJECT_NAME}_INCLUDES 
                 "application/includes/shader.h"
@@ -58,28 +61,30 @@ set(${PROJECT_NAME}_INCLUDES
                 "application/includes/texture.h"
                 "application/includes/vertex.h"
                 "application/includes/application.h"
+                "application/includes/mesh.h"
+                "application/includes/light.h"
+                "application/includes/model.h"
             )
 set(${PROJECT_NAME}_MAIN "application/main.cxx")
 
+# I've moved the group's functions to the another cmake file.
+include(groupfunctions)
+
+# Look for additional files related to the program
+# 1. The configuration files, which configures the entire application
+# 2. The images (especially for develop process), after I will remove this
+# 3. The models ...
 file(GLOB_RECURSE CFG_FILES ${CMAKE_SOURCE_DIR}/config/*.yaml)
-file(GLOB_RECURSE ASSETS ${CMAKE_SOURCE_DIR}/assets/*)
+file(GLOB_RECURSE SHADERS ${CMAKE_SOURCE_DIR}/assets/shaders/*)
+file(GLOB_RECURSE IMAGES ${CMAKE_SOURCE_DIR}/assets/images/*)
+file(GLOB_RECURSE MODELS ${CMAKE_SOURCE_DIR}/assets/models/*)
 
-source_group("Config Files" FILES ${CFG_FILES})
-
-function(assign_source_group)
-    foreach(_source IN ITEMS ${ARGN})
-        if (IS_ABSOLUTE "${_source}")
-            file(RELATIVE_PATH _source_rel 
-                "${CMAKE_CURRENT_SOURCE_DIR}" "${_source}")
-        else()
-            set(_source_rel "${_source}")
-        endif()
-        get_filename_component(_source_path "${_source_rel}" PATH)
-        string(REPLACE "/" "\\" _source_path_msvc "${_source_path}")
-        source_group("${_source_path_msvc}" FILES "${_source}")
-    endforeach()
-endfunction(assign_source_group)
-assign_source_group(${ASSETS})
+# Group files for the proper representation in Visual Studio
+if(MSVC)
+	source_group("Config Files" FILES ${CFG_FILES})
+	assign_source_group(${SHADERS})
+	assign_source_group(${IMAGES})
+endif()
 #====================================================================================# 
 
 #============================= Include additional cmake-files =======================# 
@@ -97,6 +102,7 @@ include(configloader)
 # Not in-build emscripten libraries, 
 set(DEP_EMSDK_LIBS
     soil2
+    assimp
 )
 
 # The libraries, required by application, however they are already built in emscripten
@@ -113,6 +119,7 @@ set(LIBS
     ConfigLoader
 )
 
+# Interfaced libraries
 set(INTERFACE_LIB 
     glm 
 )
@@ -128,7 +135,8 @@ if (NOT ENABLE_TESTS)
                     ${${PROJECT_NAME}_SOURCES}
                     ${${PROJECT_NAME}_INCLUDES}
                     ${CFG_FILES}
-                    ${ASSETS}
+                    ${SHADERS}
+                    ${IMAGES}
                 )
     target_link_libraries(${PROJECT_NAME} 
                             ${LIBS}
@@ -182,22 +190,6 @@ if (NOT ENABLE_TESTS)
                         ${CMAKE_BINARY_DIR}/config/appconfig.yaml 
                         COPYONLY
                     )
-        macro(copy_files srcDir destDir)
-            message(STATUS "Configuring directory ${destDir}")
-            make_directory(${destDir})
-
-            file(GLOB templateFiles RELATIVE ${srcDir} ${srcDir}/*)
-            foreach(templateFile ${templateFiles})
-                set(srcTemplatePath ${srcDir}/${templateFile})
-                if(NOT IS_DIRECTORY ${srcTemplatePath})
-                    message(STATUS "Configuring file ${templateFile}")
-                    configure_file(
-                            ${srcTemplatePath}
-                            ${destDir}/${templateFile}
-                            COPYONLY)
-                endif(NOT IS_DIRECTORY ${srcTemplatePath})
-            endforeach(templateFile)
-        endmacro(configure_files)
         copy_files(${CMAKE_SOURCE_DIR}/assets/* ${CMAKE_BINARY_DIR}/assets/*)
     endif()
 
