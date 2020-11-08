@@ -27,13 +27,12 @@ add_subdirectory(${CMAKE_SOURCE_DIR}/application/dependencies/SOIL2)
 message(STATUS "SOIL2 - Done!\n")
 
 # Further I'ill decide if I shall to use the Assimp
-#
-# message(STATUS "Building the ASSIMP")
-# option(ASSIMP_BUILD_ASSIMP_TOOLS OFF)
-# option(ASSIMP_BUILD_TESTS OFF)
-# option(ASSIMP_INSTALL OFF)
-# set(BUILD_SHARED_LIBS ON CACHE BOOL "" FORCE)
-# set(SYSTEM_IRRXML OFF CACHE BOOL "" FORCE)
-# add_subdirectory(${CMAKE_SOURCE_DIR}/application/dependencies/ASSIMP)
-# message(STATUS "ASSIMP - Done!\n")
+message(STATUS "Building the ASSIMP")
+option(ASSIMP_BUILD_ASSIMP_TOOLS OFF)
+option(ASSIMP_BUILD_TESTS OFF)
+option(ASSIMP_INSTALL OFF)
+set(BUILD_SHARED_LIBS ON CACHE BOOL "" FORCE)
+set(SYSTEM_IRRXML OFF CACHE BOOL "" FORCE)
+add_subdirectory(${CMAKE_SOURCE_DIR}/application/dependencies/ASSIMP)
+message(STATUS "ASSIMP - Done!\n")
 
