@@ -3,6 +3,7 @@
 Camera::Camera(glm::vec3 position, glm::vec3 up, float yaw, float pitch)
     : front(glm::vec3(0.0f, 0.0f, -1.0f)), movement_speed(SPEED), mouse_sensitivity(SENSITIVTY), zoom(ZOOM)
 {
+    this->view_matrix = glm::mat4(1.f);
     this->position = position;
     this->world_up = up;
     this->yaw = yaw;
@@ -13,6 +14,7 @@ Camera::Camera(glm::vec3 position, glm::vec3 up, float yaw, float pitch)
 Camera::Camera(float pos_x, float pos_y, float pos_z, float up_x, float up_y, float up_z, float yaw, float pitch)
     : front(glm::vec3(0.0f, 0.0f, -1.0f)), movement_speed(SPEED), mouse_sensitivity(SENSITIVTY), zoom(ZOOM)
 {
+    this->view_matrix = glm::mat4(1.f);
     this->position = glm::vec3(pos_x, pos_y, pos_z);
     this->world_up = glm::vec3(up_x, up_y, up_z);
     this->yaw = yaw;
@@ -23,7 +25,8 @@ Camera::Camera(float pos_x, float pos_y, float pos_z, float up_x, float up_y, fl
 glm::mat4 Camera::GetViewMatrix()
 {
     this->updateCameraVectors();
-    return glm::lookAt(this->position, this->position + this->front, this->up);
+    this->view_matrix = glm::lookAt(this->position, this->position + this->front, this->up);
+    return this->view_matrix;
 }
 
 void Camera::ProcessKeyboard(Camera_Movement direction, float delta_time)
@@ -31,10 +34,10 @@ void Camera::ProcessKeyboard(Camera_Movement direction, float delta_time)
     float velocity = this->movement_speed * delta_time;
     switch (direction)
     {
-    case FORWARD: this->position += this->front * velocity; break;
-    case BACKWARD: this->position -= this->front * velocity; break;
-    case LEFT: this->position -= this->right * velocity; break;
-    case RIGHT: this->position += this->right * velocity; break;
+    case Camera_Movement::FORWARD: this->position += this->front * velocity; break;
+    case Camera_Movement::BACKWARD: this->position -= this->front * velocity; break;
+    case Camera_Movement::LEFT: this->position -= this->right * velocity; break;
+    case Camera_Movement::RIGHT: this->position += this->right * velocity; break;
     default: break;
     }
 }
@@ -68,7 +71,7 @@ void Camera::ProcessMouseScroll(float y_offset)
     if (this->zoom >= 45.0f) { this->zoom = 45.0f; }
 }
 
-float Camera::GetZoom() { return this->zoom; }
+float Camera::GetZoom() const { return this->zoom; }
 
 void Camera::updateCameraVectors()
 {
@@ -84,3 +87,7 @@ void Camera::updateCameraVectors()
                                                   // more you look up or down which results in slower movement.
     this->up = glm::normalize(glm::cross(this->right, this->front));
 }
+
+glm::vec3 Camera::GetPosition() const { return this->position; }
+
+glm::vec3 Camera::GetFront() const { return this->front; }
