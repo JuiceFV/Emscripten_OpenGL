@@ -100,6 +100,51 @@ void Shader::set1i(int value, const char *name)
     this->Unuse();
 }
 
+void Shader::set1f(float value, const char *name)
+{
+    this->Use();
+
+    glUniform1f(glGetUniformLocation(this->program, name), value);
+
+    this->Unuse();
+}
+
+void Shader::setVec2f(glm::fvec2 value, const char *name)
+{
+    this->Use();
+
+    glUniform2fv(glGetUniformLocation(this->program, name), 1, glm::value_ptr(value));
+
+    this->Unuse();
+}
+
+void Shader::setVec4f(glm::fvec4 value, const char *name)
+{
+    this->Use();
+
+    glUniform4fv(glGetUniformLocation(this->program, name), 1, glm::value_ptr(value));
+
+    this->Unuse();
+}
+
+void Shader::setMat3fv(glm::mat3 value, const char *name, unsigned char transpose)
+{
+    this->Use();
+
+    glUniformMatrix3fv(glGetUniformLocation(this->program, name), 1, transpose, glm::value_ptr(value));
+
+    this->Unuse();
+}
+
+void Shader::setVec3f(glm::fvec3 value, const char *name)
+{
+    this->Use();
+
+    glUniform3fv(glGetUniformLocation(this->program, name), 1, glm::value_ptr(value));
+
+    this->Unuse();
+}
+
 void Shader::setMat4fv(glm::mat4 value, const char *name, unsigned char transpose)
 {
     this->Use();
