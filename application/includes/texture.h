@@ -3,7 +3,12 @@
 #include <iostream>
 #include <string>
 
-#include <gl/glew.h>
+#ifdef __EMSCRIPTEN__
+#define GLFW_INCLUDE_ES3
+#include <emscripten/emscripten.h>
+#else
+#include <GL/glew.h>
+#endif
 #include <GLFW/glfw3.h>
 
 #include <SOIL2.h>
@@ -22,5 +27,6 @@ class Texture
     unsigned int id;
     int width;
     int height;
+    std::string texture_type;
     unsigned int type;
 };
