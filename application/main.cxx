@@ -1,5 +1,3 @@
-// emcc application/main.cxx -I"application/dependencies/yamlprsr/include"
-// -l"application/dependencies/build/libyaml-cpp.so" -o index.html -s USE_WEBGL2=1 -s USE_GLFW=3 -s WASM=1 -std=c++1z
 #include <functional>
 
 #ifdef __EMSCRIPTEN__
@@ -12,6 +10,8 @@
 #include "camera.h"
 #include "shader.h"
 #include "texture.h"
+#include "model.h"
+#include "light.h"
 #include <GLFW/glfw3.h>
 #include <SOIL2.h>
 #include <functional>
@@ -29,38 +29,40 @@ static void dispatch_main(void *fp)
 }
 #endif
 
-const GLuint WIDTH = 800, HEIGHT = 600;
+const unsigned int WIDTH = 1280, HEIGHT = 720;
 int SCREEN_WIDTH, SCREEN_HEIGHT;
 
 // Function prototypes
 void KeyCallback(GLFWwindow *window, int key, int scancode, int action, int mode);
-void ScrollCallback(GLFWwindow *window, double xOffset, double);
+void ScrollCallback(GLFWwindow *window, double xOffset, double yOffset);
 void MouseCallback(GLFWwindow *window, double xPos, double yPos);
 void DoMovement();
 
-Camera camera(glm::vec3(0.0f, 0.0f, 3.0f));
-GLfloat lastX = WIDTH / 2.0;
-GLfloat lastY = HEIGHT / 2.0;
+// Camera
+Camera camera(glm::vec3(26.0704f, 8.20109f, 17.1831f), glm::vec3(0.0f, 1.0f, 0.0f), -156.0f, -12.4f);
 bool keys[1024];
+float lastX = WIDTH / 2.0;
+float lastY = HEIGHT / 2.0;
 bool firstMouse = true;
 
-// Light attributes
-glm::vec3 lightPos(1.2f, 1.0f, 2.0f);
-
-GLfloat deltaTime = 0.0f;
-GLfloat lastFrame = 0.0f;
+float deltaTime = 0.0f;
+float lastFrame = 0.0f;
 
 int main()
 {
     // Init GLFW
+    // Init GLFW
     glfwInit();
+    // Set all the required options for GLFW
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
     glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
     glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
+    glfwWindowHint(GLFW_SAMPLES, 4);
 
-    GLFWwindow *window = glfwCreateWindow(WIDTH, HEIGHT, "LearnOpenGL", nullptr, nullptr); // Windowed
+    // Create a GLFWwindow object that we can use for GLFW's functions
+    GLFWwindow *window = glfwCreateWindow(WIDTH, HEIGHT, "Airplane Representation", nullptr, nullptr);
 
     if (nullptr == window)
     {
@@ -79,8 +81,9 @@ int main()
     glfwSetCursorPosCallback(window, MouseCallback);
     glfwSetScrollCallback(window, ScrollCallback);
 
-    // Options, removes the mouse cursor for a more immersive experience
+    // GLFW Options
     glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+
 
 #ifndef __EMSCRIPTEN__
     // Set this to true so GLEW knows to use a modern approach to retrieving function pointers and extensions
@@ -93,217 +96,91 @@ int main()
     }
 #endif
     // Define the viewport dimensions
+    // Define the viewport dimensions
     glViewport(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
 
-    // Setup some OpenGL options
+    // OpenGL options
     glEnable(GL_DEPTH_TEST);
 
-    // enable alpha support
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    glEnable(GL_MULTISAMPLE);  
+
+    // 1) aloft the left wing
+    // 2) under the right wing
+    // 3) in front of the head (shifted left slightly)
+    // 4) in tail of (shifted right slightly)
+    glm::vec3 point_light_positions[] = {
+        glm::vec3(-4.94625f, 15.0549f, 6.95857f), glm::vec3(3.96999f, -5.70809f, -13.2864f),
+        glm::vec3(18.0768f, 3.03289f, 3.76213f), glm::vec3(-17.0855f, 7.29996f, -3.69458f)};
+
 #ifndef __EMSCRIPTEN__
-    Shader lightingShader("assets/shaders/lightning.vs", "assets/shaders/lightning.frag");
-    Shader lampShader("assets/shaders/lamp.vs", "assets/shaders/lamp.frag");
+    Shader shader("assets/shaders/lightning.vs", "assets/shaders/lightning.frag");
 #else
-    Shader lightingShader("assets/shaders/lightning.wvs", "assets/shaders/lightning.wfrag");
-    Shader lampShader("assets/shaders/lamp.wvs", "assets/shaders/lamp.wfrag");
+    Shader shader("assets/shaders/lightning.wvs", "assets/shaders/lightning.wfrag");
 #endif
-    GLfloat vertices[] = {
-        // Positions            // Normals              // Texture Coords
-        -0.5f, -0.5f, -0.5f, 0.0f,  0.0f,  -1.0f, 0.0f, 0.0f, 0.5f,  -0.5f, -0.5f, 0.0f,  0.0f,  -1.0f, 1.0f, 0.0f,
-        0.5f,  0.5f,  -0.5f, 0.0f,  0.0f,  -1.0f, 1.0f, 1.0f, 0.5f,  0.5f,  -0.5f, 0.0f,  0.0f,  -1.0f, 1.0f, 1.0f,
-        -0.5f, 0.5f,  -0.5f, 0.0f,  0.0f,  -1.0f, 0.0f, 1.0f, -0.5f, -0.5f, -0.5f, 0.0f,  0.0f,  -1.0f, 0.0f, 0.0f,
+    Model depict_model("assets/models/11803_Airplane_v1_l1.obj");
 
-        -0.5f, -0.5f, 0.5f,  0.0f,  0.0f,  1.0f,  0.0f, 0.0f, 0.5f,  -0.5f, 0.5f,  0.0f,  0.0f,  1.0f,  1.0f, 0.0f,
-        0.5f,  0.5f,  0.5f,  0.0f,  0.0f,  1.0f,  1.0f, 1.0f, 0.5f,  0.5f,  0.5f,  0.0f,  0.0f,  1.0f,  1.0f, 1.0f,
-        -0.5f, 0.5f,  0.5f,  0.0f,  0.0f,  1.0f,  0.0f, 1.0f, -0.5f, -0.5f, 0.5f,  0.0f,  0.0f,  1.0f,  0.0f, 0.0f,
+    // Draw in wireframe
+    // glPolygonMode( GL_FRONT_AND_BACK, GL_LINE );
 
-        -0.5f, 0.5f,  0.5f,  -1.0f, 0.0f,  0.0f,  1.0f, 0.0f, -0.5f, 0.5f,  -0.5f, -1.0f, 0.0f,  0.0f,  1.0f, 1.0f,
-        -0.5f, -0.5f, -0.5f, -1.0f, 0.0f,  0.0f,  0.0f, 1.0f, -0.5f, -0.5f, -0.5f, -1.0f, 0.0f,  0.0f,  0.0f, 1.0f,
-        -0.5f, -0.5f, 0.5f,  -1.0f, 0.0f,  0.0f,  0.0f, 0.0f, -0.5f, 0.5f,  0.5f,  -1.0f, 0.0f,  0.0f,  1.0f, 0.0f,
-
-        0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,  1.0f, 0.0f, 0.5f,  0.5f,  -0.5f, 1.0f,  0.0f,  0.0f,  1.0f, 1.0f,
-        0.5f,  -0.5f, -0.5f, 1.0f,  0.0f,  0.0f,  0.0f, 1.0f, 0.5f,  -0.5f, -0.5f, 1.0f,  0.0f,  0.0f,  0.0f, 1.0f,
-        0.5f,  -0.5f, 0.5f,  1.0f,  0.0f,  0.0f,  0.0f, 0.0f, 0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,  1.0f, 0.0f,
-
-        -0.5f, -0.5f, -0.5f, 0.0f,  -1.0f, 0.0f,  0.0f, 1.0f, 0.5f,  -0.5f, -0.5f, 0.0f,  -1.0f, 0.0f,  1.0f, 1.0f,
-        0.5f,  -0.5f, 0.5f,  0.0f,  -1.0f, 0.0f,  1.0f, 0.0f, 0.5f,  -0.5f, 0.5f,  0.0f,  -1.0f, 0.0f,  1.0f, 0.0f,
-        -0.5f, -0.5f, 0.5f,  0.0f,  -1.0f, 0.0f,  0.0f, 0.0f, -0.5f, -0.5f, -0.5f, 0.0f,  -1.0f, 0.0f,  0.0f, 1.0f,
-
-        -0.5f, 0.5f,  -0.5f, 0.0f,  1.0f,  0.0f,  0.0f, 1.0f, 0.5f,  0.5f,  -0.5f, 0.0f,  1.0f,  0.0f,  1.0f, 1.0f,
-        0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,  1.0f, 0.0f, 0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,  1.0f, 0.0f,
-        -0.5f, 0.5f,  0.5f,  0.0f,  1.0f,  0.0f,  0.0f, 0.0f, -0.5f, 0.5f,  -0.5f, 0.0f,  1.0f,  0.0f,  0.0f, 1.0f};
-
-    glm::vec3 cubePositions[] = {glm::vec3(0.0f, 0.0f, 0.0f),    glm::vec3(2.0f, 5.0f, -15.0f),
-                                 glm::vec3(-1.5f, -2.2f, -2.5f), glm::vec3(-3.8f, -2.0f, -12.3f),
-                                 glm::vec3(2.4f, -0.4f, -3.5f),  glm::vec3(-1.7f, 3.0f, -7.5f),
-                                 glm::vec3(1.3f, -2.0f, -2.5f),  glm::vec3(1.5f, 2.0f, -2.5f),
-                                 glm::vec3(1.5f, 0.2f, -1.5f),   glm::vec3(-1.3f, 1.0f, -1.5f)};
-
-    // Positions of the point lights
-    glm::vec3 pointLightPositions[] = {glm::vec3(0.7f, 0.2f, 2.0f), glm::vec3(2.3f, -3.3f, -4.0f),
-                                       glm::vec3(-4.0f, 2.0f, -12.0f), glm::vec3(0.0f, 0.0f, -3.0f)};
-    GLuint VBO, boxVAO;
-    glGenVertexArrays(1, &boxVAO);
-    glGenBuffers(1, &VBO);
-
-    glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-
-    glBindVertexArray(boxVAO);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (GLvoid *)0);
-    glEnableVertexAttribArray(0);
-    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (GLvoid *)(3 * sizeof(GLfloat)));
-    glEnableVertexAttribArray(1);
-    glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (GLvoid *)(6 * sizeof(GLfloat)));
-    glEnableVertexAttribArray(2);
-    glBindVertexArray(0);
-
-    // Then, we set the light's VAO (VBO stays the same. After all, the vertices are the same for the light object (also
-    // a 3D cube))
-    GLuint lightVAO;
-    glGenVertexArrays(1, &lightVAO);
-    glBindVertexArray(lightVAO);
-    // We only need to bind to the VBO (to link it with glVertexAttribPointer), no need to fill it; the VBO's data
-    // already contains all we need.
-    glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    // Set the vertex attributes (only position data for the lamp))
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat),
-                          (GLvoid *)0); // Note that we skip over the other data in our buffer object (we don't need the
-                                        // normals/textures, only positions).
-    glEnableVertexAttribArray(0);
-    glBindVertexArray(0);
-
-    // Load textures
-    Texture diffuseMap("assets/images/container2.png", GL_TEXTURE_2D);
-    Texture specularMap("assets/images/container2_specular.png", GL_TEXTURE_2D);
-
-    lightingShader.set1i(0, "material.diffuse");
-    lightingShader.set1i(1, "material.specular");
+    DirectionalLight dir_light({4.07789f, -1.60387f, -0.588997f}, {0.5f, 0.5f, 0.5f}, {0.4f, 0.4f, 0.4f},
+                               {0.5f, 0.5f, 0.5f});
+    std::vector<PointLight> point_lights;
+    for (unsigned int i = 0; i < 4; i++)
+    {
+        point_lights.push_back({{point_light_positions[i].x, point_light_positions[i].y, point_light_positions[i].z},
+                                {0.8f, 0.8f, 0.8f},
+                                {0.8f, 0.8f, 0.8f},
+                                {1.0f, 1.0f, 1.0f},
+                                i});
+    }
 #ifdef __EMSCRIPTEN__
     std::function<void()> mainLoop = [&]() {
 #else
     while (!glfwWindowShouldClose(window))
     {
 #endif
-        // Calculate deltatime of current frame
+
         GLfloat currentFrame = glfwGetTime();
         deltaTime = currentFrame - lastFrame;
         lastFrame = currentFrame;
 
-        // Check if any events have been activiated (key pressed, mouse moved etc.) and call corresponding response
-        // functions
+        // Check and call events
         glfwPollEvents();
         DoMovement();
 
         // Clear the colorbuffer
-        glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
+        glClearColor(0.2f, 0.2f, 0.2f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
         // Use cooresponding shader when setting uniforms/drawing objects
-        lightingShader.setVec3f({camera.GetPosition().x, camera.GetPosition().y, camera.GetPosition().z}, "viewPos");
-        // Set material properties
-        lightingShader.set1f(32.0f, "material.shininess");
 
+        shader.setVec3f({camera.GetPosition().x, camera.GetPosition().y, camera.GetPosition().z}, "viewPos");
+        shader.set1f(32.0f, "material.shininess");
         // Directional light
-        lightingShader.setVec3f({-0.2f, -1.0f, -0.3f}, "dirLight.direction");
-        lightingShader.setVec3f({0.05f, 0.05f, 0.05f}, "dirLight.ambient");
-        lightingShader.setVec3f({0.4f, 0.4f, 0.4f}, "dirLight.diffuse");
-        lightingShader.setVec3f({0.5f, 0.5f, 0.5f}, "dirLight.specular");
-
-        // Point light 1
-        lightingShader.setVec3f({pointLightPositions[0].x, pointLightPositions[0].y, pointLightPositions[0].z},
-                                "pointLights[0].position");
-        lightingShader.setVec3f({0.05f, 0.05f, 0.05f}, "pointLights[0].ambient");
-        lightingShader.setVec3f({0.8f, 0.8f, 0.8f}, "pointLights[0].diffuse");
-        lightingShader.setVec3f({1.0f, 1.0f, 1.0f}, "pointLights[0].specular");
-        lightingShader.set1f(1.0f, "pointLights[0].constant");
-        lightingShader.set1f(0.09f, "pointLights[0].linear");
-        lightingShader.set1f(0.032f, "pointLights[0].quadratic");
-
-        // Point light 2
-        lightingShader.setVec3f({pointLightPositions[1].x, pointLightPositions[1].y, pointLightPositions[1].z},
-                                "pointLights[1].position");
-        lightingShader.setVec3f({0.05f, 0.05f, 0.05f}, "pointLights[1].ambient");
-        lightingShader.setVec3f({0.8f, 0.8f, 0.8f}, "pointLights[1].diffuse");
-        lightingShader.setVec3f({1.0f, 1.0f, 1.0f}, "pointLights[1].specular");
-        lightingShader.set1f(1.0f, "pointLights[1].constant");
-        lightingShader.set1f(0.09f, "pointLights[1].linear");
-        lightingShader.set1f(0.032f, "pointLights[1].quadratic");
-
-        // Point light 3
-        lightingShader.setVec3f({pointLightPositions[2].x, pointLightPositions[2].y, pointLightPositions[2].z},
-                                "pointLights[2].position");
-        lightingShader.setVec3f({0.05f, 0.05f, 0.05f}, "pointLights[2].ambient");
-        lightingShader.setVec3f({0.8f, 0.8f, 0.8f}, "pointLights[2].diffuse");
-        lightingShader.setVec3f({1.0f, 1.0f, 1.0f}, "pointLights[2].specular");
-        lightingShader.set1f(1.0f, "pointLights[2].constant");
-        lightingShader.set1f(0.09f, "pointLights[2].linear");
-        lightingShader.set1f(0.032f, "pointLights[2].quadratic");
-
-        // Point light 4
-        lightingShader.setVec3f({pointLightPositions[3].x, pointLightPositions[3].y, pointLightPositions[3].z},
-                                "pointLights[3].position");
-        lightingShader.setVec3f({0.05f, 0.05f, 0.05f}, "pointLights[3].ambient");
-        lightingShader.setVec3f({0.8f, 0.8f, 0.8f}, "pointLights[3].diffuse");
-        lightingShader.setVec3f({1.0f, 1.0f, 1.0f}, "pointLights[3].specular");
-        lightingShader.set1f(1.0f, "pointLights[3].constant");
-        lightingShader.set1f(0.09f, "pointLights[3].linear");
-        lightingShader.set1f(0.032f, "pointLights[3].quadratic");
-
-        // Create camera transformation
-        glm::mat4 view(1);
+        dir_light.sendToShader(shader);
+        
+        // Point lights 
+        for (auto &pl : point_lights) pl.sendToShader(shader);
+        glm::mat4 view(1.f);
         view = camera.GetViewMatrix();
-        glm::mat4 projection(1);
-        projection = glm::perspective(glm::radians(camera.GetZoom()), (GLfloat)SCREEN_WIDTH / (GLfloat)SCREEN_HEIGHT,
-                                      0.1f, 100.0f);
+
+        glm::mat4 projection(1.f);
+        projection =
+            glm::perspective(glm::radians(camera.GetZoom()), (float)SCREEN_WIDTH / (float)SCREEN_HEIGHT, 0.1f, 100.0f);
+
 
         // Pass the matrices to the shader
-        lightingShader.setMat4fv(view, "view");
-        lightingShader.setMat4fv(projection, "projection");
+        shader.setMat4fv(view, "view");
+        shader.setMat4fv(projection, "projection");
 
-        diffuseMap.bind(0);
-        specularMap.bind(1);
-
-        glm::mat4 model;
-        glBindVertexArray(boxVAO);
-
-        for (GLuint i = 0; i < 10; i++)
-        {
-            model = glm::mat4(1);
-            model = glm::translate(model, cubePositions[i]);
-            GLfloat angle = 20.0f * i;
-            model = glm::rotate(model, angle, glm::vec3(1.0f, 0.3f, 0.5f));
-            lightingShader.setMat4fv(model, "model");
-            lightingShader.Use();
-            glDrawArrays(GL_TRIANGLES, 0, 36);
-        }
-        glBindVertexArray(0);
-
-        lampShader.setMat4fv(view, "view");
-        lampShader.setMat4fv(projection, "projection");
-        model = glm::mat4(1);
-        model = glm::translate(model, lightPos);
-        model = glm::scale(model, glm::vec3(0.2f)); // Make it a smaller cube
-        lampShader.setMat4fv(model, "model");
-        lampShader.Use();
-        // Draw the light object (using light's vertex attributes)
-        glBindVertexArray(lightVAO);
-        glDrawArrays(GL_TRIANGLES, 0, 36);
-        glBindVertexArray(0);
-
-        glBindVertexArray(lightVAO);
-        for (GLuint i = 0; i < 4; i++)
-        {
-            model = glm::mat4(1);
-            model = glm::translate(model, pointLightPositions[i]);
-            model = glm::scale(model, glm::vec3(0.2f)); // Make it a smaller cube
-            lampShader.setMat4fv(model, "model");
-            lampShader.Use();
-            glDrawArrays(GL_TRIANGLES, 0, 36);
-        }
-        glBindVertexArray(0);
-
+        glm::mat4 model(1);
+        model = glm::translate(
+            model, glm::vec3(-1.75f, -1.75f, 0.0f)); // Translate it down a bit so it's at the center of the scene
+        model = glm::scale(model, glm::vec3(0.01f, 0.01f, 0.01f)); // It's a bit too big for our scene, so scale it down
+        model = glm::rotate(model, -1.5708f, glm::vec3(1.0f, 0.0f, 0.0f));
+        shader.setMat4fv(model, "model");
+        depict_model.Draw(shader);
         // Swap the buffers
         glfwSwapBuffers(window);
 #ifdef __EMSCRIPTEN__
@@ -312,11 +189,6 @@ int main()
 #else
     }
 #endif
-
-    glDeleteVertexArrays(1, &boxVAO);
-    glDeleteVertexArrays(1, &lightVAO);
-    glDeleteBuffers(1, &VBO);
-
     // Terminate GLFW, clearing any resources allocated by GLFW.
     glfwTerminate();
 
