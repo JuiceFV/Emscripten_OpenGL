@@ -102,7 +102,8 @@ include(configloader)
 # Not in-build emscripten libraries, 
 set(DEP_EMSDK_LIBS
     soil2
-    assimp
+    #assimp
+    #IrrXML
 )
 
 # The libraries, required by application, however they are already built in emscripten
@@ -143,6 +144,7 @@ if (NOT ENABLE_TESTS)
                             ${DEP_LIBS} 
                             ${DEP_EMSDK_LIBS} 
                             ${INTERFACE_LIB}
+                            ${COMMON_LIBS}
                         ) 
     target_include_directories(
         ${PROJECT_NAME} PUBLIC
