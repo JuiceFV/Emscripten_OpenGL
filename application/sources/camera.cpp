@@ -22,6 +22,7 @@ Camera::Camera(float pos_x, float pos_y, float pos_z, float up_x, float up_y, fl
     this->updateCameraVectors();
 }
 
+// Returns the view matrix calculated using Eular Angles and the LookAt Matrix
 glm::mat4 Camera::GetViewMatrix()
 {
     this->updateCameraVectors();
@@ -29,6 +30,8 @@ glm::mat4 Camera::GetViewMatrix()
     return this->view_matrix;
 }
 
+// Processes input received from any keyboard-like input system. Accepts input parameter in the form of camera
+// defined ENUM (to abstract it from windowing systems)
 void Camera::ProcessKeyboard(Camera_Movement direction, float delta_time)
 {
     float velocity = this->movement_speed * delta_time;
@@ -42,6 +45,7 @@ void Camera::ProcessKeyboard(Camera_Movement direction, float delta_time)
     }
 }
 
+// Processes input received from a mouse input system. Expects the offset value in both the x and y direction.
 void Camera::ProcessMouseMovement(float x_offset, float y_offset, unsigned char constrain_pitch)
 {
     x_offset *= this->mouse_sensitivity;
@@ -62,6 +66,7 @@ void Camera::ProcessMouseMovement(float x_offset, float y_offset, unsigned char 
     this->updateCameraVectors();
 }
 
+// Processes input received from a mouse scroll-wheel event. Only requires input on the vertical wheel-axis
 void Camera::ProcessMouseScroll(float y_offset)
 {
     if (this->zoom >= 1.0f && this->zoom <= 45.0f) { this->zoom -= y_offset; }

@@ -37,30 +37,15 @@ constexpr float ZOOM = 45.0f;
 class Camera
 {
   public:
-    // Constructor with vectors
     Camera(glm::vec3 position = glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3 up = glm::vec3(0.0f, 1.0f, 0.0f),
            float yaw = YAW, float pitch = PITCH);
-
-    // Constructor with scalar values
     Camera(float pos_x, float pos_y, float pos_z, float up_x, float up_y, float up_z, float yaw, float pitch);
-
-    // Returns the view matrix calculated using Eular Angles and the LookAt Matrix
     glm::mat4 GetViewMatrix();
-
-    // Processes input received from any keyboard-like input system. Accepts input parameter in the form of camera
-    // defined ENUM (to abstract it from windowing systems)
     void ProcessKeyboard(Camera_Movement direction, float delta_time);
-
-    // Processes input received from a mouse input system. Expects the offset value in both the x and y direction.
     void ProcessMouseMovement(float x_offset, float y_offset, unsigned char constrain_pitch = true);
-
-    // Processes input received from a mouse scroll-wheel event. Only requires input on the vertical wheel-axis
     void ProcessMouseScroll(float y_offset);
-
     float GetZoom() const;
-
     glm::vec3 GetPosition() const;
-
     glm::vec3 GetFront() const;
 
   private:
