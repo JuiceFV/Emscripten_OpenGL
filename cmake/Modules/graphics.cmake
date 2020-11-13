@@ -1,55 +1,96 @@
 message(STATUS "Building the raphics libraries...\n")
 
-if (NOT FOR_EMSDK)
-	message(STATUS "Building the GLEW")
-	option(glew-cmake_BUILD_STATIC OFF)
-	option(ONLY_LIBS ON)
-	add_subdirectory(${CMAKE_SOURCE_DIR}/application/dependencies/GLEW)
-	message(STATUS "GLEW - Done!\n")
-	
-	message(STATUS "Building the GLFW")
-	set(GLFW_BUILD_DOCS OFF CACHE BOOL "" FORCE)
-	set(GLFW_BUILD_TESTS OFF CACHE BOOL "" FORCE)
-	set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
-	option(BUILD_SHARED_LIBS ON)
-	option(GLFW_INSTALL OFF)
-	add_subdirectory(${CMAKE_SOURCE_DIR}/application/dependencies/GLFW)
-	message(STATUS "GLFW - Done!\n")
+# Split over compilers
+if (MSVC)
+
+# Looking for assimp library 
+find_library(assimp 
+			 NAMES assimp-vc142-mtd.lib 
+			 PATHS ${CMAKE_SOURCE_DIR}/application/dependencies/assimp/lib/msvc
+)
+
+# Looking for soil2 library 
+find_library(soil2 
+			 NAMES soil2.lib
+			 PATHS ${CMAKE_SOURCE_DIR}/application/dependencies/soil2/lib/msvc
+)
+
+# Looking for glew (msvc only) library 
+find_library(glew 
+			 NAMES glewd.lib
+			 PATHS ${CMAKE_SOURCE_DIR}/application/dependencies/glew/lib/msvc
+)
+
+# Looking for glfw (msvc only) library 
+find_library(glfw 
+			 NAMES glfw3dll.lib
+			 PATHS ${CMAKE_SOURCE_DIR}/application/dependencies/glfw/lib/msvc
+)
+else()
+
+# I don't aware why does it happen, but 
+# in some reason if I do not set these two vars
+# cmake is not able to find the libs on linux
+# here the issue https://github.com/mxe/mxe/issues/2018
+set(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE BOTH)
+set(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY BOTH)
+
+# Looking for assimp library 
+find_library(assimp 
+			 NAMES assimp
+			 PATHS ${CMAKE_SOURCE_DIR}/application/dependencies/assimp/lib/emsdk
+)
+
+# Looking for soil2 library 
+find_library(soil2 
+			 NAMES soil2
+			 PATHS ${CMAKE_SOURCE_DIR}/application/dependencies/soil2/lib/emsdk
+)
 endif()
 
-message(STATUS "Building the GLM")
-option(BUILD_STATIC_LIBS OFF)
-add_subdirectory(${CMAKE_SOURCE_DIR}/application/dependencies/GLM)
+
+# Linking include's directories of the found libs
+# and appending them to the GRAPHICS_LIBS list.
+if(MSVC)
+	if (glew)
+		message(STATUS "Looking for the GLEW")
+		message("GLEW has been found!")
+		list(APPEND GRAPHICS_LIBS ${glew})
+		include_directories(${CMAKE_SOURCE_DIR}/application/dependencies/glew/include)
+		message(STATUS "GLEW - Done!\n")
+	endif(glew)
+	if (glfw)
+		message(STATUS "Looking for the GLFW")
+		message("GLFW has been found!")
+		list(APPEND GRAPHICS_LIBS ${glfw})
+		include_directories(${CMAKE_SOURCE_DIR}/application/dependencies/glfw/include)
+		message(STATUS "GLFW - Done!\n")
+	endif(glfw)
+endif(MSVC)
+
+message(STATUS "Looking for the GLM")
+message("GLM has been found!")
+include_directories(${CMAKE_SOURCE_DIR}/application/dependencies/glm)
 message(STATUS "GLM - Done!\n")
 
-message(STATUS "Building the SOIL2")
-add_subdirectory(${CMAKE_SOURCE_DIR}/application/dependencies/SOIL2)
+message(STATUS "Looking for the SOIL")
+if (soil2)
+message("SOIL2 has been found!")
+list(APPEND GRAPHICS_LIBS ${soil2})
+include_directories(
+	${CMAKE_SOURCE_DIR}/application/dependencies/soil2/include/SOIL2
+	${CMAKE_SOURCE_DIR}/application/dependencies/soil2/include/common
+
+	)
+endif(soil2)
 message(STATUS "SOIL2 - Done!\n")
 
-# Further I'ill decide if I shall to use the Assimp
-message(STATUS "Building the ASSIMP")
-if (UNIX)
-find_library(assimp NAMES assimp libassimp.a
-			PATHS ${CMAKE_SOURCE_DIR}/application/dependencies/ASSIMP/build/code)	
-message(${assimp})
-else()
-find_library(assimp NAMES assimp-vc142-mtd.lib 
-			PATHS ${CMAKE_SOURCE_DIR}/application/dependencies/assimp_libs/lib/windows)
-	list(APPEND COMMON_LIBS ${assimp})
-	configure_file(${CMAKE_SOURCE_DIR}/application/dependencies/assimp_libs/lib/windows/assimp-vc142-mtd.dll 
-                        ${CMAKE_BINARY_DIR}/bin/Debug/assimp-vc142-mtd.dll
-                        COPYONLY
-                    )
-endif()
+
+message(STATUS "Looking for the ASSIMP")
 if (assimp)
-message("Assimp has been found!")
-include_directories(${CMAKE_SOURCE_DIR}/application/dependencies/assimp_libs/include)
+	message("Assimp has been found!")
+	list(APPEND GRAPHICS_LIBS ${assimp})
+	include_directories(${CMAKE_SOURCE_DIR}/application/dependencies/assimp/include)
 endif()
-#set(ASSIMP_BUILD_ASSIMP_TOOLS OFF CACHE BOOL "" FORCE)
-#set(ASSIMP_BUILD_TESTS OFF CACHE BOOL "" FORCE)
-#set(ASSIMP_INSTALL OFF CACHE BOOL "" FORCE)
-#set(BUILD_SHARED_LIBS ON CACHE BOOL "" FORCE)
-#set(SYSTEM_IRRXML OFF CACHE BOOL "" FORCE)
-#add_subdirectory(${CMAKE_SOURCE_DIR}/application/dependencies/ASSIMP)
 message(STATUS "ASSIMP - Done!\n")
 
