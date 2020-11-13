@@ -240,4 +240,10 @@ void MouseCallback(GLFWwindow *window, double xPos, double yPos)
     camera.ProcessMouseMovement(xOffset, yOffset);
 }
 
-void ScrollCallback(GLFWwindow *window, double xOffset, double yOffset) { camera.ProcessMouseScroll(yOffset); }
+void ScrollCallback(GLFWwindow *window, double xOffset, double yOffset) 
+{ 
+#if defined(__EMSCRIPTEN__)
+    yOffset = -yOffset/100;
+#endif
+    camera.ProcessMouseScroll(yOffset); 
+}
