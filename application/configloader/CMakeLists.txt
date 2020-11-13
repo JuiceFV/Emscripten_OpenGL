@@ -6,12 +6,18 @@ cmake_minimum_required(VERSION 3.9)
 # set the name of the project
 project(ConfigLoader)
 
-message(STATUS "Building the YAML parser")
-option(YAML_CPP_BUILD_CONTRIB OFF)
-option(YAML_CPP_BUILD_TOOLS OFF)
-option(YAML_BUILD_SHARED_LIBS ON)
-add_subdirectory(${PROJECT_SOURCE_DIR}/dependencies/yamlprsr)
-message(STATUS "YAML parser - Done!\n")
+message(STATUS "Looking for the YAML parser")
+if(MSVC)
+find_library(yaml-cpp 
+			 NAMES yaml-cppd.lib
+			 PATHS ${CMAKE_SOURCE_DIR}/application/configloader/dependencies/yamlparser/lib/msvc
+)
+else()
+find_library(yaml-cpp 
+			 NAMES yaml-cpp
+			 PATHS ${CMAKE_SOURCE_DIR}/application/configloader/dependencies/yamlparser/lib/emsdk
+)
+endif(MSVC)
 
 set(${PROJECT_NAME}_sources "sources/config.cpp")
 set(${PROJECT_NAME}_includes 
@@ -21,12 +27,18 @@ set(${PROJECT_NAME}_includes
 
 
 add_library(${PROJECT_NAME} STATIC ${${PROJECT_NAME}_sources} ${${PROJECT_NAME}_includes})
-target_link_libraries(${PROJECT_NAME} yaml-cpp)
+target_link_libraries(${PROJECT_NAME} ${yaml-cpp})
 target_include_directories(
     ${PROJECT_NAME} PUBLIC 
     $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/includes>
     $<INSTALL_INTERFACE:${PROJECT_SOURCE_DIR}/includes>
 )
 
-set_property(GLOBAL PROPERTY USE_FOLDERS ON)
-set_target_properties(yaml-cpp PROPERTIES FOLDER "dependencies")
+if(yaml-cpp)
+	message("YAML parser has been find!")
+	target_include_directories(
+    ${PROJECT_NAME} PUBLIC 
+    ${CMAKE_SOURCE_DIR}/application/configloader/dependencies/yamlparser/include
+)
+endif()
+message(STATUS "YAML parser - Done!\n")
