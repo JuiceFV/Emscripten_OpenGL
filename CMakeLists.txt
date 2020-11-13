@@ -99,37 +99,15 @@ include(configloader)
 #====================================================================================# 
 
 #============================= Set libraries ========================================# 
-# Not in-build emscripten libraries, 
-set(DEP_EMSDK_LIBS
-    soil2
-    #assimp
-    #IrrXML
-)
-
-# The libraries, required by application, however they are already built in emscripten
-# But they are not built in the ordinar one.
-if (NOT FOR_EMSDK)
-    set(DEP_LIBS
-        glfw 
-        libglew_shared
-    )
-endif()
-
 # Other Libs, actually created by my-self.
 set(LIBS 
     ConfigLoader
-)
-
-# Interfaced libraries
-set(INTERFACE_LIB 
-    glm 
 )
 #====================================================================================# 
 
 #============================= Generate executable ==================================# 
 if (NOT ENABLE_TESTS)
     message(STATUS "Executable mode is on!")
-
     # adding executable
     add_executable(${PROJECT_NAME} 
                     ${${PROJECT_NAME}_MAIN} 
@@ -141,10 +119,7 @@ if (NOT ENABLE_TESTS)
                 )
     target_link_libraries(${PROJECT_NAME} 
                             ${LIBS}
-                            ${DEP_LIBS} 
-                            ${DEP_EMSDK_LIBS} 
-                            ${INTERFACE_LIB}
-                            ${COMMON_LIBS}
+                            ${GRAPHICS_LIBS}
                         ) 
     target_include_directories(
         ${PROJECT_NAME} PUBLIC
@@ -157,6 +132,7 @@ if (NOT ENABLE_TESTS)
         target_link_libraries(${PROJECT_NAME} OpenGL::GL)
     endif()
 
+    include(copydlls)
     # Set some properties related only with emsdk
     # Specifically, we creates some output and supporting dirictories:                           
     #+-------------------------------------------------------------------------------------------+
@@ -222,18 +198,11 @@ endif()# endif (NOT ENABLE_TEST)
 
 # Set the only directory for the outsource libs.
 set_property(GLOBAL PROPERTY USE_FOLDERS ON)
-    if (FOR_EMSDK)
-        set_target_properties(${DEP_EMSDK_LIBS} PROPERTIES FOLDER "dependencies")
-    elseif(DEP_EMSDK_LIBS)
-        set_target_properties(${DEP_LIBS} PROPERTIES FOLDER "dependencies")
-        set_target_properties(${DEP_EMSDK_LIBS} PROPERTIES FOLDER "dependencies")
-    else()
-        set_target_properties(${DEP_LIBS} PROPERTIES FOLDER "dependencies")
-endif()
+set_target_properties(${LIBS} PROPERTIES FOLDER "dependencies")
 
 # If the application is builded via emcc sets appropriate flags
 if (FOR_EMSDK)
     message(STATUS "Setting EMCC flags\n")
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -s FORCE_FILESYSTEM=1 -s USE_WEBGL2=1 -s USE_GLFW=3  -s FULL_ES3=1 -s ALLOW_MEMORY_GROWTH=1 -s ASSERTIONS=1 -s WASM=1  -std=c++11  --preload-file ${CMAKE_SOURCE_DIR}/config/@/config --preload-file ${CMAKE_SOURCE_DIR}/assets/@/assets")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -s ERROR_ON_UNDEFINED_SYMBOLS=0 -s FORCE_FILESYSTEM=1 -s USE_WEBGL2=1 -s USE_GLFW=3  -s FULL_ES3=1 -s ALLOW_MEMORY_GROWTH=1 -s ASSERTIONS=1 -s WASM=1  -std=c++11  --preload-file ${CMAKE_SOURCE_DIR}/config/@/config --preload-file ${CMAKE_SOURCE_DIR}/assets/@/assets")
 endif()
 #====================================================================================# 
