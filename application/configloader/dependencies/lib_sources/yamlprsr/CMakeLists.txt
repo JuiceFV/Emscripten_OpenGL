@@ -16,7 +16,7 @@ include(GNUInstallDirs)
 
 option(YAML_CPP_BUILD_CONTRIB "Enable yaml-cpp contrib in library" OFF)
 option(YAML_CPP_BUILD_TOOLS "Enable parse tools" OFF)
-option(YAML_BUILD_SHARED_LIBS "Build yaml-cpp shared library" ${BUILD_SHARED_LIBS})
+option(YAML_BUILD_SHARED_LIBS "Build yaml-cpp shared library" ON)
 
 cmake_dependent_option(YAML_CPP_BUILD_TESTS
   "Enable yaml-cpp tests" OFF
