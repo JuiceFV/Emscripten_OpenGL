@@ -1,7 +1,7 @@
 #pragma once
 
 #include "globals.h"
-#include "yaml-cpp/yaml.h"
+#include <yaml-cpp/yaml.h>
 #include <exception>
 #include <filesystem>
 #include <iostream>
