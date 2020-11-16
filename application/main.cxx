@@ -7,11 +7,7 @@
 #include <GL/glew.h>
 #endif
 
-#include "camera.h"
-#include "shader.h"
-#include "texture.h"
-#include "model.h"
-#include "light.h"
+#include "application.h"
 #include <GLFW/glfw3.h>
 #include <SOIL2.h>
 #include <functional>
@@ -102,9 +98,15 @@ int main()
     // OpenGL options
     glEnable(GL_DEPTH_TEST);
 
+    glEnable(GL_CULL_FACE);
+    glCullFace(GL_BACK);
+    glFrontFace(GL_CCW);
+
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-    glEnable(GL_MULTISAMPLE);  
+    glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+
+    glEnable(GL_MULTISAMPLE);
 
     // 1) aloft the left wing
     // 2) under the right wing
@@ -114,6 +116,7 @@ int main()
         glm::vec3(-4.94625f, 15.0549f, 6.95857f), glm::vec3(3.96999f, -5.70809f, -13.2864f),
         glm::vec3(18.0768f, 3.03289f, 3.76213f), glm::vec3(-17.0855f, 7.29996f, -3.69458f)};
 
+// It's better to pass the absolute path
 #ifndef __EMSCRIPTEN__
     Shader shader("assets/shaders/lightning.vs", "assets/shaders/lightning.frag");
 #else
@@ -159,8 +162,8 @@ int main()
         shader.set1f(32.0f, "material.shininess");
         // Directional light
         dir_light.sendToShader(shader);
-        
-        // Point lights 
+
+        // Point lights
         for (auto &pl : point_lights) pl.sendToShader(shader);
         glm::mat4 view(1.f);
         view = camera.GetViewMatrix();
@@ -240,10 +243,10 @@ void MouseCallback(GLFWwindow *window, double xPos, double yPos)
     camera.ProcessMouseMovement(xOffset, yOffset);
 }
 
-void ScrollCallback(GLFWwindow *window, double xOffset, double yOffset) 
-{ 
+void ScrollCallback(GLFWwindow *window, double xOffset, double yOffset)
+{
 #if defined(__EMSCRIPTEN__)
-    yOffset = -yOffset/100;
+    yOffset = -yOffset / 100;
 #endif
-    camera.ProcessMouseScroll(yOffset); 
+    camera.ProcessMouseScroll(yOffset);
 }
