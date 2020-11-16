@@ -3,7 +3,7 @@ application:
         width: 640
         height: 480
     shaders:
-        frag_file: ""
-        vert_file: ""
-        webfrag_file: ""
-        webvert_file: ""
+        fragment: ""
+        vertex: ""
+    common:
+        MSAA: on
