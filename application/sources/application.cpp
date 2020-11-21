@@ -1,6 +1,14 @@
 #include "application.h"
 
-static float rand_float()
+// I defined the camera variable as static in
+// purpose to use the zoom. Due to I won't use
+// more than 1 application's object - it shouldn't hurt the app
+// however, apperently there appears some bottlenecks.
+AppCamera Application::camera = {};
+ModelMatrix Application::model = {};
+std::vector<Model *> Application::models = {};
+
+static float rand_float(float min, float max)
 {
     union UNION {
         uint32_t i;
@@ -9,7 +17,10 @@ static float rand_float()
     // 3 because it's 0011, the first bit is the float's sign.
     // Clearing the second bit eliminates values > 1.0f.
     r.i = (rand() & 0xffff) + ((rand() & 0x3fff) << 16);
-    return r.f;
+
+    float diff = max - min;
+
+    return (min + r.f * diff);
 }
 
 int rand_int(int min, int max)
@@ -18,7 +29,17 @@ int rand_int(int min, int max)
     return static_cast<int>(rand() * fraction * (max - min + 1) + min);
 }
 
-/*void Application::initGLFW()
+static float calculate_yaw(float x, float y) { return std::atan2(x, y) * (180.0 / 3.141592653589793238463); }
+
+static float calculate_pitch(float x, float y, float z)
+{
+    float projection_length = std::sqrt(x * x + y * y);
+    return std::atan2(z, projection_length) * (180.0 / 3.141592653589793238463);
+}
+
+// Initialize GLFW
+// DONE
+void Application::initGLFW()
 {
     if (glfwInit() == GLFW_FALSE)
     {
@@ -29,6 +50,8 @@ int rand_int(int min, int max)
     }
 }
 
+// Determine window
+// DONE
 void Application::initWindow(const char *title, bool resizable)
 {
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
@@ -53,6 +76,7 @@ void Application::initWindow(const char *title, bool resizable)
 
     glfwGetFramebufferSize(this->window, &this->frame_buffer_width, &frame_buffer_height);
     glfwSetFramebufferSizeCallback(this->window, Application::framebufferResizeCallback);
+    glfwSetScrollCallback(this->window, Application::ScrollCallback);
 }
 
 #ifndef __EMSCRIPTEN__
@@ -71,6 +95,16 @@ void Application::initGLEW()
 }
 #endif
 
+// DONE
+void Application::framebufferResizeCallback(GLFWwindow *window, int fb_w, int fb_h) { glViewport(0, 0, fb_w, fb_h); }
+
+// DONE
+int Application::getWindowShouldClose() { return glfwWindowShouldClose(this->window); }
+
+// DONE
+void Application::setWindowShouldClose() { glfwSetWindowShouldClose(this->window, GLFW_TRUE); }
+
+// DONE
 void Application::initOpenGLOptions()
 {
     glEnable(GL_DEPTH_TEST);
@@ -81,48 +115,47 @@ void Application::initOpenGLOptions()
 
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-    glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+
+#ifndef __EMSCRIPTEN__
+    if (this->line_mode) glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+#endif // !__EMSCRIPTEN__
+
     if (this->MSAA) glEnable(GL_MULTISAMPLE);
 
     // Input
     glfwSetInputMode(this->window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 }
 
+// DONE
 void Application::initMatrices()
 {
-    // TODO decipher if it works
     this->view.view_obj = glm::mat4(1.f);
-    this->view.view_obj = glm::lookAt(this->camera.cam_position, this->camera.cam_position + this->camera.cam_front,
-                                      this->camera.world_up);
-
     this->projection.projection_obj = glm::mat4(1.f);
-    this->projection.projection_obj =
-        glm::perspective(glm::radians(this->camera.camera_obj.GetZoom()),
-                         static_cast<float>(this->frame_buffer_height) / this->frame_buffer_height,
-                         this->projection.near_plane, this->projection.far_plane);
-
     this->model.model_obj = glm::mat4(1.f);
-    this->model.model_obj = glm::translate(this->model.model_obj, this->model.translation);
-    this->model.model_obj = glm::scale(this->model.model_obj, this->model.scaling);
-    this->model.model_obj = glm::rotate(this->model.model_obj, this->model.rotation_angle, this->model.rotation_axis);
 }
 
-void Application::initShaders()
+// DONE
+void Application::initShaders(std::string shader_file)
 {
+    std::string filename = shader_file == "" ? "core" : shader_file;
 #ifndef __EMSCRIPTEN__
-    this->shaders.push_back(new Shader("assets/shaders/lightning.vs", "assets/shaders/lightning.frag"));
+    this->shaders =
+        new Shader(("assets/shaders/" + filename + ".vs").c_str(), ("assets/shaders/" + filename + ".frag").c_str());
 #else
-    this->shaders.push_back(new Shader("assets/shaders/lightning.wvs", "assets/shaders/lightning.wfrag"));
+    this->shaders =
+        new Shader(("assets/shaders/" + filename + ".wvs").c_str(), ("assets/shaders/" + filename + ".wfrag").c_str());
 #endif
 }
 
-void Application::initTextures(const std::vector<std::string> &textures)
+// DONE
+void Application::initTextures(const std::string texture)
 {
-    for (auto &file_name : textures)
-        this->textures.push_back(new Texture(("assets/images" + file_name).c_str(), GL_TEXTURE_2D));
+    if (texture != "") this->textures.push_back(new Texture(("assets/images/" + texture).c_str(), GL_TEXTURE_2D));
 }
 
-void Application::initModels(const std::string file_name)
+// Initialize model via stl or obj files
+// DONE
+void Application::initModel(const std::string file_name)
 {
     if (file_name != "")
     {
@@ -159,118 +192,136 @@ void Application::initModels(const std::string file_name)
     }
 }
 
-//TODO rebuild
+// DONE
 void Application::initPointLights(std::vector<PointLight> pls)
 {
-    srand(time(NULL));
-    if (pls.empty())
+    if (this->is_light_shader)
     {
-        int pl_quantity = rand_int(1, 10);
-        for (unsigned int i = 0; i < pl_quantity; i++)
-            this->light.point_lights.push_back(new PointLight(
-                {rand_float(), rand_float(), rand_float()}, {rand_float(), rand_float(), rand_float()},
-                {rand_float(), rand_float(), rand_float()}, {rand_float(), rand_float(), rand_float()}, i));
-    }
-    else
-    {
-        for (auto &pl : pls) this->light.point_lights.push_back(&pl);
-    }
+        srand(time(0));
 
+        // In the case if pointligt's positions and their intensity weren't passed
+        // generate them dynamically
+        if (pls.empty())
+        {
+            // Generate amount of lights [3;10]
+            int pl_quantity = rand_int(3, 10);
+            for (unsigned int i = 0; i < pl_quantity; i++)
+                this->light.point_lights.push_back(
+                    new PointLight({rand_float(-10.0f, 10.0f), rand_float(10.0f, 20.0f), rand_float(0.0f, 10.0f)},
+                                   {rand_float(0.5f, 1.0f), rand_float(0.5f, 1.0f), rand_float(0.5f, 1.0f)},
+                                   {rand_float(0.5f, 1.0f), rand_float(0.5f, 1.0f), rand_float(0.5f, 1.0f)},
+                                   {rand_float(0.5f, 1.0f), rand_float(0.5f, 1.0f), rand_float(0.5f, 1.0f)}, i));
+        }
+        else
+        {
+            for (auto &pl : pls) this->light.point_lights.push_back(&pl);
+        }
+    }
 }
 
-//TODO rebuild
+// DONE
 void Application::initDirectionalLights(std::vector<DirectionalLight> dls)
 {
-    srand(time(NULL));
-    if (dls.empty())
+    if (this->is_light_shader)
     {
-        this->light.dir_lights.push_back(new DirectionalLight(
-            {rand_float(), rand_float(), rand_float()}, {rand_float(), rand_float(), rand_float()},
-            {rand_float(), rand_float(), rand_float()}, {rand_float(), rand_float(), rand_float()}));
-    }
-    else
-    {
-        for (auto &dl : dls) this->light.dir_lights.push_back(&dl);
+        srand(time(0));
+        if (dls.empty())
+        {
+            this->light.dir_lights.push_back(new DirectionalLight({4.07789f, -1.60387f, -0.588997f}, {0.5f, 0.5f, 0.5f},
+                                                                  {0.4f, 0.4f, 0.4f}, {0.5f, 0.5f, 0.5f}));
+        }
+        else
+        {
+            for (auto &dl : dls) this->light.dir_lights.push_back(&dl);
+        }
     }
 }
 
 void Application::initLights(std::vector<PointLight> point_ligts, std::vector<DirectionalLight> directional_lights)
 {
-    this->initDirectionalLights(directional_lights);
-    this->initPointLights(point_ligts);
+    if (this->is_light_shader)
+    {
+        this->initDirectionalLights(directional_lights);
+        this->initPointLights(point_ligts);
+    }
 }
 
 void Application::initUniforms()
 {
-    this->shaders[0]->setVec3f({this->camera.camera_obj.GetPosition().x, this->camera.camera_obj.GetPosition().y,
-                                this->camera.camera_obj.GetPosition().z},
-                               "viewPos");
-    this->shaders[0]->set1f(32.0f, "material.shininess");
-    for (auto &dl : this->light.dir_lights) dl->sendToShader(*this->shaders[0]);
-    for (auto &pl : this->light.point_lights) pl->sendToShader(*this->shaders[0]);
+    this->shaders->setVec3f({this->camera.camera_obj.GetPosition().x, this->camera.camera_obj.GetPosition().y,
+                             this->camera.camera_obj.GetPosition().z},
+                            "viewPos");
+
+    if (this->is_light_shader)
+    {
+        this->shaders->set1f(32.0f, "material.shininess");
+        for (auto &dl : this->light.dir_lights) dl->sendToShader(*this->shaders);
+        for (auto &pl : this->light.point_lights) pl->sendToShader(*this->shaders);
+    }
 
     // change the shader's enum
-    this->shaders[0]->setMat4fv(this->view.view_obj, "view");
-    this->shaders[0]->setMat4fv(this->projection.projection_obj, "projection");
-    this->shaders[0]->setMat4fv(this->model.model_obj, "model");
+    this->shaders->setMat4fv(this->view.view_obj, "view");
+    this->shaders->setMat4fv(this->projection.projection_obj, "projection");
+    this->shaders->setMat4fv(this->model.model_obj, "model");
 }
 
 void Application::updateUniforms()
 {
-    this->shaders[0]->setVec3f({this->camera.camera_obj.GetPosition().x, this->camera.camera_obj.GetPosition().y,
-                                this->camera.camera_obj.GetPosition().z},
-                               "viewPos");
-    this->shaders[0]->set1f(32.0f, "material.shininess");
+    this->initMatrices();
 
-    for (auto &dl : this->light.dir_lights) dl->sendToShader(*this->shaders[0]);
-    for (auto &pl : this->light.point_lights) pl->sendToShader(*this->shaders[0]);
     // Update view matrix (camera)
     this->view.view_obj = this->camera.camera_obj.GetViewMatrix();
+
     this->projection.projection_obj =
         glm::perspective(glm::radians(this->camera.camera_obj.GetZoom()),
-                         static_cast<float>(this->frame_buffer_height) / this->frame_buffer_height,
+                         static_cast<float>(this->frame_buffer_width) / this->frame_buffer_height,
                          this->projection.near_plane, this->projection.far_plane);
-
-    this->shaders[0]->setMat4fv(this->view.view_obj, "view");
-    this->shaders[0]->setMat4fv(this->projection.projection_obj, "projection");
 
     // Update framebuffer size and projection matrix
     glfwGetFramebufferSize(this->window, &this->frame_buffer_width, &this->frame_buffer_height);
 
-    this->model.model_obj = glm::translate(
-        this->model.model_obj, this->model.translation); // Translate it down a bit so it's at the center of the scene
-    this->model.model_obj =
-        glm::scale(this->model.model_obj, this->model.scaling); // It's a bit too big for our scene, so scale it down
-    this->model.model_obj = glm::rotate(this->model.model_obj, this->model.rotation_angle, this->model.rotation_axis);
+    // Translate it down a bit so it's at the center of the scene
+    this->model.model_obj = glm::translate(this->model.model_obj, this->model.translation);
+    // It's a bit too big for our scene, so scale it down
+    this->model.model_obj = glm::scale(this->model.model_obj, this->model.scaling);
+    this->rotateModel();
 
-    this->shaders[0]->setMat4fv(this->model.model_obj, "model");
+    this->initUniforms();
 }
 
-void Application::framebufferResizeCallback(GLFWwindow *window, int fb_w, int fb_h) { glViewport(0, 0, fb_w, fb_h); };
-
 Application::Application(const char *title, const int WINDOW_WIDTH, const int WINDOW_HEIGHT, bool resizable,
-                         std::vector<std::string> models, bool MSAA, glm::vec3 cam_position, glm::vec3 world_up,
+                         std::string shader_file, std::string model, std::string texture,
+                         std::vector<DirectionalLight> dls, std::vector<PointLight> pls, bool MSAA, bool line_mode,
+                         bool is_light_shader, float model_rotation_angle_x, float model_rotation_angle_y,
+                         float model_rotation_angle_z, glm::vec3 model_scaling, glm::vec3 model_translation,
+                         float speed, float sensitivity, glm::vec3 cam_position, glm::vec3 world_up,
                          glm::vec3 cam_front)
     : WINDOW_WIDTH(WINDOW_WIDTH), WINDOW_HEIGHT(WINDOW_HEIGHT)
 {
     this->window = nullptr;
-    this->frame_buffer_height = this->WINDOW_HEIGHT;
-    this->frame_buffer_width = this->WINDOW_WIDTH;
+
+    this->sensitivity = sensitivity;
+    this->speed = speed;
 
     this->camera.cam_position = cam_position;
     this->camera.world_up = world_up;
     this->camera.cam_front = cam_front;
-    this->camera.camera_obj = Camera(cam_position, world_up, -156.0f, -12.4f);
+
+    this->camera.camera_obj = Camera(cam_position, world_up, calculate_yaw(cam_front.x, cam_front.y),
+                                     calculate_pitch(cam_front.x, cam_front.y, cam_front.z), speed, sensitivity);
 
     this->projection.near_plane = 0.1f;
     this->projection.far_plane = 100.f;
 
-    this->model.rotation_angle = -1.5708f;
-    this->model.rotation_axis = glm::vec3(1.0f, 0.0f, 0.0f);
-    this->model.scaling = glm::vec3(0.01f, 0.01f, 0.01f);
-    this->model.translation = glm::vec3(-1.75f, -1.75f, 0.0f);
+    this->model.rotation_angle_x = model_rotation_angle_x;
+    this->model.rotation_angle_y = model_rotation_angle_y;
+    this->model.rotation_angle_z = model_rotation_angle_z;
+    this->model.scaling = model_scaling;
+    this->model.translation = model_translation;
 
     this->MSAA = MSAA;
+    this->line_mode = line_mode;
+    this->is_light_shader = is_light_shader;
 
     this->delta_time = 0.f;
     this->current_frame = 0.f;
@@ -286,12 +337,10 @@ Application::Application(const char *title, const int WINDOW_WIDTH, const int WI
     this->initGLEW();
 #endif // ! __EMSCRIPTEN__
     this->initOpenGLOptions();
-    this->initMatrices();
-    this->initShaders();
-    this->initTextures();
-    this->initModels(models[0]);
-    this->initLights();
-    this->initUniforms();
+    this->initShaders(shader_file);
+    this->initTextures(texture);
+    this->initModel(model);
+    this->initLights(pls, dls);
 }
 
 Application::~Application()
@@ -299,17 +348,14 @@ Application::~Application()
     glfwDestroyWindow(this->window);
     glfwTerminate();
 
-    for (auto &shader : this->shaders) delete shader;
+    delete this->shaders;
     for (auto &texture : this->textures) delete texture;
     for (auto &_model : this->models) delete _model;
     for (auto &pl : this->light.point_lights) delete pl;
     for (auto &dl : this->light.dir_lights) delete dl;
 }
 
-int Application::getWindowShouldClose() { return glfwWindowShouldClose(this->window); }
-
-void Application::setWindowShouldClose() { glfwSetWindowShouldClose(this->window, GLFW_TRUE); }
-
+// DONE
 void Application::updateDeltaTime()
 {
     this->current_frame = static_cast<float>(glfwGetTime());
@@ -321,6 +367,13 @@ void Application::keyCallBack()
 {
     if (glfwGetKey(this->window, GLFW_KEY_ESCAPE) == GLFW_PRESS) this->setWindowShouldClose();
 
+#ifndef __EMSCRIPTEN__
+    if (glfwGetKey(this->window, GLFW_KEY_LEFT_CONTROL) == GLFW_PRESS &&
+        glfwGetKey(this->window, GLFW_KEY_O) == GLFW_PRESS)
+    {
+        this->uploadModel(FileDialog::Open());
+    }
+#endif
     if (glfwGetKey(this->window, GLFW_KEY_W) == GLFW_PRESS || glfwGetKey(this->window, GLFW_KEY_UP) == GLFW_PRESS)
         this->camera.camera_obj.ProcessKeyboard(Camera_Movement::FORWARD, this->delta_time);
 
@@ -348,16 +401,37 @@ void Application::mouseCallback()
     this->x_offset = this->x_pos - this->last_x;
     this->y_offset = this->last_y - this->y_pos; // Reversed since y-coordinates go from bottom to left
 
+    if (glfwGetKey(this->window, GLFW_KEY_LEFT_CONTROL) == GLFW_PRESS)
+    {
+        if (glfwGetMouseButton(this->window, GLFW_MOUSE_BUTTON_1) == GLFW_PRESS)
+        {
+
+            this->model.rotation_angle_z += this->x_offset * 6.0f * this->delta_time;
+            this->model.rotation_angle_y += (this->y_pos - this->last_y) * 6.0f * this->delta_time;
+        }
+    }
+    else
+        this->camera.camera_obj.ProcessMouseMovement(this->x_offset, this->y_offset);
+
     this->last_x = this->x_pos;
     this->last_y = this->y_pos;
+}
 
-    this->camera.camera_obj.ProcessMouseMovement(this->x_offset, this->y_offset);
+void Application::ScrollCallback(GLFWwindow *window, double x_offset, double y_offset)
+{
+
+#if defined(__EMSCRIPTEN__)
+    y_offset = -y_offset / 100;
+#endif
+    if (glfwGetKey(window, GLFW_KEY_LEFT_CONTROL) == GLFW_PRESS)
+        model.rotation_angle_x += y_offset * 6.0f;
+    else
+        camera.camera_obj.ProcessMouseScroll(y_offset);
 }
 
 void Application::updateInput()
 {
     glfwPollEvents();
-
     this->keyCallBack();
     this->mouseCallback();
 }
@@ -371,9 +445,6 @@ void Application::update()
 
 void Application::render()
 {
-    // UPDATE ---
-    // updateInput(window);
-
     // DRAW ---
     // Clear
     glClearColor(0.2f, 0.2f, 0.2f, 1.0f);
@@ -384,9 +455,31 @@ void Application::render()
 
     // Render models
     // TODO modify shader enum
-    for (auto &_model : this->models) 
-        _model->Draw(*this->shaders[0]);
-
+    for (auto &_model : this->models) _model->Draw(*this->shaders);
     // End Draw
     glfwSwapBuffers(this->window);
-}*/
+}
+
+void Application::rotateModel()
+{
+    this->model.model_obj =
+        glm::rotate(this->model.model_obj, glm::radians(this->model.rotation_angle_x), glm::vec3(1.0f, 0.0f, 0.0f));
+    this->model.model_obj =
+        glm::rotate(this->model.model_obj, glm::radians(this->model.rotation_angle_y), glm::vec3(0.0f, 1.0f, 0.0f));
+    this->model.model_obj =
+        glm::rotate(this->model.model_obj, glm::radians(this->model.rotation_angle_z), glm::vec3(0.0f, 0.0f, 1.0f));
+}
+
+void Application::uploadModel(std::string path) {
+    if (!path.empty())
+    {
+        if (models[0]) delete models[0];
+        models[0] = new Model((char*)path.c_str());
+    }
+}
+#ifdef __EMSCRIPTEN__
+EMSCRIPTEN_BINDINGS(application_ex)
+{
+    class_<Application>("Application").class_function("uploadModel", &Application::uploadModel);
+}
+#endif

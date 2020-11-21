@@ -3,7 +3,10 @@
 #ifdef __EMSCRIPTEN__
 #define GLFW_INCLUDE_ES3
 #include <emscripten/emscripten.h>
+#include <emscripten/bind.h>
+using namespace emscripten;
 #else
+#include "filedialog.h"
 #include <GL/glew.h>
 #endif
 #include "camera.h"
@@ -11,10 +14,12 @@
 #include "light.h"
 #include "model.h"
 #include <GLFW/glfw3.h>
+#include <chrono>
 #include <cstdint>
 #include <cstdlib>
 #include <ctime>
 #include <iostream>
+#include <thread>
 
 typedef struct AppCamera
 {
@@ -41,8 +46,9 @@ typedef struct ModelMatrix
     glm::mat4 model_obj;
     glm::vec3 translation;
     glm::vec3 scaling;
-    float rotation_angle;
-    glm::vec3 rotation_axis;
+    float rotation_angle_x;
+    float rotation_angle_y;
+    float rotation_angle_z;
 } ModelMatrix;
 
 typedef struct Lights
@@ -51,12 +57,17 @@ typedef struct Lights
     std::vector<DirectionalLight *> dir_lights;
 };
 
-/*class Application
+class Application
 {
   public:
     Application(const char *title, const int WINDOW_WIDTH, const int WINDOW_HEIGHT, bool resizable,
-                std::vector<std::string> models = {""}, bool MSAA = true,
-                glm::vec3 cam_position = {0.f, 0.f, 1.f}, glm::vec3 world_up = {0.f, 1.f, 0.f},
+                std::string shader_file = "", std::string model = "",
+                std::string texture = "", std::vector<DirectionalLight> dls = {},
+                std::vector<PointLight> pls = {}, bool MSAA = true, bool line_mode = false, bool is_light_shader = true,
+                float model_rotation_angle_x = 0.0f, float model_rotation_angle_y = 0.0f,
+                float model_rotation_angle_z = 0.0f, glm::vec3 model_scaling = {0.01f, 0.01f, 0.01f},
+                glm::vec3 model_translation = {-1.75f, -1.75f, 0.0f}, float speed = 6.0, float sensitivity = 0.15f,
+                glm::vec3 cam_position = {0.0f, 0.0f, 0.0f}, glm::vec3 world_up = {0.f, 1.f, 0.f},
                 glm::vec3 cam_front = {0.f, 0.f, -1.f});
     int getWindowShouldClose();
     void setWindowShouldClose();
@@ -64,6 +75,7 @@ typedef struct Lights
     void updateInput();
     void update();
     void render();
+    static void uploadModel(std::string path);
     ~Application();
 
   private:
@@ -86,17 +98,21 @@ typedef struct Lights
     double y_offset;
     bool first_mouse;
 
-    bool keys[1024];
+    bool line_mode;
 
-    AppCamera camera;
+    static AppCamera camera;
+    float sensitivity;
+    float speed;
 
-    std::vector<Shader *> shaders;
+    // Pointer to the shader
+    Shader *shaders;
+    bool is_light_shader;
 
     // Textures
     std::vector<Texture *> textures;
 
-    // Models
-    std::vector<Model *> models;
+    // Models TODO rebuild as the only pointer
+    static std::vector<Model *> models;
 
     // Lights
     Lights light;
@@ -104,16 +120,15 @@ typedef struct Lights
     // Matricies
     ViewMatrix view;
     ProjectionMatrix projection;
-    ModelMatrix model;
+    static ModelMatrix model;
 
     void initGLFW();
     void initWindow(const char *title, bool resizable);
     void initOpenGLOptions();
     void initMatrices();
-    // TODO add up the shader's file selection
-    void initShaders();
-    void initTextures(const std::vector<std::string> &textures = {});
-    void initModels(const std::string file_name = "");
+    void initShaders(std::string shader_file = "");
+    void initTextures(const std::string texture = "");
+    void initModel(const std::string file_name = "");
     void initPointLights(std::vector<PointLight> pls);
     void initDirectionalLights(std::vector<DirectionalLight> dls);
     void initLights(std::vector<PointLight> point_ligts = {}, std::vector<DirectionalLight> directional_lights = {});
@@ -121,10 +136,11 @@ typedef struct Lights
     void updateUniforms();
     void keyCallBack();
     void mouseCallback();
-
+    void rotateModel();
+   
     static void framebufferResizeCallback(GLFWwindow *window, int fb_w, int fb_h);
+    static void ScrollCallback(GLFWwindow *window, double x_offset, double y_offset);
 #ifndef __EMSCRIPTEN__
     void initGLEW();
 #endif
 };
-*/
