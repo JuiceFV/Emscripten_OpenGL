@@ -10,7 +10,7 @@ void Model::Draw(Shader &shader)
 }
 
 // Loads a model with supported ASSIMP extensions from file and stores the resulting meshes in the meshes vector.
-void Model::loadModel(const std::string& path)
+void Model::loadModel(const std::string &path)
 {
     // Read file via ASSIMP
     Assimp::Importer importer;
@@ -19,11 +19,14 @@ void Model::loadModel(const std::string& path)
     // Check for errors
     if (!scene || scene->mFlags == AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode) // if is Not Zero
     {
-        std::cout << "ERROR::ASSIMP:: " << importer.GetErrorString() << std::endl;
+        std::cerr << "An error has occured in the " << __FILE__ << " in line " << __LINE__ << "." << std::endl
+                  << "Details: " << importer.GetErrorString() << std::endl;
         return;
     }
+
     // Retrieve the directory path of the filepath
-    this->directory = path.substr(0, path.find_last_of('/'));
+    if ((this->directory = path.substr(0, path.find_last_of('/'))) == path)
+        this->directory = path.substr(0, path.find_last_of('\\'));
 
     // Process ASSIMP's root node recursively
     this->processNode(scene->mRootNode, scene);
