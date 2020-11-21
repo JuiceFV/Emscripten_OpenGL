@@ -1,7 +1,8 @@
 #include "camera.h"
 
-Camera::Camera(glm::vec3 position, glm::vec3 up, float yaw, float pitch)
-    : front(glm::vec3(0.0f, 0.0f, -1.0f)), movement_speed(SPEED), mouse_sensitivity(SENSITIVTY), zoom(ZOOM)
+Camera::Camera(glm::vec3 position, glm::vec3 up, float yaw, float pitch, float speed,
+               float sensivity)
+    : front(glm::vec3(0.0f, 0.0f, -1.0f)), movement_speed(speed), mouse_sensitivity(sensivity), zoom(ZOOM)
 {
     this->view_matrix = glm::mat4(1.f);
     this->position = position;
@@ -11,8 +12,9 @@ Camera::Camera(glm::vec3 position, glm::vec3 up, float yaw, float pitch)
     this->updateCameraVectors();
 }
 
-Camera::Camera(float pos_x, float pos_y, float pos_z, float up_x, float up_y, float up_z, float yaw, float pitch)
-    : front(glm::vec3(0.0f, 0.0f, -1.0f)), movement_speed(SPEED), mouse_sensitivity(SENSITIVTY), zoom(ZOOM)
+Camera::Camera(float pos_x, float pos_y, float pos_z, float up_x, float up_y, float up_z, float yaw, float pitch,
+               float speed, float sensivity)
+    : front(glm::vec3(0.0f, 0.0f, -1.0f)), movement_speed(speed), mouse_sensitivity(SENSITIVTY), zoom(sensivity)
 {
     this->view_matrix = glm::mat4(1.f);
     this->position = glm::vec3(pos_x, pos_y, pos_z);
