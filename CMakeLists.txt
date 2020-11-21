@@ -54,6 +54,7 @@ set(${PROJECT_NAME}_SOURCES
                 "application/sources/mesh.cpp"
                 "application/sources/model.cpp"
                 "application/sources/light.cpp"
+                "application/sources/filedialog.cpp"
             )
 set(${PROJECT_NAME}_INCLUDES 
                 "application/includes/shader.h"
@@ -64,6 +65,7 @@ set(${PROJECT_NAME}_INCLUDES
                 "application/includes/mesh.h"
                 "application/includes/light.h"
                 "application/includes/model.h"
+                "application/includes/filedialog.h"
             )
 set(${PROJECT_NAME}_MAIN "application/main.cxx")
 
@@ -152,7 +154,6 @@ if (NOT ENABLE_TESTS)
     #| therefore I copy the config file to bin dir to make paths equal.                          |
     #+-------------------------------------------------------------------------------------------+
     if (FOR_EMSDK) 
-        set(CMAKE_EXECUTABLE_SUFFIX ".html")
         set_target_properties(${PROJECT_NAME}
                     PROPERTIES RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/application/out")
         configure_file(${CMAKE_SOURCE_DIR}/application/entry.py 
@@ -161,6 +162,10 @@ if (NOT ENABLE_TESTS)
                     )
         configure_file(${CMAKE_SOURCE_DIR}/config/servconfig.yaml 
                         ${CMAKE_BINARY_DIR}/config/servconfig.yaml 
+                        COPYONLY
+                    )
+        configure_file(${CMAKE_SOURCE_DIR}/application/out/Emscripten_Graphics.html 
+                        ${CMAKE_BINARY_DIR}/application/out/Emscripten_Graphics.html
                         COPYONLY
                     )
     else()
@@ -203,6 +208,6 @@ set_target_properties(${LIBS} PROPERTIES FOLDER "dependencies")
 # If the application is builded via emcc sets appropriate flags
 if (FOR_EMSDK)
     message(STATUS "Setting EMCC flags\n")
-    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -s ERROR_ON_UNDEFINED_SYMBOLS=0 -s FORCE_FILESYSTEM=1 -s USE_WEBGL2=1 -s USE_GLFW=3  -s FULL_ES3=1 -s ALLOW_MEMORY_GROWTH=1 -s ASSERTIONS=1 -s WASM=1  -std=c++11  --preload-file ${CMAKE_SOURCE_DIR}/config/@/config --preload-file ${CMAKE_SOURCE_DIR}/assets/@/assets")
+    set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -s ERROR_ON_UNDEFINED_SYMBOLS=0 -s FORCE_FILESYSTEM=1 -s USE_WEBGL2=1 -s USE_GLFW=3  -s FULL_ES3=1 -s ALLOW_MEMORY_GROWTH=1 -s ASSERTIONS=1 -s WASM=1 --bind -std=c++11  --preload-file ${CMAKE_SOURCE_DIR}/config/@/config --preload-file ${CMAKE_SOURCE_DIR}/assets/@/assets")
 endif()
 #====================================================================================# 
