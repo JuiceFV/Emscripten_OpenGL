@@ -10,7 +10,6 @@ using namespace emscripten;
 #include <GL/glew.h>
 #endif
 #include "camera.h"
-#include "config.h"
 #include "light.h"
 #include "model.h"
 #include <GLFW/glfw3.h>

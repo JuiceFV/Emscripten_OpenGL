@@ -14,7 +14,7 @@ static void dispatch_main(void *fp)
 
 int main()
 {
-    Application app("test", 1280, 720, true, "", {"11803_Airplane_v1_l1.obj"});
+    Application app("test", 1280, 720, true, "", "11803_Airplane_v1_l1.obj");
 #ifdef __EMSCRIPTEN__
     std::function<void()> mainLoop = [&]() {
 #else
