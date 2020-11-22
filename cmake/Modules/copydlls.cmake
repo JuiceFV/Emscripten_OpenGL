@@ -17,10 +17,4 @@
     POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_if_different 
         "${CMAKE_SOURCE_DIR}/application/dependencies/ASSIMP/lib/msvc/assimp-vc142-mtd.dll"      
         $<TARGET_FILE_DIR:${PROJECT_NAME}>)
-
-    message(STATUS "Setting up copy yamlparser dll..." "${CMAKE_BINARY_DIR}/bin/Debug/")
-    add_custom_command(TARGET ${PROJECT_NAME}
-    POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy_if_different 
-        "${CMAKE_SOURCE_DIR}/application/configloader/dependencies/yamlparser/lib/msvc/yaml-cppd.dll"      
-        $<TARGET_FILE_DIR:${PROJECT_NAME}>)
 endif()
