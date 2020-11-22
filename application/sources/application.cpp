@@ -1,12 +1,12 @@
 #include "application.h"
 
-// I defined the camera variable as static in
+// I defined the camera, model, models variables as static in
 // purpose to use the zoom. Due to I won't use
 // more than 1 application's object - it shouldn't hurt the app
 // however, apperently there appears some bottlenecks.
 AppCamera Application::camera = {};
 ModelMatrix Application::model = {};
-std::vector<Model *> Application::models = {};
+Model *Application::models = nullptr;
 
 static float rand_float(float min, float max)
 {
@@ -163,7 +163,7 @@ void Application::initModel(const std::string file_name)
         if (extension != file_name)
         {
             if (extension == "obj" || extension == "stl")
-                this->models.push_back(new Model((char *)("assets/models/" + file_name).c_str()));
+                this->models = new Model((char *)("assets/models/" + file_name).c_str());
             else
             {
                 std::cerr
@@ -348,9 +348,9 @@ Application::~Application()
     glfwDestroyWindow(this->window);
     glfwTerminate();
 
-    delete this->shaders;
+    if (this->shaders) delete this->shaders;
     for (auto &texture : this->textures) delete texture;
-    for (auto &_model : this->models) delete _model;
+    if (this->models) delete this->models;
     for (auto &pl : this->light.point_lights) delete pl;
     for (auto &dl : this->light.dir_lights) delete dl;
 }
@@ -455,7 +455,7 @@ void Application::render()
 
     // Render models
     // TODO modify shader enum
-    for (auto &_model : this->models) _model->Draw(*this->shaders);
+    if (this->models) this->models->Draw(*this->shaders);
     // End Draw
     glfwSwapBuffers(this->window);
 }
@@ -470,11 +470,12 @@ void Application::rotateModel()
         glm::rotate(this->model.model_obj, glm::radians(this->model.rotation_angle_z), glm::vec3(0.0f, 0.0f, 1.0f));
 }
 
-void Application::uploadModel(std::string path) {
+void Application::uploadModel(std::string path)
+{
     if (!path.empty())
     {
-        if (models[0]) delete models[0];
-        models[0] = new Model((char*)path.c_str());
+        if (models) delete models;
+        models = new Model((char *)path.c_str());
     }
 }
 #ifdef __EMSCRIPTEN__
