@@ -2,8 +2,8 @@
 
 #ifdef __EMSCRIPTEN__
 #define GLFW_INCLUDE_ES3
-#include <emscripten/emscripten.h>
 #include <emscripten/bind.h>
+#include <emscripten/emscripten.h>
 using namespace emscripten;
 #else
 #include "filedialog.h"
@@ -14,12 +14,10 @@ using namespace emscripten;
 #include "light.h"
 #include "model.h"
 #include <GLFW/glfw3.h>
-#include <chrono>
 #include <cstdint>
 #include <cstdlib>
 #include <ctime>
 #include <iostream>
-#include <thread>
 
 typedef struct AppCamera
 {
@@ -61,14 +59,13 @@ class Application
 {
   public:
     Application(const char *title, const int WINDOW_WIDTH, const int WINDOW_HEIGHT, bool resizable,
-                std::string shader_file = "", std::string model = "",
-                std::string texture = "", std::vector<DirectionalLight> dls = {},
-                std::vector<PointLight> pls = {}, bool MSAA = true, bool line_mode = false, bool is_light_shader = true,
-                float model_rotation_angle_x = 0.0f, float model_rotation_angle_y = 0.0f,
-                float model_rotation_angle_z = 0.0f, glm::vec3 model_scaling = {0.01f, 0.01f, 0.01f},
-                glm::vec3 model_translation = {-1.75f, -1.75f, 0.0f}, float speed = 6.0, float sensitivity = 0.15f,
-                glm::vec3 cam_position = {0.0f, 0.0f, 0.0f}, glm::vec3 world_up = {0.f, 1.f, 0.f},
-                glm::vec3 cam_front = {0.f, 0.f, -1.f});
+                std::string shader_file = "", std::string model = "", std::string texture = "",
+                std::vector<DirectionalLight> dls = {}, std::vector<PointLight> pls = {}, bool MSAA = true,
+                bool line_mode = false, bool is_light_shader = true, float model_rotation_angle_x = 0.0f,
+                float model_rotation_angle_y = 0.0f, float model_rotation_angle_z = 0.0f,
+                glm::vec3 model_scaling = {0.01f, 0.01f, 0.01f}, glm::vec3 model_translation = {-1.75f, -1.75f, 0.0f},
+                float speed = 6.0, float sensitivity = 0.15f, glm::vec3 cam_position = {0.0f, 0.0f, 0.0f},
+                glm::vec3 world_up = {0.f, 1.f, 0.f}, glm::vec3 cam_front = {0.f, 0.f, -1.f});
     int getWindowShouldClose();
     void setWindowShouldClose();
     void updateDeltaTime();
@@ -112,7 +109,7 @@ class Application
     std::vector<Texture *> textures;
 
     // Models TODO rebuild as the only pointer
-    static std::vector<Model *> models;
+    static Model *models;
 
     // Lights
     Lights light;
@@ -137,7 +134,7 @@ class Application
     void keyCallBack();
     void mouseCallback();
     void rotateModel();
-   
+
     static void framebufferResizeCallback(GLFWwindow *window, int fb_w, int fb_h);
     static void ScrollCallback(GLFWwindow *window, double x_offset, double y_offset);
 #ifndef __EMSCRIPTEN__
