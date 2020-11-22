@@ -31,6 +31,3 @@ build_script:
     - cmake --version
     - cmake -DENABLE_TESTS=ON ..
     - cmake --build .
-
-test_script:
-    ctest -C %CONFIGURATION% -VV
