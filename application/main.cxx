@@ -1,22 +1,9 @@
-#include <functional>
-
-#ifdef __EMSCRIPTEN__
-#define GLFW_INCLUDE_ES3
-#include <emscripten/emscripten.h>
-#else
-#include <GL/glew.h>
-#endif
-
 #include "application.h"
-#include <GLFW/glfw3.h>
-#include <SOIL2.h>
-#include <functional>
 #include <iostream>
 
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtc/type_ptr.hpp>
-
+// Emscripten uses its own endless loop.
+// In purpose to properly execute it we create
+// purposed function, which dispatches the loop
 #ifdef __EMSCRIPTEN__
 static void dispatch_main(void *fp)
 {
