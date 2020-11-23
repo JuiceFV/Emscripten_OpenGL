@@ -2,7 +2,8 @@
 cmake_minimum_required(VERSION 3.9)
 
 #============================= Main application information =========================# 
-# set the name of the project
+# set the name of the project 
+# In the VS the main project calls as Emscripten_Graphics.sln
 project(Emscripten_Graphics)
 
 # Showing the system type
@@ -30,13 +31,12 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
 # Adding options (flags)
 # 1) The flag, which has to be ON if we compile via emcc
-# 2) The flag, responsible for tests
 option(FOR_EMSDK 
         "The libraries compilation occurs for the emsdk compilers" 
         OFF
     )
 
-# Set the variables responsible for specific files.
+# Set the variables containing specific files.
 set(${PROJECT_NAME}_SOURCES 
                 "application/sources/shader.cpp"
                 "application/sources/camera.cpp"
@@ -60,21 +60,23 @@ set(${PROJECT_NAME}_INCLUDES
             )
 set(${PROJECT_NAME}_MAIN "application/main.cxx")
 
-# I've moved the group's functions to the another cmake file.
+# I've moved the group's functions to the another .cmake file.
 include(groupfunctions)
 
 # Look for additional files related to the program
 # 1. The shaders
 # 2. The images (especially for develop process), after I will remove this
-# 3. The models ...
+# 3. The models
 file(GLOB_RECURSE SHADERS ${CMAKE_SOURCE_DIR}/assets/shaders/*)
 file(GLOB_RECURSE IMAGES ${CMAKE_SOURCE_DIR}/assets/images/*)
 file(GLOB_RECURSE MODELS ${CMAKE_SOURCE_DIR}/assets/models/*)
 
 # Group files for the proper representation in Visual Studio
+# I leave models, because its object file may confront with VS
 if(MSVC)
 	assign_source_group(${SHADERS})
 	assign_source_group(${IMAGES})
+	source_group("" FILES ${${PROJECT_NAME}_MAIN})
 endif()
 #====================================================================================# 
 
@@ -82,14 +84,13 @@ endif()
 # 1) Set compilation's flags
 # 2) Safe guards against in-source builds and bad build types.
 # 3) Including file looking for libraries for the graphics.
-# 4) Include the file which compiles and looks for the configuration's library.
 include(setflags)
 include(safeguard)
 include(graphics)
 #====================================================================================# 
 #============================= Generate executable ==================================# 
-
 message(STATUS "Executable mode is on!")
+
 # adding executable
 add_executable(${PROJECT_NAME} 
                 ${${PROJECT_NAME}_MAIN} 
@@ -98,9 +99,13 @@ add_executable(${PROJECT_NAME}
                 ${SHADERS}
                 ${IMAGES}
             )
+
+# Linking required libs
 target_link_libraries(${PROJECT_NAME} 
                         ${GRAPHICS_LIBS}
                     ) 
+
+# Set the include dirs as Interface
 target_include_directories(
     ${PROJECT_NAME} PUBLIC
     $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/application/includes>
@@ -122,14 +127,16 @@ include(copydlls)
 #+-------------------------------------------------------------------------------------------+
 #| 2&3) Due to, whereas building occurs in the docker container, I created so-called warapper|
 #| in python, which lunches a server and handles requests if those appears. Thus I have to   |
-#| shove the entry.py and its config to the binary dir, in purpose to launch it properly.    |
+#| shove the entry.py to the binary dir, in purpose to launch it properly.                   |
+#| Also, to make it possible to select a model at build time, I created my own .html file    |
+#| and connected it to the generated .js.                                                    |
 #+-------------------------------------------------------------------------------------------+
 #| I'd like to emphasize the problem appears when the compilation occurs via emcc.           |
 #| Emscripten creates its own filesystem and assign the start-dir as the root one.           |
-#| In c++ code I have to step back to the previous directory to derive the config.yaml       |
-#| (../config/config.yaml) if project was built via msvc-compiler, however for the emcc it   |
-#| looks like (/config/config.yaml). I do not really want to do a mess from the code,        |
-#| therefore I copy the config file to bin dir to make paths equal.                          |
+#| In c++ code I have to step back to the previous directory to derive the assets/*          |
+#| (../assets/models/*) if project was built via msvc-compiler, however for the emcc it      |
+#| looks like (/assets/models/*). I do not really want to do a mess from the code,           |
+#| therefore I copy the assets files to bin dir to make paths equal.                         |
 #+-------------------------------------------------------------------------------------------+
 if (FOR_EMSDK) 
     set_target_properties(${PROJECT_NAME}
