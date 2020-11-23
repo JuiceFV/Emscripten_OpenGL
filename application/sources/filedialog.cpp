@@ -20,6 +20,6 @@ char *FileDialog::Open()
         return res;
     }
 
-    return (char *)"";
+    return nullptr;
 }
 #endif

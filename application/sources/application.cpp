@@ -372,7 +372,8 @@ void Application::keyCallBack()
     if (glfwGetKey(this->window, GLFW_KEY_LEFT_CONTROL) == GLFW_PRESS &&
         glfwGetKey(this->window, GLFW_KEY_O) == GLFW_PRESS)
     {
-        this->uploadModel(FileDialog::Open());
+        auto path = FileDialog::Open();
+        this->uploadModel((path ? path : ""));
     }
 #endif
     if (glfwGetKey(this->window, GLFW_KEY_W) == GLFW_PRESS || glfwGetKey(this->window, GLFW_KEY_UP) == GLFW_PRESS)
