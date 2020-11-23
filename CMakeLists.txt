@@ -56,6 +56,7 @@ set(${PROJECT_NAME}_INCLUDES
                 "application/includes/mesh.h"
                 "application/includes/light.h"
                 "application/includes/model.h"
+                "application/includes/globals.h"
                 "application/includes/filedialog.h"
             )
 set(${PROJECT_NAME}_MAIN "application/main.cxx")
