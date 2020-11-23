@@ -3,7 +3,7 @@
 
 char *FileDialog::Open()
 {
-    char *filter = "All Files (*.*)\0*.obj\0";
+    const char *filter = "All Files (*.*)\0*.obj\0";
     OPENFILENAME ofn;
 
     char filename[MAX_PATH] = "";
