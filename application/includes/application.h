@@ -101,16 +101,16 @@ class Application
     float speed;
 
     // Pointer to the shader
-    Shader *shaders;
+    Shader *shader;
     bool is_light_shader;
 
-    // Textures
-    std::vector<Texture *> textures;
+    // Texture
+    Texture * texture;
 
-    // Models TODO rebuild as the only pointer
-    static Model *models;
+    // Model
+    static Model *uploaded_model;
 
-    // Lights
+    // Light
     Lights light;
 
     // Matricies

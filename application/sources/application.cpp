@@ -6,8 +6,10 @@
 // however, apperently there appears some bottlenecks.
 AppCamera Application::camera = {};
 ModelMatrix Application::model = {};
-Model *Application::models = nullptr;
+Model *Application::uploaded_model = nullptr;
 
+// I use the random float numbers to determine the light
+// in case if it's not been passed.
 static float rand_float(float min, float max)
 {
     union UNION {
@@ -139,10 +141,10 @@ void Application::initShaders(std::string shader_file)
 {
     std::string filename = shader_file == "" ? "core" : shader_file;
 #ifndef __EMSCRIPTEN__
-    this->shaders =
+    this->shader =
         new Shader(("assets/shaders/" + filename + ".vs").c_str(), ("assets/shaders/" + filename + ".frag").c_str());
 #else
-    this->shaders =
+    this->shader =
         new Shader(("assets/shaders/" + filename + ".wvs").c_str(), ("assets/shaders/" + filename + ".wfrag").c_str());
 #endif
 }
@@ -150,7 +152,7 @@ void Application::initShaders(std::string shader_file)
 // DONE
 void Application::initTextures(const std::string texture)
 {
-    if (texture != "") this->textures.push_back(new Texture(("assets/images/" + texture).c_str(), GL_TEXTURE_2D));
+    if (texture != "") this->texture = new Texture(("assets/images/" + texture).c_str(), GL_TEXTURE_2D);
 }
 
 // Initialize model via stl or obj files
@@ -163,7 +165,7 @@ void Application::initModel(const std::string file_name)
         if (extension != file_name)
         {
             if (extension == "obj" || extension == "stl")
-                this->models = new Model((char *)("assets/models/" + file_name).c_str());
+                this->uploaded_model = new Model((char *)("assets/models/" + file_name).c_str());
             else
             {
                 std::cerr
@@ -248,21 +250,21 @@ void Application::initLights(std::vector<PointLight> point_ligts, std::vector<Di
 
 void Application::initUniforms()
 {
-    this->shaders->setVec3f({this->camera.camera_obj.GetPosition().x, this->camera.camera_obj.GetPosition().y,
+    this->shader->setVec3f({this->camera.camera_obj.GetPosition().x, this->camera.camera_obj.GetPosition().y,
                              this->camera.camera_obj.GetPosition().z},
                             "viewPos");
 
     if (this->is_light_shader)
     {
-        this->shaders->set1f(32.0f, "material.shininess");
-        for (auto &dl : this->light.dir_lights) dl->sendToShader(*this->shaders);
-        for (auto &pl : this->light.point_lights) pl->sendToShader(*this->shaders);
+        this->shader->set1f(32.0f, "material.shininess");
+        for (auto &dl : this->light.dir_lights) dl->sendToShader(*this->shader);
+        for (auto &pl : this->light.point_lights) pl->sendToShader(*this->shader);
     }
 
     // change the shader's enum
-    this->shaders->setMat4fv(this->view.view_obj, "view");
-    this->shaders->setMat4fv(this->projection.projection_obj, "projection");
-    this->shaders->setMat4fv(this->model.model_obj, "model");
+    this->shader->setMat4fv(this->view.view_obj, "view");
+    this->shader->setMat4fv(this->projection.projection_obj, "projection");
+    this->shader->setMat4fv(this->model.model_obj, "model");
 }
 
 void Application::updateUniforms()
@@ -285,7 +287,6 @@ void Application::updateUniforms()
     // It's a bit too big for our scene, so scale it down
     this->model.model_obj = glm::scale(this->model.model_obj, this->model.scaling);
     this->rotateModel();
-
     this->initUniforms();
 }
 
@@ -348,9 +349,9 @@ Application::~Application()
     glfwDestroyWindow(this->window);
     glfwTerminate();
 
-    if (this->shaders) delete this->shaders;
-    for (auto &texture : this->textures) delete texture;
-    if (this->models) delete this->models;
+    if (this->shader) delete this->shader;
+    if (this->texture) delete this->texture;
+    if (this->uploaded_model) delete this->uploaded_model;
     for (auto &pl : this->light.point_lights) delete pl;
     for (auto &dl : this->light.dir_lights) delete dl;
 }
@@ -454,8 +455,7 @@ void Application::render()
     this->updateUniforms();
 
     // Render models
-    // TODO modify shader enum
-    if (this->models) this->models->Draw(*this->shaders);
+    if (this->uploaded_model) this->uploaded_model->Draw(*this->shader);
     // End Draw
     glfwSwapBuffers(this->window);
 }
@@ -472,10 +472,10 @@ void Application::rotateModel()
 
 void Application::uploadModel(std::string path)
 {
-    if (!path.empty())
+    if (path != "")
     {
-        if (models) delete models;
-        models = new Model((char *)path.c_str());
+        if (uploaded_model) delete uploaded_model;
+        uploaded_model = new Model((char *)path.c_str());
     }
 }
 #ifdef __EMSCRIPTEN__
