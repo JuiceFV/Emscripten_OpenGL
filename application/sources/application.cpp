@@ -195,7 +195,7 @@ void Application::initModel(const std::string file_name)
 }
 
 // DONE
-void Application::initPointLights(std::vector<PointLight> pls)
+void Application::initPointLights(std::vector<PointLight> &pls)
 {
     if (this->is_light_shader)
     {
@@ -222,7 +222,7 @@ void Application::initPointLights(std::vector<PointLight> pls)
 }
 
 // DONE
-void Application::initDirectionalLights(std::vector<DirectionalLight> dls)
+void Application::initDirectionalLights(std::vector<DirectionalLight> &dls)
 {
     if (this->is_light_shader)
     {
@@ -239,7 +239,7 @@ void Application::initDirectionalLights(std::vector<DirectionalLight> dls)
     }
 }
 
-void Application::initLights(std::vector<PointLight> point_ligts, std::vector<DirectionalLight> directional_lights)
+void Application::initLights(std::vector<PointLight> &point_ligts, std::vector<DirectionalLight> &directional_lights)
 {
     if (this->is_light_shader)
     {
@@ -251,8 +251,8 @@ void Application::initLights(std::vector<PointLight> point_ligts, std::vector<Di
 void Application::initUniforms()
 {
     this->shader->setVec3f({this->camera.camera_obj.GetPosition().x, this->camera.camera_obj.GetPosition().y,
-                             this->camera.camera_obj.GetPosition().z},
-                            "viewPos");
+                            this->camera.camera_obj.GetPosition().z},
+                           "viewPos");
 
     if (this->is_light_shader)
     {
@@ -291,12 +291,12 @@ void Application::updateUniforms()
 }
 
 Application::Application(const char *title, const int WINDOW_WIDTH, const int WINDOW_HEIGHT, bool resizable,
-                         std::string shader_file, std::string model, std::string texture,
-                         std::vector<DirectionalLight> dls, std::vector<PointLight> pls, bool MSAA, bool line_mode,
-                         bool is_light_shader, float model_rotation_angle_x, float model_rotation_angle_y,
-                         float model_rotation_angle_z, glm::vec3 model_scaling, glm::vec3 model_translation,
-                         float speed, float sensitivity, glm::vec3 cam_position, glm::vec3 world_up,
-                         glm::vec3 cam_front)
+                         const std::string &shader_file, const std::string &model, const std::string &texture,
+                         std::vector<DirectionalLight> &dls, std::vector<PointLight> &pls, const bool &MSAA,
+                         const bool &line_mode, const bool &is_light_shader, const float &model_rotation_angle_x,
+                         float &model_rotation_angle_y, float &model_rotation_angle_z, glm::vec3 &model_scaling,
+                         glm::vec3 &model_translation, const float &speed, const float &sensitivity,
+                         glm::vec3 &cam_position, glm::vec3 &world_up, glm::vec3 &cam_front)
     : WINDOW_WIDTH(WINDOW_WIDTH), WINDOW_HEIGHT(WINDOW_HEIGHT)
 {
     this->window = nullptr;

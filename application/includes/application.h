@@ -58,13 +58,12 @@ class Application
 {
   public:
     Application(const char *title, const int WINDOW_WIDTH, const int WINDOW_HEIGHT, bool resizable,
-                std::string shader_file = "", std::string model = "", std::string texture = "",
-                std::vector<DirectionalLight> dls = {}, std::vector<PointLight> pls = {}, bool MSAA = true,
-                bool line_mode = false, bool is_light_shader = true, float model_rotation_angle_x = 0.0f,
-                float model_rotation_angle_y = 0.0f, float model_rotation_angle_z = 0.0f,
-                glm::vec3 model_scaling = {0.01f, 0.01f, 0.01f}, glm::vec3 model_translation = {-1.75f, -1.75f, 0.0f},
-                float speed = 6.0, float sensitivity = 0.15f, glm::vec3 cam_position = {0.0f, 0.0f, 0.0f},
-                glm::vec3 world_up = {0.f, 1.f, 0.f}, glm::vec3 cam_front = {0.f, 0.f, -1.f});
+                const std::string &shader_file, const std::string &model, const std::string &texture,
+                std::vector<DirectionalLight> &dls, std::vector<PointLight> &pls, const bool &MSAA,
+                const bool &line_mode, const bool &is_light_shader, const float &model_rotation_angle_x,
+                float &model_rotation_angle_y, float &model_rotation_angle_z, glm::vec3 &model_scaling,
+                glm::vec3 &model_translation, const float &speed, const float &sensitivity, glm::vec3 &cam_position,
+                glm::vec3 &world_up, glm::vec3 &cam_front);
     int getWindowShouldClose();
     void setWindowShouldClose();
     void updateDeltaTime();
@@ -105,7 +104,7 @@ class Application
     bool is_light_shader;
 
     // Texture
-    Texture * texture;
+    Texture *texture;
 
     // Model
     static Model *uploaded_model;
@@ -125,9 +124,9 @@ class Application
     void initShaders(std::string shader_file = "");
     void initTextures(const std::string texture = "");
     void initModel(const std::string file_name = "");
-    void initPointLights(std::vector<PointLight> pls);
-    void initDirectionalLights(std::vector<DirectionalLight> dls);
-    void initLights(std::vector<PointLight> point_ligts = {}, std::vector<DirectionalLight> directional_lights = {});
+    void initPointLights(std::vector<PointLight> &pls);
+    void initDirectionalLights(std::vector<DirectionalLight> &dls);
+    void initLights(std::vector<PointLight> &point_ligts, std::vector<DirectionalLight> &directional_lights);
     void initUniforms();
     void updateUniforms();
     void keyCallBack();
