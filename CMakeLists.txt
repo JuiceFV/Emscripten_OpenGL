@@ -150,6 +150,22 @@ if (FOR_EMSDK)
                     ${CMAKE_BINARY_DIR}/application/out/Emscripten_Graphics.html
                     COPYONLY
                 )
+    configure_file(${CMAKE_SOURCE_DIR}/application/out/Emscripten_Graphics.css 
+                    ${CMAKE_BINARY_DIR}/application/out/Emscripten_Graphics.css
+                    COPYONLY
+                )
+    configure_file(${CMAKE_SOURCE_DIR}/application/out/canvas.html 
+                    ${CMAKE_BINARY_DIR}/application/out/canvas.html 
+                    COPYONLY
+                )
+    configure_file(${CMAKE_SOURCE_DIR}/application/out/canvas.css 
+                    ${CMAKE_BINARY_DIR}/application/out/canvas.css 
+                    COPYONLY
+                )
+    configure_file(${CMAKE_SOURCE_DIR}/application/out/canvas.js 
+                    ${CMAKE_BINARY_DIR}/application/out/canvas.js 
+                    COPYONLY
+                )
 else()
     copy_files(${CMAKE_SOURCE_DIR}/assets/* ${CMAKE_BINARY_DIR}/assets/*)
 endif()
