@@ -403,7 +403,7 @@ void Application::mouseCallback()
     this->x_offset = this->x_pos - this->last_x;
     this->y_offset = this->last_y - this->y_pos; // Reversed since y-coordinates go from bottom to left
 
-    if (glfwGetKey(this->window, GLFW_KEY_LEFT_CONTROL) == GLFW_PRESS)
+    if (glfwGetMouseButton(this->window, GLFW_MOUSE_BUTTON_2) == GLFW_PRESS)
     {
         if (glfwGetMouseButton(this->window, GLFW_MOUSE_BUTTON_1) == GLFW_PRESS)
         {
@@ -425,7 +425,7 @@ void Application::ScrollCallback(GLFWwindow *window, double x_offset, double y_o
 #if defined(__EMSCRIPTEN__)
     y_offset = -y_offset / 100;
 #endif
-    if (glfwGetKey(window, GLFW_KEY_LEFT_CONTROL) == GLFW_PRESS)
+    if (glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_2) == GLFW_PRESS)
         model.rotation_angle_x += y_offset * 6.0f;
     else
         camera.camera_obj.ProcessMouseScroll(y_offset);
@@ -449,7 +449,7 @@ void Application::render()
 {
     // DRAW ---
     // Clear
-    glClearColor(0.2f, 0.2f, 0.2f, 1.0f);
+    glClearColor(0.076f, 0.076f, 0.076f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     // Update the uniforms
