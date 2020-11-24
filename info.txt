@@ -4,3 +4,4 @@
 4) https://www.glfw.org/docs/latest/ (GLFW docs)
 5) https://gist.github.com/marcusbelcher/fc9b831bd9e6384799ed6505552ca44b (windows emscripten installation)
 6) https://alain.xyz/blog/migrating-to-cpp-from-others ()
+7) https://codepen.io/animatedcreativity/pen/wOqBQr (fotter menu)
