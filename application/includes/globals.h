@@ -64,7 +64,7 @@ namespace model
 {
     // The startup model, you also can remain it empty
     // Only the .obj and .stl are admissible 
-    std::string startup_model = "11803_Airplane_v1_l1.obj";
+    std::string startup_model = "";
 
     // I'd recomend to leave these vars with these values
     float model_rotation_angle_x = 0.0f;
