@@ -1,0 +1,53 @@
+.frame {
+  position: relative;
+}
+
+.bubble {
+  position: absolute;
+  display: inline-block;
+  width: 250px;
+  height: 250px;
+  text-align: center;
+  border-radius: 50%;
+  background-color: rgba(50, 90, 140, .3);
+  padding-top: 55px;
+  transition: all 200ms ease-in-out;
+  z-index: 2;
+}
+
+.bubble .content {
+  display: none;
+}
+
+.bubble.active {
+  width: 600px;
+  height: 600px;
+  z-index: 20;
+}
+.bubble.active .content {
+  display: block;
+  overflow: auto;
+}
+
+#b1 {
+  top: 150px;
+  left: 50px;
+}
+
+#b2 {
+  top: 400px;
+  left: 350px;
+  background-color: rgba(150, 40, 90, .3);
+}
+
+#b3 {
+  top: 150px;
+  left: 650px;
+  background-color: rgba(60, 200, 90, .3);
+}
+
+#b4 {
+  top: 400px;
+  left: 950px;
+  background-color: rgba(200, 200, 40, .3);
+}

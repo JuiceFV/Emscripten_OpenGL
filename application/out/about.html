@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" href="canvas.css">
+    <link rel="stylesheet" href="others.css">
+
+</head>
+
+<body>
+	<a href="#navigation" class="nav-trigger">
+  Menu <span></span>
+</a>
+
+<main>
+	<section class="intro">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<div class="frame">
+  <div class="bubble" id="b1" onmouseover="$(this).toggleClass('active')" onmouseout="$(this).toggleClass('active')">
+    <span class="header">Emscripten OpenGL</span><br>
+    <div class="content">
+      is<br> the application, written in C++ and ported to the WebGL.<br>
+        So far, you able to observe an object, placed in assets/models,<br>
+        ones tentatively passed there. To see the result follow to the<br>
+        canvas' page. 
+    </div>
+  </div>
+  
+  <div class="bubble" id="b2" onmouseover="$(this).toggleClass('active')" onmouseout="$(this).toggleClass('active')">
+    <span class="header">Usage</span><br>
+    <div class="content">
+		<br>Once you are in canvas page, you might see the canvas<br>
+      amid and settings below. By hover the cursor over settings<br>
+      you'ill notice the "upload obj", by pressing one you'ill be able<br>
+      to load preset models. There are two modes.<br> 
+      1 - free mode<br>
+      2 - rotatione mode<br>
+      The free mode is default. To turn rotation mode on hold the RMB.
+    </div>
+  </div>
+  
+  <div class="bubble" id="b3" onmouseover="$(this).toggleClass('active')" onmouseout="$(this).toggleClass('active')">
+    <span class="header">Normal Mode</span><br>
+    <div class="content"><br>
+      <b>Camera's movement:</b><br>
+      W:move forward; S:move backward; A:move left; D:move right;<br>
+      Mouse movement implies camera's view movement. Mouse wheel<br>is zoom.
+    </div>
+  </div>
+  <div class="bubble" id="b4" onmouseover="$(this).toggleClass('active')" onmouseout="$(this).toggleClass('active')">
+    <span class="header">Rotation Mode</span><br>
+    <div class="content"><br>
+    Whereas you hold Right Mouse Button,<br>
+    you still able to move camera, but the view is freezing<br>
+    Now you can spin an object: leftwize-rightwize mouse movement<br> - along OX
+    upward-downward along OY. Mouse wheel - along OZ. 
+    </div>
+  </div>
+  
+</div>
+	</section>
+</main>
+<nav class="nav-container" id="navigation">
+
+  <ul class="nav">
+    <li><a href="./Emscripten_Graphics.html">Home</a></li>
+    <li><a href="./canvas.html">Сanvas</a></li>
+    <li><a target="_blank" 	href="https://github.com/JuiceFV/Emscripten_OpenGL">Code</a></li>
+    <li><a href="./contacts.html">Contacts</a></li>
+  </ul>
+</nav>
+<div class="overlay"></div> <!-- improve main element 3d movement -->
+
+<script src="canvas.js"></script>
+
+</body>
+
+</html>

@@ -31,7 +31,9 @@ main {
   background: #131313 no-repeat center center;
   background-size: cover;
 }
-
+li a{
+  text-transform: uppercase;
+}
 h1 {
   display: table-cell;
   vertical-align: middle;
