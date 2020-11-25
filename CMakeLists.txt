@@ -166,6 +166,18 @@ if (FOR_EMSDK)
                     ${CMAKE_BINARY_DIR}/application/out/canvas.js 
                     COPYONLY
                 )
+    configure_file(${CMAKE_SOURCE_DIR}/application/out/about.html 
+                    ${CMAKE_BINARY_DIR}/application/out/about.html  
+                    COPYONLY
+                )
+    configure_file(${CMAKE_SOURCE_DIR}/application/out/contacts.html 
+                    ${CMAKE_BINARY_DIR}/application/out/contacts.html  
+                    COPYONLY
+                )
+    configure_file(${CMAKE_SOURCE_DIR}/application/out/others.css 
+                    ${CMAKE_BINARY_DIR}/application/out/others.css
+                    COPYONLY
+                )
 else()
     copy_files(${CMAKE_SOURCE_DIR}/assets/* ${CMAKE_BINARY_DIR}/assets/*)
 endif()
