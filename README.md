@@ -16,6 +16,11 @@ All installation's instructions you can read at [Installation section](#installa
       - [Textures](#textures)
     - [Application's Configuration](#applications-configuration)
     - [Build](#build)
+  - [Usage](#usage)
+    - [Emscripten](#emscripten)
+    - [Visual Studio 2019](#visual-studio-2019)
+  - [Rebuild](#rebuild)
+  - [TODO](#todo)
 
 ## Installation requirements
 
@@ -237,7 +242,7 @@ There are several ways to build the application. The option depends on which sys
 - >\> cd Emscripten_OpenGL
 - Perform [application's configuration](#applications-configuration) and [assets preparation](#assets-preparation)
 - >\> mkdir build && cd build 
-- >\> emcmake cmake -DFOR_EMSDK .. && emmake make
+- >\> emcmake cmake -DFOR_EMSDK=ON .. && emmake make
 - >\> python3 -m http.server
 - Follow the link and follow the path: **application->out->Emscripten_Graphics.html**
 </details>
@@ -252,7 +257,88 @@ There are several ways to build the application. The option depends on which sys
 - >\> cd Emscripten_OpenGL
 - Perform [application's configuration](#applications-configuration) and [assets preparation](#assets-preparation)
 - >\> mkdir build && cd build 
-- >\> emcmake cmake -DFOR_EMSDK .. && emmake make
+- >\> emcmake cmake -DFOR_EMSDK=ON .. && emmake make
 - >\> python3 -m http.server
 - Follow the link and follow the path: **application->out->Emscripten_Graphics.html**
 </details>
+
+## Usage
+
+### Emscripten
+
+If you built code correctly, then you should see the main page:
+
+![image](https://user-images.githubusercontent.com/35202460/101258865-6c51e480-3736-11eb-9674-edbc05bfc15b.png)
+By clicking on the  "Emscripten Graphics" you have to see the menu.
+
+![image](https://user-images.githubusercontent.com/35202460/101258910-a7541800-3736-11eb-8999-6e062035e352.png)
+
+- **Home** - main page with the title "Emscripten Graphics"
+- **About** - the page with the main information about the application and its usage.
+- **Canvas** - the canvas itself
+- **Code** - link to this repository.
+- **Contacts** - my contacts.
+
+About page looks like that. By hovering over bubble it will be expanded and additional information appears.
+
+![image](https://user-images.githubusercontent.com/35202460/101259197-796fd300-3738-11eb-8204-a17572fdfea2.png)
+
+By hovering over "**settings**" and clicking on "**upload obj**" you'ill be able to upload [pre-loaded](#models) models.
+![image](https://user-images.githubusercontent.com/35202460/101259272-f13dfd80-3738-11eb-856d-4f64129bad8b.png)
+
+You have two options: normal mode and rotation mode
+
+* **Normal mode**
+  * `W` `A` `S` `D` - forward, leftwise, backward, rightwise, respectively camera's movement.
+  * `mouse movement` - camera's rotation
+  * `mouse wheel` - zoom
+  * `esc` - out from canvas (cursor appears)
+* **Rotation mode** (to turn it on - hold RMB, right mouse button)
+  * `W` `A` `S` `D` - forward, leftwise, backward, rightwise, respectively camera's movement.
+  * `left\right mouse movements` - OX rotation
+  * `up\down mouse movements` - OY rotation
+  * `mouse wheel` - OZ rotation
+
+In **rotation mode** camera's view direction is freezing.
+As a result you see your model:
+
+![image](https://user-images.githubusercontent.com/35202460/101259756-e0db5200-373b-11eb-94fb-3bb1d7651d9d.png)
+
+### Visual Studio 2019
+
+To open filebrowser press `Cntrl+O`:
+![image](https://user-images.githubusercontent.com/35202460/101260163-f69e4680-373e-11eb-84ff-dee049618866.png)
+
+You have two options: normal mode and rotation mode
+* **Normal mode**
+  * `W` `A` `S` `D` - forward, leftwise, backward, rightwise, respectively camera's movement.
+  * `mouse movement` - camera's rotation
+  * `mouse wheel` - zoom
+* **Rotation mode** (to turn it on - hold RMB, right mouse button)
+  * `W` `A` `S` `D` - forward, leftwise, backward, rightwise, respectively camera's movement.
+  * `left\right mouse movements` - OX rotation
+  * `up\down mouse movements` - OY rotation
+  * `mouse wheel` - OZ rotation
+
+In **rotation mode** camera's view direction is freezing. 
+As a result you see your model:
+![image](https://user-images.githubusercontent.com/35202460/101260071-2bf66480-373e-11eb-8727-8cde3b7156b4.png)
+
+## Rebuild
+
+If you modified content of assets and want to rebuild the project:
+
+* In case you built rawly, just type:
+  >\> make
+
+  or 
+  >\> emmake make
+
+* In case you built via Docker, just type:
+  >\> docker-compose build application
+
+  >\> docker-compose up application
+
+## TODO
+* Add ability to select any model, not only prepared
+* Fix troubles with axis of different models
