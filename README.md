@@ -1,5 +1,5 @@
 # Emscripten_OpenGL
-![Build status](https://travis-ci.org/JuiceFV/Emscripten_OpenGL.svg?branch=master)
+[![Build Status](https://travis-ci.org/JuiceFV/Emscripten_OpenGL.svg?branch=master)](https://travis-ci.org/JuiceFV/Emscripten_OpenGL)
 [![Build status](https://ci.appveyor.com/api/projects/status/yop4ice01c88pp06?svg=true)](https://ci.appveyor.com/project/JuiceFV/emscripten-opengl)
 
 This project is the example of usage of the [Emscripten](https://emscripten.org). The application itself is the 3D-Model Render, based on OpenGL. I would like to turn some constraints:
