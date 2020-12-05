@@ -43,7 +43,33 @@ Docker is enough.
 
 Be sure you are familiar with [installation requirements](#installation-requirements)
 
+### Assets preparation
+
+Before compile the code, be sure you passed everything into right directories. 
+
+#### Shaders
+
+The application handles fragment and vertex shaders for both WebGL and OpenGL. All shaders are placed in `assets/shaders`:
+* Vertex shader for the OpenGL has `.vs` extension.
+* Fragment shader for the OpenGL has `.frag` extension.
+* Vertex shader for the WebGL has `.wvs` extension.
+* Fragment shader for the WebGL has `.wfrag` extension.
+
+
+![image](https://user-images.githubusercontent.com/35202460/101246753-52a8a100-3726-11eb-83d7-3f0c3767daed.png)
+
+#### Models
+
+The application able to process only the `.obj` and `.stl` models. Before building the code, pass the models with its entities and relates into the `assets/models`.
+
+![image](https://user-images.githubusercontent.com/35202460/101246698-01001680-3726-11eb-8ea1-e8c03ebc5f3d.png)
+
+#### Textures
+The application handles any extension admitted by [SOIL2](https://github.com/SpartanJ/SOIL2). All textures are placed in `assets/images`
+![image](https://user-images.githubusercontent.com/35202460/101246928-686a9600-3727-11eb-8560-3e990af5478c.png)
+
 ### Application's Configuration
+
 Before we start, let's familiarize with configuration
 ```cpp
 namespace window
@@ -139,7 +165,7 @@ namespace camera
 * `resizable` - ability of window's resize 
 * `speed` - camera's movement speed
 * `sensitivity` - mouse's sensitivity
-* `shader_file` - the file with your own shaders. The file should be placed at `assets/shaders`, they have to coincide with pattern: `shader_file.vs`, `shader_file.frag`. If you leave this field empty (`""`), then the base file will be loading (the name of base shaders is `core`, DO NOT REMOVE THIS FILE).
+* `shader_file` - the file with your own shaders. The file should be placed at `assets/shaders`, they have to coincide with pattern: `shader_file.vs`, `shader_file.frag`, `shader_file.wvs`, `shader_file.wfrag`. If you leave this field empty (`""`), then the base file will be loading (the name of base shaders is `core`, DO NOT REMOVE THIS FILE).
 * `MSAA` - antialiasing. I use only MSAA ([shorthand of MSAA](https://mynameismjp.wordpress.com/2012/10/24/msaa-overview)).
 * `line_mode` - the mode, where textures displays as lines between vertices without filling inside.
 * `is_light_shader` - set **true** if shader handles lights. Note, I can handle only the directional and point lights.
@@ -166,6 +192,34 @@ namespace camera
 * `model_rotation_angle_z` - base rotation along OZ.
 * `model_scaling` - base model rescaling. 
 * `model_translation` - base model translation. World's shifting.
-* `cam_position` - camera's position.
+* `cam_position` - default camera's position.
 * `world_up` - the up vector of the world.
 * `cam_front` - camera's default view direction.
+
+### Build
+There are several ways to build the application. The option depends on which system you work, except Docker, it is suitable for each one.
+<details>
+<summary>Docker</summary>
+<ul>
+    <li>
+    Launch Docker.
+    </li>
+</ul>
+</details>
+
+<details>
+<summary>Windows 10</summary>
+<details>
+<summary>Visual Studio 2019</summary>
+
+</details>
+<details>
+<summary>Emscripten</summary>
+
+</details>
+</details>
+
+<details>
+<summary>Unix</summary>
+
+</details>
