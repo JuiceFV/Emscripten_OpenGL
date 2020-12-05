@@ -1,4 +1,6 @@
 # Emscripten_OpenGL
+![Build status](https://travis-ci.org/JuiceFV/Emscripten_OpenGL.svg?branch=master)
+[![Build status](https://ci.appveyor.com/api/projects/status/yop4ice01c88pp06?svg=true)](https://ci.appveyor.com/project/JuiceFV/emscripten-opengl)
 
 This project is the example of usage of the [Emscripten](https://emscripten.org). The application itself is the 3D-Model Render, based on OpenGL. I would like to turn some constraints:
 - If you're working on Windows, you have several options to build. In case you have [Docker](https://www.docker.com) you can build it in few steps. Otherwise you can build for the Visual Studio 2019 or for the emscripten. In case if you chose the emscripten, you're required to use the [WSL2](https://en.wikipedia.org/wiki/Windows_Subsystem_for_Linux). 
@@ -358,7 +360,7 @@ The problem appears, when I'm trying to load a model from different directory ra
 
 ## How To Contribute
 
-1. >\> git clone https://github.com/JuiceFV/Cats_Queue_Management_System.git -b name_for_new_branch
+1. >\> git clone https://github.com/JuiceFV/Emscripten_OpenGL.git -b name_for_new_branch
 2. Make changes and test
 3. Submit Pull Request with comprehensive description of changes
 
