@@ -20,6 +20,10 @@ All installation's instructions you can read at [Installation section](#installa
     - [Emscripten](#emscripten)
     - [Visual Studio 2019](#visual-studio-2019)
   - [Rebuild](#rebuild)
+  - [Issues I haven't solved, yet](#issues-i-havent-solved-yet)
+  - [Links](#links)
+  - [How To Contribute](#how-to-contribute)
+  - [License](#license)
   - [TODO](#todo)
 
 ## Installation requirements
@@ -338,6 +342,29 @@ If you modified content of assets and want to rebuild the project:
   >\> docker-compose build application
 
   >\> docker-compose up application
+
+## Issues I haven't solved, yet
+**1. Non-prepared assets**
+The problem appears, when I'm trying to load a model from different directory rather then `assets/*`. The problem is that, I can't extract full path in browser (only the name of `.obj`/`.stl` files). Therefore I pass all assets into the same directory for the both Emscripten and Visual Studio 2019. Consequently, an user can apply only these models. I will fix it somehow, further.
+
+**2. Default axis problem** The problem is that different object's files may contain different world ups and different object's position. For instance, one object may be faced along OX, another one along OY, thus the rotation of the face occurs in different directions (different mouse's movements directions). I should pre-calculate the position and camera's view and set it before launch, somehow:))) 
+
+## Links
+
+1. [Chreno stream apropos emscripten](https://www.youtube.com/watch?v=S9MV_FDHMfk)
+2. [Free 3d models](https://clara.io/library)
+3. [OpenGL Tutorial](https://open.gl)
+4. [OpenGL Tutorial 2](https://learnopengl.com)
+
+## How To Contribute
+
+1. >\> git clone https://github.com/JuiceFV/Cats_Queue_Management_System.git -b name_for_new_branch
+2. Make changes and test
+3. Submit Pull Request with comprehensive description of changes
+
+## License
+
+MIT
 
 ## TODO
 * Add ability to select any model, not only prepared
