@@ -200,11 +200,13 @@ namespace camera
 There are several ways to build the application. The option depends on which system you work, except Docker, it is suitable for each one.
 <details>
 <summary>Docker</summary>
-<ul>
-    <li>
-    Launch Docker.
-    </li>
-</ul>
+
+- Launch Docker.
+- >\> git clone https://github.com/JuiceFV/Emscripten_OpenGL.git
+- >\> cd Emscripten_OpenGL
+- >\> docker-compose up application
+- Once console is freezing, follow to the localhost, port: 8080
+
 </details>
 
 <details>
