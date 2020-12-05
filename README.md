@@ -7,11 +7,15 @@ This project is the example of usage of the [Emscripten](https://emscripten.org)
 
 All installation's instructions you can read at [Installation section](#installation)
  
-
-## Table of Contents - [Emscripten_OpenGL](#emscripten_opengl)
-  - [Table of Contents](#table-of-contents)
+- [Emscripten_OpenGL](#emscripten_opengl)
   - [Installation requirements](#installation-requirements)
   - [Installation](#installation)
+    - [Assets preparation](#assets-preparation)
+      - [Shaders](#shaders)
+      - [Models](#models)
+      - [Textures](#textures)
+    - [Application's Configuration](#applications-configuration)
+    - [Build](#build)
 
 ## Installation requirements
 
@@ -204,6 +208,7 @@ There are several ways to build the application. The option depends on which sys
 - Launch Docker.
 - >\> git clone https://github.com/JuiceFV/Emscripten_OpenGL.git
 - >\> cd Emscripten_OpenGL
+- Perform [application's configuration](#applications-configuration) and [assets preparation](#assets-preparation)
 - >\> docker-compose up application
 - Once console is freezing, follow to the localhost, port: 8080
 
@@ -214,6 +219,12 @@ There are several ways to build the application. The option depends on which sys
 <details>
 <summary>Visual Studio 2019</summary>
 
+- >\> git clone https://github.com/JuiceFV/Emscripten_OpenGL.git
+- >\> cd Emscripten_OpenGL
+- Perform [application's configuration](#applications-configuration) and [assets preparation](#assets-preparation)
+- >\> mkdir build
+- >\> cd build 
+- >\> cmake [-G%generator%:optional] ..
 </details>
 <details>
 <summary>Emscripten</summary>
@@ -224,4 +235,9 @@ There are several ways to build the application. The option depends on which sys
 <details>
 <summary>Unix</summary>
 
+- >\> git clone https://github.com/JuiceFV/Emscripten_OpenGL.git
+- >\> cd Emscripten_OpenGL
+- Perform [application's configuration](#applications-configuration) and [assets preparation](#assets-preparation)
+- >\> mkdir build
+- >\> cd build 
 </details>
