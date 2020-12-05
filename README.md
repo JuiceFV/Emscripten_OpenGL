@@ -219,6 +219,7 @@ There are several ways to build the application. The option depends on which sys
 <details>
 <summary>Visual Studio 2019</summary>
 
+- Familiarize with [pre-requirements](#installation-requirements)
 - >\> git clone https://github.com/JuiceFV/Emscripten_OpenGL.git
 - >\> cd Emscripten_OpenGL
 - Perform [application's configuration](#applications-configuration) and [assets preparation](#assets-preparation)
@@ -226,18 +227,32 @@ There are several ways to build the application. The option depends on which sys
 - >\> cd build 
 - >\> cmake [-G%generator%:optional] ..
 </details>
+
 <details>
 <summary>Emscripten</summary>
 
+- Open the WSL2
+- Familiarize with [pre-requirements](#installation-requirements) for Linux
+- >\> git clone https://github.com/JuiceFV/Emscripten_OpenGL.git
+- >\> cd Emscripten_OpenGL
+- Perform [application's configuration](#applications-configuration) and [assets preparation](#assets-preparation)
+- >\> mkdir build && cd build 
+- >\> emcmake cmake -DFOR_EMSDK .. && emmake make
+- >\> python3 -m http.server
+- Follow the link and follow the path: **application->out->Emscripten_Graphics.html**
 </details>
+
 </details>
 
 <details>
 <summary>Unix</summary>
 
+- Familiarize with [pre-requirements](#installation-requirements)
 - >\> git clone https://github.com/JuiceFV/Emscripten_OpenGL.git
 - >\> cd Emscripten_OpenGL
 - Perform [application's configuration](#applications-configuration) and [assets preparation](#assets-preparation)
-- >\> mkdir build
-- >\> cd build 
+- >\> mkdir build && cd build 
+- >\> emcmake cmake -DFOR_EMSDK .. && emmake make
+- >\> python3 -m http.server
+- Follow the link and follow the path: **application->out->Emscripten_Graphics.html**
 </details>
